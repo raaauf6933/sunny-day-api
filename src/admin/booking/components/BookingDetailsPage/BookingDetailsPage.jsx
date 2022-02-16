@@ -38,6 +38,23 @@ const BookingDetailsPage = (props) => {
   const { booking, onUpdateStatus } = props;
   const classes = useStyles(props);
 
+  const saveButtonLabel = () => {
+    switch (booking?.status) {
+      case "PENDING":
+        return "CONFIRMED";
+      case "CONFIRMED":
+        return "CHECK-IN";
+      case "CHECK_IN":
+        return "CHECK-OUT";
+      default:
+        break;
+    }
+  };
+
+  const handleSubmit = () => {
+    onUpdateStatus(booking?.reservation?.id, booking?.reservation?.status);
+  };
+
   return (
     <>
       <div
@@ -49,27 +66,27 @@ const BookingDetailsPage = (props) => {
           <PageHeader
             className={classes.header}
             inline
-            title={booking?.reservation?.booking_reference}
+            title={booking?.booking_reference}
           />
           <span className={classes.statusHolder}>
             {/* { booking?.reservation?.status ? ( */}
-            <BookingStatus status={booking?.reservation?.status} />
+            <BookingStatus status={booking?.status} />
             {/* ) : (
             <Skeleton />
           )} */}
           </span>
         </div>
-        <DateAgo date={booking?.reservation?.created} />
+        <DateAgo date={booking?.createdAt} />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={8} md={8}>
             <div className={classes.section}>
-              <BookingRoomDetails />
+              <BookingRoomDetails rooms={booking?.rooms} />
             </div>
             <div className={classes.section}>
-              <BookingPayment />
+              <BookingPayment booking={booking} billing={booking?.billing} />
             </div>
             <div className={classes.section}>
-              <BookingHistory />
+              <BookingHistory events={booking?.events} />
             </div>
           </Grid>
           <Grid item xs={12} sm={4} md={4}>
@@ -84,11 +101,10 @@ const BookingDetailsPage = (props) => {
       </div>
       <SaveButtonBar
         labels={{
-          save: "CONFIRMED",
+          save: saveButtonLabel(),
         }}
-        onClickSave={() =>
-          onUpdateStatus(booking?.reservation?.id, booking?.reservation?.status)
-        }
+        hideSaveButton={booking?.status === "CHECK_OUT"}
+        onClickSave={() => handleSubmit()}
       />
     </>
   );

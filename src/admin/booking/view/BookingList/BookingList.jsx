@@ -1,14 +1,21 @@
 import React from "react";
 import BookingListPage from "./../../components/BookingListPage/BookingListPage";
-import { getBookings } from "./../../api/booking";
+import AppStateContext from "../../../context/AppState/context";
+import { GET_BOOKINGS } from "../../api";
+import ApiAxios from "./../../../../apiAxios";
 
 const BookingList = () => {
-  const [bookings, setBookings] = React.useState([]);
+  const [bookings, setBookings] = React.useState();
+  const { appStateDispatch } = React.useContext(AppStateContext);
 
   const fetchBookings = async () => {
-    await getBookings()
-      .then((res) => setBookings(res.data.data))
-      .catch((err) => err);
+    try {
+      const result = await ApiAxios(
+        { url: GET_BOOKINGS, method: "GET" },
+        appStateDispatch
+      );
+      setBookings(result.data);
+    } catch (error) {}
   };
 
   React.useEffect(() => {

@@ -23,7 +23,7 @@ const useStyles = makeStyles(
       zIndex: 10,
       position: "sticky",
       gridColumn: 2,
-      marginTop: "-50px",
+      marginTop: "-60px",
       marginBottom: "-50px",
     },
     content: {
@@ -81,7 +81,8 @@ const useStyles = makeStyles(
 
 const SaveButtonBar = (props) => {
   const classes = useStyles(props);
-  const { labels, onClickSave } = props;
+  const { labels, onClickSave, disabled, hideSaveButton } = props;
+
   return (
     <div className={classes.container}>
       <div className={classes.root}>
@@ -90,14 +91,17 @@ const SaveButtonBar = (props) => {
             <Button className={classes.backButton} variant="text">
               Back
             </Button>
-            <Button
-              className={classes.saveButton}
-              color="primary"
-              variant="contained"
-              onClick={onClickSave}
-            >
-              {labels?.save || "Save"}
-            </Button>
+            {hideSaveButton ? null : (
+              <Button
+                className={classes.saveButton}
+                color="primary"
+                variant="contained"
+                onClick={onClickSave}
+                disabled={disabled}
+              >
+                {labels?.save || "Save"}
+              </Button>
+            )}
           </CardContent>
         </Card>
       </div>

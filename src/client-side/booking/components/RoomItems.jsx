@@ -75,7 +75,7 @@ const useStyles = makeStyles(
 
 const RoomItems = (props) => {
   const { openModal, room } = props;
-  const { room_details, room_images } = room;
+  const { details, images, name, room_rate, rooms, _id } = room;
   const classes = useStyles(props);
   const { bookingState, bookingDispatch } = React.useContext(bookingContext);
   const { room_details: roomContext } = bookingState;
@@ -83,7 +83,7 @@ const RoomItems = (props) => {
   const initialQty = () => {
     const roomContextData =
       roomContext &&
-      roomContext.filter(({ roomtype_id }) => roomtype_id === room.id);
+      roomContext.filter(({ roomtype_id }) => roomtype_id === _id);
     return roomContextData.length ? roomContextData.length : 0;
   };
 
@@ -102,11 +102,11 @@ const RoomItems = (props) => {
         bookingDispatch({
           type: "ADD_ROOM",
           payload: {
-            room_id: room.rooms[qty].room_id,
-            roomtype_id: room.rooms[qty].roomtype_id,
-            room_num: room.rooms[qty].room_num,
-            room_amount: room.rooms[qty].room_amount,
-            roomtype_name: room.rooms[qty].roomtype_name,
+            room_id: rooms[qty]._id,
+            roomtype_id: _id,
+            room_amount: room_rate,
+            roomtype_name: name,
+            room_num: rooms[qty].room_number,
           },
         });
       }
@@ -117,7 +117,7 @@ const RoomItems = (props) => {
         bookingDispatch({
           type: "REMOVE_ROOM",
           payload: {
-            room_id: room.rooms[qty - 1].room_id,
+            room_id: rooms[qty - 1]._id,
           },
         });
       }
@@ -128,13 +128,13 @@ const RoomItems = (props) => {
     setDisableAdd(false);
     setDisableRemove(false);
 
-    if (room.rooms.length !== 1) {
-      if (qty < room.rooms.length && qty !== 0) {
+    if (rooms.length !== 1) {
+      if (qty < rooms.length && qty !== 0) {
         setDisableAdd(false);
         setDisableRemove(false);
       } else if (qty === 0) {
         setDisableRemove(true);
-      } else if (qty === room.rooms.length) {
+      } else if (qty === rooms.length) {
         setDisableAdd(true);
       }
     } else {
@@ -149,7 +149,7 @@ const RoomItems = (props) => {
       }
     }
 
-    if (room.rooms.length === 0) {
+    if (rooms.length === 0) {
       setDisableRemove(true);
       setDisableAdd(true);
     }
@@ -182,7 +182,7 @@ const RoomItems = (props) => {
     <>
       <Grid item xs={12} sm={6}>
         <Carousel indicators={false} autoPlay={false} animation="slide">
-          {room_images?.images.map((e) => {
+          {images?.map((e) => {
             return (
               <>
                 <CardMedia
@@ -211,45 +211,32 @@ const RoomItems = (props) => {
           }}
         >
           <Typography variant="h5" marginBottom="10px">
-            {room.roomtype_name}
+            {name}
           </Typography>
           <div className={classes.roomDescription}>
             <Typography variant="subtitle1">
               <span className={classes.roomAmenities}>
                 {" "}
-                {room_details?.noPerson ? (
-                  room_details?.noPerson
-                ) : (
-                  <Skeleton />
-                )}{" "}
-                Person
+                {details?.no_person ? details?.no_person : <Skeleton />} Person
               </span>{" "}
               ·{" "}
               <span className={classes.roomAmenities}>
-                {room_details?.noBedRooms ? (
-                  `${room_details?.noBedRooms} Bed Rooms`
+                {details?.no_bed ? (
+                  `${details?.no_bed} Bed Rooms`
                 ) : (
                   <Skeleton />
                 )}
               </span>{" "}
               ·{" "}
               <span className={classes.roomAmenities}>
-                {room_details?.noBed ? (
-                  `${room_details.noBed} bed`
-                ) : (
-                  <Skeleton />
-                )}
+                {details?.no_bed ? `${details.no_bed} bed` : <Skeleton />}
               </span>{" "}
               ·{" "}
               <span className={classes.roomAmenities}>
-                {room_details?.noBath ? (
-                  `${room_details.noBath} bath`
-                ) : (
-                  <Skeleton />
-                )}
+                {details?.no_bath ? `${details.no_bath} bath` : <Skeleton />}
               </span>{" "}
               · {""}
-              {room_details?.isAircon ? (
+              {details?.isAircon ? (
                 <>
                   <span className={classes.roomAmenities}>
                     Air conditioning
@@ -257,7 +244,7 @@ const RoomItems = (props) => {
                   {"·"}
                 </>
               ) : null}
-              {room_details?.isKitchen ? (
+              {details?.isKitchen ? (
                 <span className={classes.roomAmenities}>Kitchen </span>
               ) : null}
             </Typography>
@@ -265,7 +252,7 @@ const RoomItems = (props) => {
           <div className={classes.roomFooter}>
             <Typography variant="h6">
               <span className={classes.roomAmount}>
-                {currencyFormat(room?.room_amount)}
+                {currencyFormat(room_rate)}
               </span>{" "}
               / night
             </Typography>
@@ -286,7 +273,7 @@ const RoomItems = (props) => {
             </div>
           </div>
           <div className={classes.quantityLeft}>
-            <span>({room.rooms.length} left)</span>
+            <span>({rooms.length} left)</span>
           </div>
         </div>
       </Grid>

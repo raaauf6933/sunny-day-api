@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardHeader, CardContent } from "@mui/material";
+import { Card, CardHeader, CardContent, Skeleton } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 import Timeline from "@mui/lab/Timeline";
@@ -16,6 +16,10 @@ import {
   Paid,
 } from "@mui/icons-material/";
 import Typography from "@mui/material/Typography";
+
+import TimelineEvents from "../../../components/Timeline/TimelineEvents";
+import TimelineImage from "../../../components/Timeline/TimelineImage";
+import TimelineEventsMessage from "../../../components/Timeline/TimelineEventsMessage";
 
 const useStyles = makeStyles(
   () => ({
@@ -50,36 +54,38 @@ const useStyles = makeStyles(
 
 const BookingHistory = (props) => {
   const classes = useStyles(props);
+  const { events } = props;
+
+  const eventType = (event) => {
+    switch (event.type) {
+      case "BOOKING_CREATED":
+        return <TimelineEvents title="Booking Created" date={event.created} />;
+      case "GUEST_IMAGE_UPLOAD":
+        return <TimelineImage title="Booking Created" date={event.created} />;
+      case "UPDATE_STATUS":
+        return <TimelineEventsMessage event={event} date={event.created} />;
+      default:
+        break;
+    }
+  };
 
   return (
     <Card>
       <CardHeader className={classes.cardHeader} title="Booking History" />
       <div className={classes.root}>
-        {/* <Timeline className={classes.timeLineRoot}>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>Eat</TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent>Code</TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineDot />
-            </TimelineSeparator>
-            <TimelineContent>Booking Created</TimelineContent>
-          </TimelineItem>
-        </Timeline> */}
-
         <Timeline className={classes.timeLineRoot} position="right">
-          <TimelineItem>
+          {events ? (
+            events
+              .slice()
+              .reverse()
+              .map((event) => {
+                return eventType(event);
+              })
+          ) : (
+            <Skeleton />
+          )}
+
+          {/* <TimelineItem>
             <TimelineSeparator>
               <TimelineConnector />
               <TimelineDot color="primary">
@@ -106,25 +112,7 @@ const BookingHistory = (props) => {
               <span>3 days</span>
             </TimelineContent>
           </TimelineItem>
-          {/* <TimelineItem>
-            <TimelineSeparator>
-              <TimelineConnector />
-              <TimelineDot>
-                <LaptopMacIcon className={classes.timelineIcon} />
-              </TimelineDot>
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent
-              className={classes.timelineContent}
-              sx={{ py: "21px", px: 2 }}
-            >
-              <Typography>
-                Guest Paid <b>PHP 3,000.00</b>
-              </Typography>
 
-              <span>3 days</span>
-            </TimelineContent>
-          </TimelineItem> */}
           <TimelineItem>
             <TimelineSeparator>
               <TimelineConnector />
@@ -195,23 +183,7 @@ const BookingHistory = (props) => {
 
               <span>3 days</span>
             </TimelineContent>
-          </TimelineItem>
-          <TimelineItem>
-            <TimelineSeparator>
-              <TimelineConnector />
-              <TimelineDot>
-                <Edit className={classes.timelineIcon} />
-              </TimelineDot>
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent
-              className={classes.timelineContent}
-              sx={{ py: "21px", px: 2 }}
-            >
-              <Typography>Booking Created</Typography>
-              <span>3 days</span>
-            </TimelineContent>
-          </TimelineItem>
+          </TimelineItem> */}
         </Timeline>
       </div>
     </Card>

@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import logo from "./../../../assets/images/logo.png";
 
 const useStyles = makeStyles(
   () => {
@@ -22,6 +23,11 @@ const useStyles = makeStyles(
         color: "black !important",
         boxShadow:
           "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%) !important",
+      },
+      welcomeTitle: {
+        fontSize: "1em",
+        fontFamily: "Volkhov",
+        color: "#f15d30",
       },
     };
   },
@@ -49,8 +55,13 @@ const AppbarDynamic = (props) => {
             </IconButton>
           </Hidden>
 
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Lorem Epsum Hotel Resort
+          <Typography
+            className={classes.welcomeTitle}
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+          >
+            {trigger ? "Villa Gregoria Resort" : ""}
           </Typography>
 
           <Hidden smDown>

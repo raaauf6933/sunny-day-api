@@ -11,7 +11,7 @@ const useStyles = makeStyles(
       marginRight: "10px",
     },
     footer: {
-      padding: "7em",
+      padding: "2em",
       fontSize: "16px",
       borderTop: "1px solid rgba(0, 0, 0, 0.05)",
       background: "#FFF",
@@ -33,16 +33,15 @@ const Footer = (props) => {
         fontWeight: 600,
       }}
     >
-      <div class="container">
-        {/* <Grid container>
+      {/* <Grid container>
           <Grid item>
             {/* <div class="ftco-footer-widget pt-md-5 mb-4"> */}
-        {/* <h2 class="ftco-heading-2">About</h2> */}
-        {/* <p>
+      {/* <h2 class="ftco-heading-2">About</h2> */}
+      {/* <p>
                 Far far away, behind the word mountains, far from the countries
                 Vokalia and Consonantia, there live the blind texts.
               </p> */}
-        {/* <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
+      {/* <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
                 <li class="ftco-animate fadeInUp ftco-animated">
                   <a href="javascript:void(0);" target="_blank">
                     <span class="fa fa-facebook"></span>
@@ -59,10 +58,10 @@ const Footer = (props) => {
                   </Link>
                 </li>
               </ul> */}
-        {/* </div> */}
-        {/* </Grid>
+      {/* </div> */}
+      {/* </Grid>
         </Grid>  */}
-        {/* <div class="row mb-4">
+      {/* <div class="row mb-4">
           <div class="col-md pt-5">
             <div class="ftco-footer-widget pt-md-5 mb-4">
               <h2 class="ftco-heading-2">About</h2>
@@ -191,33 +190,32 @@ const Footer = (props) => {
             </div>
           </div>
         </div> */}
-        {/* <div class="row"> */}
+      {/* <div class="row"> */}
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        alignItems={"center"}
+        justifyContent={"center"}
+      >
         <Box
           display={"flex"}
-          flexDirection={"column"}
+          flexDirection={"row"}
           alignItems={"center"}
           justifyContent={"center"}
+          marginBottom={"1em"}
         >
-          <Box
-            display={"flex"}
-            flexDirection={"row"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            marginBottom={"1em"}
-          >
-            <Avatar className={classes.avatar}>
-              <Facebook />
-            </Avatar>
-            <Avatar className={classes.avatar}>
-              <Instagram />
-            </Avatar>
-            <Avatar className={classes.avatar}>
-              <Twitter />
-            </Avatar>
-          </Box>
-          <p>Copyright © 2021 All rights reserved | Hotel Reservation</p>
+          <Avatar className={classes.avatar}>
+            <Facebook />
+          </Avatar>
+          <Avatar className={classes.avatar}>
+            <Instagram />
+          </Avatar>
+          <Avatar className={classes.avatar}>
+            <Twitter />
+          </Avatar>
         </Box>
-      </div>
+        <p>Copyright © 2021 All rights reserved | Hotel Reservation</p>
+      </Box>
     </footer>
   );
 };

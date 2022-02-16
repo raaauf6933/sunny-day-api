@@ -6,6 +6,7 @@ import {
   TableRow,
   TableCell,
   Grid,
+  Skeleton,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import moment from "moment";
@@ -53,47 +54,78 @@ const BookingGuestDetails = (props) => {
           <TableRow>
             <TableCell className={classes.tableCellBold}>Name: </TableCell>
             <TableCell>
-              {guest?.first_name} {guest?.last_name}
+              {booking ? (
+                <span>
+                  {" "}
+                  {guest?.first_name} {guest?.last_name}
+                </span>
+              ) : (
+                <Skeleton width={100} />
+              )}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className={classes.tableCellBold}>
               Contact Number:{" "}
             </TableCell>
-            <TableCell>{guest?.contact_number}</TableCell>
+            <TableCell>
+              {guest ? guest?.contact_number : <Skeleton width={100} />}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className={classes.tableCellBold}>Email: </TableCell>
-            <TableCell>{guest?.email}</TableCell>
+            <TableCell>
+              {guest ? guest?.email : <Skeleton width={100} />}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className={classes.tableCellBold}>No. Guest: </TableCell>
-            <TableCell>{guest?.no_guest}</TableCell>
+            <TableCell>
+              {guest ? guest?.no_guest : <Skeleton width={100} />}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className={classes.tableCellBold}>Address: </TableCell>
-            <TableCell>{guest?.street_address}</TableCell>
+            <TableCell>
+              {guest ? guest?.street_address : <Skeleton width={100} />}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className={classes.tableCellBold}>City: </TableCell>
-            <TableCell>{guest?.city}</TableCell>
+            <TableCell>
+              {guest ? guest?.city : <Skeleton width={100} />}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className={classes.tableCellBold}>Province: </TableCell>
-            <TableCell>{guest?.province}</TableCell>
+            <TableCell>
+              {guest ? guest?.province : <Skeleton width={100} />}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className={classes.tableCellBold}>Check-In: </TableCell>
             <TableCell className={classes.tableCellBold}>
-              {moment(reservation?.check_in).format("ll")} (
-              {moment(reservation?.check_in).format("ddd")})
+              {guest ? (
+                <span>
+                  {moment(booking?.check_in).format("ll")} (
+                  {moment(booking?.check_in).format("ddd")})
+                </span>
+              ) : (
+                <Skeleton width={100} />
+              )}{" "}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className={classes.tableCellBold}>Check-Out: </TableCell>
             <TableCell className={classes.tableCellBold}>
-              {moment(reservation?.check_out).format("ll")} (
-              {moment(reservation?.check_out).format("ddd")})
+              {guest ? (
+                <span>
+                  {moment(booking?.check_out).format("ll")} (
+                  {moment(booking?.check_out).format("ddd")}){" "}
+                </span>
+              ) : (
+                <Skeleton />
+              )}
             </TableCell>
           </TableRow>
         </Table>

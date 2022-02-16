@@ -4,7 +4,7 @@ import RoomItems from "../components/RoomItems";
 import { Card, CardContent, Divider } from "@mui/material";
 // import PaginationComponent from "../../components/Pagination";
 // import { paginate } from "../../utils/paginate";
-import BookingSummary from "../components/BookingSummary";
+import SummarySideBar from "../components/SummarySideBar";
 import ChangeDateDialog from "./../components/ChangeDateDialog";
 import ImagePreviewDialog from "../../components/ImagePreviewDialog";
 import bookingContext from "../../context/booking/bookingContext";
@@ -30,9 +30,12 @@ const SelectRooms = ({ params, navigate }) => {
   );
 
   const getRooms = async (dates) => {
-    await getAvailableRooms(dates)
-      .then((res) => setRooms(res.data.data))
-      .catch((err) => err);
+    try {
+      const result = await getAvailableRooms(dates);
+      setRooms(result.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSave = () => {
@@ -56,7 +59,7 @@ const SelectRooms = ({ params, navigate }) => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bookingState.check_in, bookingState.check_out]);
+  }, []);
 
   // const handlePageChange = (page) => {
   //   setState({ ...state, currentPage: page });
@@ -133,7 +136,7 @@ const SelectRooms = ({ params, navigate }) => {
             </Grid>
           </Grid>
           <Grid container item xs={12} sm={4} spacing={2}>
-            <BookingSummary openModal={openModal} bookingState={bookingState} />
+            <SummarySideBar openModal={openModal} bookingState={bookingState} />
           </Grid>
         </Grid>
         <ChangeDateDialog

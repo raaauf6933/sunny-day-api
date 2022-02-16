@@ -1,12 +1,14 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import BookingDetailsPage from "../../components/BookingDetailsPage/BookingDetailsPage";
-import { getBooking, updateBookingStatus } from "../../api/booking";
 import createDialogActionHandlers from "../../dialogActionHandlers";
 import { useLocation, useNavigate } from "react-router-dom";
 import { parse as parseQs } from "qs";
 import ConfirmationDialog from "../../../components/ConfirmationDialog/ConfirmationDialog";
 import { bookingPathParamsUrl } from "../../url";
+import AppStateContext from "../../../context/AppState/context";
+import { GET_BOOKING, UPDATE_BOOKING_STATUS } from "../../api";
+import ApiAxios from "./../../../../apiAxios";
 
 const BookingDetails = () => {
   const { id } = useParams();
@@ -15,14 +17,23 @@ const BookingDetails = () => {
   const navigate = useNavigate();
   const qs = parseQs(location.search.substr(1));
   const params = qs;
+  const { appStateDispatch } = React.useContext(AppStateContext);
 
   const fetchBooking = async () => {
-    const data = await getBooking(id);
-    setBooking(data.data);
+    try {
+      const result = await ApiAxios(
+        { data: { id }, url: GET_BOOKING, method: "POST" },
+        appStateDispatch
+      );
+      setBooking(result.data);
+    } catch (error) {}
   };
 
   const UpdateStatus = async (id, status) => {
-    const data = await updateBookingStatus(id, status);
+    const data = await ApiAxios(
+      { data: { id, status }, url: UPDATE_BOOKING_STATUS, method: "POST" },
+      appStateDispatch
+    );
     fetchBooking();
     return data;
   };
@@ -40,7 +51,7 @@ const BookingDetails = () => {
   }, []);
 
   const getConfirmationMessage = () => {
-    switch (booking?.data?.reservation?.status) {
+    switch (booking?.status) {
       case "PENDING":
         return (
           <span>
@@ -53,6 +64,12 @@ const BookingDetails = () => {
             Are you sure you want to mark this booking as <b>CHECK-IN</b>?
           </span>
         );
+      case "CHECK_IN":
+        return (
+          <span>
+            Are you sure you want to mark this booking as <b>CHECK-OUT</b>?
+          </span>
+        );
 
       default:
         break;
@@ -62,19 +79,14 @@ const BookingDetails = () => {
   return (
     <>
       <BookingDetailsPage
-        booking={booking.data}
+        booking={booking}
         onUpdateStatus={() => openModal("onUpdateStatus")}
       />
       <ConfirmationDialog
         open={params.action === "onUpdateStatus"}
         onClose={closeModal}
         message={getConfirmationMessage()}
-        onSubmit={() =>
-          UpdateStatus(
-            booking?.data?.reservation?.id,
-            booking?.data?.reservation?.status
-          )
-        }
+        onSubmit={() => UpdateStatus(booking?._id, booking?.status)}
       />
     </>
   );

@@ -38,14 +38,14 @@ const NotFound = (props) => {
   // const classes = useStyles(props);
   return (
     <>
-      <Hero>
+      <div style={{ textAlign: "center" }}>
         <Typography variant="h1" gutterBottom>
           <span>404 | Page Not Found</span>
         </Typography>
         <Typography variant="h4" fontWeight={600}>
           <NavLink to="/">Go to home page </NavLink>
         </Typography>
-      </Hero>
+      </div>
     </>
   );
 };

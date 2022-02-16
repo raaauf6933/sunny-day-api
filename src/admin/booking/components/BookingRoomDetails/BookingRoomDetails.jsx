@@ -8,9 +8,10 @@ import {
   TableHead,
   TableCell,
   TableRow,
+  Skeleton,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { currencyFormat } from "../../../../misc";
+import { currencyFormat, renderCollection } from "../../../../misc";
 
 const useStyles = makeStyles(
   () => ({
@@ -36,6 +37,8 @@ const useStyles = makeStyles(
 
 const BookingRoomDetails = (props) => {
   const classes = useStyles(props);
+  const { rooms } = props;
+
   return (
     <Card>
       <CardHeader className={classes.cardHeader} title="Room Details" />
@@ -47,14 +50,25 @@ const BookingRoomDetails = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell>Deluxe Room (A1)</TableCell>
-            <TableCell>{currencyFormat(3000)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Family Room (A2)</TableCell>
-            <TableCell>{currencyFormat(5000)}</TableCell>
-          </TableRow>
+          {renderCollection(
+            rooms,
+            (room) => (
+              <TableRow>
+                <TableCell>{room?.room_num}</TableCell>
+                <TableCell>{currencyFormat(room?.room_amount)}</TableCell>
+              </TableRow>
+            ),
+            () => (
+              <TableRow>
+                <TableCell className={classes.tableHeader}>
+                  <Skeleton />
+                </TableCell>
+                <TableCell className={classes.tableHeader}>
+                  <Skeleton />
+                </TableCell>
+              </TableRow>
+            )
+          )}
         </TableBody>
       </Table>
     </Card>

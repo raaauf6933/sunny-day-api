@@ -1,7 +1,7 @@
 import React from "react";
 
 const ServicesMedia = (props) => {
-  const { image, title, content, color } = props;
+  const { image, title, content, color, icon } = props;
   return (
     <>
       <div
@@ -11,7 +11,7 @@ const ServicesMedia = (props) => {
         }}
       >
         <div className="icon d-flex align-items-center justify-content-center">
-          <span className="flaticon-paragliding"></span>
+          <span className={icon}></span>
         </div>
         <div className="media-body">
           <h3 className="heading mb-3">{title}</h3>

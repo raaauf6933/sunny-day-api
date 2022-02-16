@@ -18,7 +18,7 @@ export const restrictInput = (name, value) => {
         return true;
       }
       return null;
-    case "mobile_number":
+    case "contact_number":
       if (value.match(isnumberPattern) || value === "") {
         return null;
       }
@@ -39,7 +39,7 @@ export const restrictInput = (name, value) => {
 };
 
 export const formValidation = (data) => {
-  const { email, mobile_number } = data;
+  const { email, contact_number } = data;
 
   const emailMessage = () => {
     if (!email.match(emailPattern)) {
@@ -49,7 +49,7 @@ export const formValidation = (data) => {
   };
 
   const mobileNumberMessage = () => {
-    if (mobile_number.substring(0, 2) !== "09") {
+    if (contact_number.substring(0, 2) !== "09") {
       return "Enter valid mobile number";
     }
     return null;
@@ -57,7 +57,7 @@ export const formValidation = (data) => {
 
   return {
     email: emailMessage(),
-    mobile_number: mobileNumberMessage(),
+    contact_number: mobileNumberMessage(),
   };
 };
 

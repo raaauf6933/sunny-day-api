@@ -5,11 +5,11 @@ import Client from "./client-side";
 
 const App = () => {
   return (
-    <div>
+    <>
       <BrowserRouter>
         <Routes />
       </BrowserRouter>
-    </div>
+    </>
   );
 };
 

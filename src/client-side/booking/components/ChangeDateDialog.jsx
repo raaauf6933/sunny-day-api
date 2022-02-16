@@ -24,7 +24,6 @@ const ChangeDateDialog = (props) => {
   ]);
 
   const handleSave = () => {
-    console.log(value);
     bookingDispatch({
       type: "SET_DATES",
       payload: {

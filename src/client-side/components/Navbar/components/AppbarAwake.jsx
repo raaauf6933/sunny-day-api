@@ -44,7 +44,7 @@ const AppbarAwake = (props) => {
             </IconButton>
           </Hidden>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Lorem Epsum Hotel Resort
+            Villa Gregoria Resort
           </Typography>
           <Hidden smDown>
             {navBarStructure.map((e, index) => {

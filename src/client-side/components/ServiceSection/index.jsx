@@ -1,27 +1,44 @@
 import React from "react";
 import { Grid } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
+import { makeStyles } from "@mui/styles";
 import ServicesMedia from "../ServicesMedia";
-import Services1 from "../../assets/images/services-1.jpg";
-import Services2 from "../../assets/images/services-2.jpg";
+import funImage from "../../assets/images/activity_1.jpg";
+import activityImage from "../../assets/images/activity_2.jpg";
+import eventsImage from "../../assets/images/events_1.jpg";
+import accommodationImage from "../../assets/images/accommodation_1.jpg";
 import { Typography } from "@mui/material";
 import Fade from "react-reveal/Fade";
 
-// const useStyles = makeStyles(
-//   () => {
-//     return {
-//       contentBackground: {
-//         backgroundImage: `url(${Services1}) !important`,
-//       },
-//     };
-//   },
-//   {
-//     name: "ServiceSection",
-//   }
-// );
+const useStyles = makeStyles(
+  () => {
+    return {
+      // contentBackground: {
+      //   backgroundImage: `url(${Services1}) !important`,
+      // },
+      welcomeTitle: {
+        fontSize: "3em",
+        fontFamily: "Volkhov",
+        color: "#f15d30",
+        textAlign: "center",
+      },
+    };
+  },
+  {
+    name: "ServiceSection",
+  }
+);
 
 const ServiceSection = (props) => {
-  // const classes = useStyles(props);
+  const classes = useStyles(props);
+  const videoElement = React.useRef(null);
+
+  console.log(videoElement);
+  React.useEffect(() => {
+    if (videoElement.current.play) {
+      videoElement.current.play();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
 
   return (
     <div>
@@ -30,40 +47,44 @@ const ServiceSection = (props) => {
           <Grid item xs={12} sm={6}>
             <Fade clear delay={100}>
               <ServicesMedia
-                image={Services1}
+                image={activityImage}
                 title="Activities"
                 content="A small river named Duden flows by their place and supplies it with the necessary"
                 color="color-1"
+                icon="flaticon-sun-umbrella"
               />
             </Fade>
           </Grid>
           <Grid item xs={12} sm={6}>
             <Fade clear delay={200}>
               <ServicesMedia
-                image={Services2}
-                title="Activities"
+                image={accommodationImage}
+                title="Accommodation"
                 content="A small river named Duden flows by their place and supplies it with the necessary"
                 color="color-2"
+                icon="flaticon-king-size"
               />
             </Fade>
           </Grid>
           <Grid item xs={12} sm={6}>
             <Fade clear delay={300}>
               <ServicesMedia
-                image={Services1}
-                title="Activities"
+                image={eventsImage}
+                title="Gatherings & Events"
                 content="A small river named Duden flows by their place and supplies it with the necessary"
                 color="color-3"
+                icon="flaticon-tour-guide"
               />
             </Fade>
           </Grid>
           <Grid item xs={12} sm={6}>
             <Fade clear delay={400}>
               <ServicesMedia
-                image={Services1}
-                title="Activities"
+                image={funImage}
+                title="Fun"
                 content="A small river named Duden flows by their place and supplies it with the necessary"
                 color="color-4"
+                icon="flaticon-paragliding"
               />
             </Fade>
           </Grid>
@@ -73,37 +94,28 @@ const ServiceSection = (props) => {
             </CardContent>
           </Card> */}
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          style={{
-            paddingTop: "8em",
-          }}
-        >
+        <Grid item xs={12} sm={6}>
           <Grid item xs={12} sm={6}></Grid>
           <Fade clear delay={100}>
-            <Typography variant="h4" style={{ marginBottom: "10px" }}>
-              Welcome to ....
+            <span className={classes.welcomeGreen}> </span>
+            <br />
+            <Typography className={classes.welcomeTitle}>
+              Welcome to <br /> Villa Gregoria Resort
             </Typography>
+
+            {/* <Typography
+              variant="h4"
+              style={{ marginBottom: "10px", fontFamily: "Arizonia" }}
+            >
+        
+            </Typography> */}
           </Fade>
-          <Fade clear delay={200}>
-            <Typography variant="h4" style={{ marginBottom: "1.5em" }}>
-              It's time to start your adventure
-            </Typography>
-          </Fade>
-          <Fade clear delay={300}>
-            <Typography variant="subtitle1">
-              A small river named Duden flows by their place and supplies it
-              with the necessary regelialia. It is a paradisematic country, in
-              which roasted parts of sentences fly into your mouth. Far far
-              away, behind the word mountains, far from the countries Vokalia
-              and Consonantia, there live the blind texts. Separated they live
-              in Bookmarksgrove right at the coast of the Semantics, a large
-              language ocean. A small river named Duden flows by their place and
-              supplies it with the necessary regelialia.
-            </Typography>
-          </Fade>
+          <video width="100%" height="50%" ref={videoElement} muted>
+            <source
+              src="https://res.cloudinary.com/dlqsqlkws/video/upload/v1645021426/resort_video_compressed_c4qhng.mp4"
+              type="video/mp4"
+            />
+          </video>
         </Grid>
       </Grid>
     </div>

@@ -6,7 +6,7 @@ export const initialState = {
     first_name: "",
     last_name: "",
     email: "",
-    mobile_number: "",
+    contact_number: "",
     no_guest: 1,
     street_address: "",
     province: "",

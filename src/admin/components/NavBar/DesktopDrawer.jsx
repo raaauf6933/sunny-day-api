@@ -18,6 +18,11 @@ import SVG from "react-inlinesvg";
 import { NavLink, useMatch as patchMatch } from "react-router-dom";
 import { matchPath } from "react-router";
 
+import Collapse from "@mui/material/Collapse";
+
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+
 const spin = keyframes`
 0% {
   opacity: 0;
@@ -99,6 +104,12 @@ const DesktopDrawer = ({
     }
   };
 
+  const [opens, setOpens] = React.useState(true);
+
+  const handleClick = () => {
+    setOpens(!opens);
+  };
+
   return (
     <div>
       <Drawer
@@ -138,29 +149,15 @@ const DesktopDrawer = ({
           </Hidden>
           <List>
             {navbarStructure().map((e) => {
-              return (
-                <>
-                  <NavLink
-                    to={e.url}
-                    style={{
-                      animation: `${spin}`,
-                    }}
-                  >
-                    <ListItem
-                      button
-                      key={e.label}
-                      className={classNames(null, {
-                        [classes.menuListActiveItem]: isActive(e),
-                      })}
-                    >
-                      <ListItemIcon
-                        className={classNames(null, {
-                          [classes.menuListActiveItem]: isActive(e),
-                        })}
+              if (e.children) {
+                return (
+                  <>
+                    <ListItemButton onClick={handleClick}>
+                      <ListItemIcon>{e.icon}</ListItemIcon>
+                      <Box
+                        display={open ? "flex" : "none"}
+                        style={{ alignItems: "center" }}
                       >
-                        {e.icon}
-                      </ListItemIcon>
-                      <Box display={open ? "block" : "none"}>
                         <span
                           className={classNames(classes.menuListItem, {
                             [classes.menuListActiveItem]: isActive(e),
@@ -168,11 +165,84 @@ const DesktopDrawer = ({
                         >
                           {e.label}
                         </span>
+                        {opens ? <ExpandLess /> : <ExpandMore />}
                       </Box>
-                    </ListItem>
-                  </NavLink>
-                </>
-              );
+                    </ListItemButton>
+                    <Collapse in={opens} timeout="auto" unmountOnExit>
+                      <List component="div" disablePadding>
+                        {e.children.map((e) => {
+                          return (
+                            <NavLink
+                              to={e.url}
+                              style={{
+                                animation: `${spin}`,
+                              }}
+                            >
+                              <ListItemButton
+                                sx={{ pl: 4 }}
+                                className={classNames(null, {
+                                  [classes.menuListActiveItem]: isActive(e),
+                                })}
+                              >
+                                <ListItemIcon></ListItemIcon>
+                                <Box display={open ? "block" : "none"}>
+                                  <span
+                                    className={classNames(
+                                      classes.menuListItem,
+                                      {
+                                        [classes.menuListActiveItem]:
+                                          isActive(e),
+                                      }
+                                    )}
+                                  >
+                                    {e.label}
+                                  </span>
+                                </Box>
+                              </ListItemButton>
+                            </NavLink>
+                          );
+                        })}
+                      </List>
+                    </Collapse>
+                  </>
+                );
+              } else {
+                return (
+                  <>
+                    <NavLink
+                      to={e.url}
+                      style={{
+                        animation: `${spin}`,
+                      }}
+                    >
+                      <ListItem
+                        button
+                        key={e.label}
+                        className={classNames(null, {
+                          [classes.menuListActiveItem]: isActive(e),
+                        })}
+                      >
+                        <ListItemIcon
+                          className={classNames(null, {
+                            [classes.menuListActiveItem]: isActive(e),
+                          })}
+                        >
+                          {e.icon}
+                        </ListItemIcon>
+                        <Box display={open ? "block" : "none"}>
+                          <span
+                            className={classNames(classes.menuListItem, {
+                              [classes.menuListActiveItem]: isActive(e),
+                            })}
+                          >
+                            {e.label}
+                          </span>
+                        </Box>
+                      </ListItem>
+                    </NavLink>
+                  </>
+                );
+              }
             })}
           </List>
         </Box>

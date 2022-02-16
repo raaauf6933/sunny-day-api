@@ -10,10 +10,11 @@ import { makeStyles } from "@mui/styles";
 import { renderCollection, escapeRegExp, paginate } from "../../../../misc";
 import PageHeader from "./../../../components/PageHeader/PageHeader";
 import moment from "moment";
-import { TextField, Box, TablePagination } from "@mui/material";
+import { TextField, Box, TablePagination, Skeleton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { bookingUrl } from "../../url";
 import BookingStatus from "../BookingStatus/BookingStatus";
+import NoData from "./../../../components/NoData/NoData";
 
 const useStyles = makeStyles(
   () => ({
@@ -41,7 +42,7 @@ const BookingListPage = (props) => {
   });
   const classes = useStyles(props);
   const navigate = useNavigate();
-
+  console.log(bookings);
   const handlePageChange = (event, page) => {
     setState({ ...state, currentPage: page });
   };
@@ -52,7 +53,7 @@ const BookingListPage = (props) => {
     const searchRegex = new RegExp(escapeRegExp(searchQuery), "i");
 
     let filteredBookings = bookings;
-    if (searchQuery) {
+    if (searchQuery && Array.isArray(filteredBookings)) {
       filteredBookings = bookings.filter((row) => {
         return Object.keys(row).some((field) => {
           return searchRegex.test(row[field].toString());
@@ -61,7 +62,10 @@ const BookingListPage = (props) => {
     }
 
     const newBookings = paginate(filteredBookings, currentPage, pageSize);
-    return { totalCount: filteredBookings.length, data: newBookings };
+    return {
+      totalCount: filteredBookings?.length ? filteredBookings?.length : 0,
+      data: newBookings,
+    };
   };
 
   React.useEffect(() => {
@@ -110,30 +114,72 @@ const BookingListPage = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {renderCollection(getPageData().data, (booking) => (
-                <TableRow
-                  key={booking.name}
-                  sx={{
-                    "&:last-child td, &:last-child th": { border: 0 },
-                    cursor: "pointer",
-                  }}
-                  onClick={() => navigate(booking.id.toString())}
-                  hover
-                >
-                  <TableCell component="th" scope="row" align="center">
-                    {booking.booking_reference}
-                  </TableCell>
-                  <TableCell>Juan Dela Cruz</TableCell>
-                  <TableCell>{moment(booking.created).format("lll")}</TableCell>
-                  <TableCell>{moment(booking.check_in).format("ll")}</TableCell>
-                  <TableCell>
-                    {moment(booking.check_out).format("ll")}
-                  </TableCell>
-                  <TableCell>
-                    <BookingStatus status={booking.status} />{" "}
-                  </TableCell>
-                </TableRow>
-              ))}
+              {renderCollection(
+                getPageData().data,
+                (booking) => (
+                  <TableRow
+                    key={booking.name}
+                    sx={{
+                      "&:last-child td, &:last-child th": { border: 0 },
+                      cursor: "pointer",
+                    }}
+                    onClick={() => navigate(booking._id.toString())}
+                    hover
+                  >
+                    <TableCell component="th" scope="row" align="center">
+                      {booking.booking_reference ? (
+                        <span>{booking.booking_reference}</span>
+                      ) : (
+                        <Skeleton width={5} height={5} />
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {booking?.guest?.first_name} {booking?.guest?.last_name}
+                    </TableCell>
+                    <TableCell>
+                      {moment(booking.created).format("lll")}
+                    </TableCell>
+                    <TableCell>
+                      {moment(booking.check_in).format("ll")}
+                    </TableCell>
+                    <TableCell>
+                      {moment(booking.check_out).format("ll")}
+                    </TableCell>
+                    <TableCell>
+                      <BookingStatus status={booking.status} />{" "}
+                    </TableCell>
+                  </TableRow>
+                ),
+                () => (
+                  <TableRow>
+                    <TableCell colSpan={6} align="center">
+                      <NoData />
+                    </TableCell>
+                  </TableRow>
+                ),
+                () => (
+                  <TableRow>
+                    <TableCell>
+                      <Skeleton width="150px" height="40px" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton width="150px" height="40px" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton width="150px" height="40px" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton width="150px" height="40px" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton width="150px" height="40px" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton width="150px" height="40px" />
+                    </TableCell>
+                  </TableRow>
+                )
+              )}
             </TableBody>
           </Table>
         </TableContainer>

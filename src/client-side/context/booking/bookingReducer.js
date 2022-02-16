@@ -2,11 +2,11 @@ const initialState = {
   check_in: "",
   check_out: "",
   room_details: [],
-  guest_details: {
+  guest: {
     first_name: "",
     last_name: "",
     email: "",
-    mobile_number: "",
+    contact_number: "",
     no_guest: 1,
     street_address: "",
     province: "",
@@ -36,7 +36,7 @@ const bookingReducer = (state, action) => {
       newState.room_details = tempRemove;
       break;
     case "SET_GUEST_DETAILS":
-      newState.guest_details = { ...newState.guest_details, ...payload };
+      newState.guest = { ...newState.guest, ...payload };
       break;
     case "SET_BOOKING_SUCCESS":
       newState.isBookingSuccess = true;
@@ -50,11 +50,11 @@ const bookingReducer = (state, action) => {
         check_in: "",
         check_out: "",
         room_details: [],
-        guest_details: {
+        guest: {
           first_name: "",
           last_name: "",
           email: "",
-          mobile_number: "",
+          contact_number: "",
           no_guest: 1,
           street_address: "",
           province: "",

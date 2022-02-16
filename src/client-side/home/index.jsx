@@ -29,15 +29,15 @@ const Home = () => {
         <DatePickerSection />
         <ServiceSection />
 
-        <SectionLabel title="Best of Our Rooms" />
-        <RoomSection show={3} />
+        {/* <SectionLabel title="Best of Our Rooms" />
+
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Link to="/rooms">
             <Typography variant="h4" gutterBottom>
               See more...
             </Typography>
           </Link>
-        </div>
+        </div> */}
       </AppContainer>
     </>
   );

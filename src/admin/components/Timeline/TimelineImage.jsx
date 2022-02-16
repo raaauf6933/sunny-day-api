@@ -1,53 +1,39 @@
-// import React from 'react';
-// import {Avatar,Typography,Card,CardContent,Tooltip} from "@mui/material"
-// import PersonIcon from "@mui/icons-material/Person";
-// import ImagePreviewDialog from "../ImagePreviewDialog/ImagePreviewDialog"
+import React from "react";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+import { ImageOutlined } from "@mui/icons-material/";
+import Typography from "@mui/material/Typography";
+import DateAgo from "../../components/DateAgo/DateAgo";
 
-// const TimelineImage = (props) => {
-//     const { date, user, message, imageSrc } = props;
-//     return (
+const TimelineImage = (props) => {
+  const { title, date } = props;
+  return (
+    <TimelineItem>
+      <TimelineSeparator>
+        <TimelineConnector />
+        <TimelineDot color="primary">
+          <ImageOutlined style={{ fontSize: "1em" }} />
+        </TimelineDot>
+        <TimelineConnector />
+      </TimelineSeparator>
+      <TimelineContent
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+        sx={{ py: "21px", px: 2 }}
+      >
+        <Typography>Guest Uploaded an Image</Typography>
+        <span>
+          {" "}
+          <DateAgo date={date} />
+        </span>
+      </TimelineContent>
+    </TimelineItem>
+  );
+};
 
-//         <div className={classes.root}>
-//       {user && (
-//         <Avatar
-//           className={classes.avatar}
-//           style={{ background: palette[CRC.str(user.email) % palette.length] }}
-//         >
-//           <PersonIcon />
-//         </Avatar>
-//       )}
-//       <div className={classes.title}>
-//         <Typography>{user?.email}</Typography>
-//         <Typography>
-//           Date here
-//         </Typography>
-//       </div>
-//       <Card className={classes.card}>
-//         <CardContent className={classes.cardContent}>
-//           <Typography
-//             dangerouslySetInnerHTML={{
-//               __html: message.replace(/\n/g, "<br />")
-//             }}
-//           />
-//           <Tooltip title="Show Image">
-//             <ImageOutlinedIcon
-//               className={classes.imageIcon}
-//               color="primary"
-//               fontSize="large"
-//               onClick={() => setIsOpenModal(true)}
-//             />
-//           </Tooltip>
-//         </CardContent>
-//       </Card>
-//       <ImagePreviewDialog
-//         imageSrc={imageSrc}
-//         isOpenModal={isOpenModal}
-//         setIsOpenModal={setIsOpenModal}
-//         caption={message}
-//       />
-//     </div>
-
-//      );
-// }
-
-// export default TimelineImage;
+export default TimelineImage;

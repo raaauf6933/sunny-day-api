@@ -138,6 +138,8 @@ const DatePickerSection = (props) => {
                     name="check_out"
                     dates={dates}
                     setDates={setDates}
+                    minDate={dates.check_in}
+                    disabled={!dates.check_in}
                   />
                 </CardContent>
               </Card>

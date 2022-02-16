@@ -8,6 +8,7 @@ import {
   CardHeader,
   Tooltip,
 } from "@mui/material";
+import Select from "./../../components/Select";
 import {
   formValidation,
   restrictInput,
@@ -19,12 +20,13 @@ import SaveButton from "../components/SaveButton";
 import { buttonMessage } from "../../utils/intl";
 import { bookingSelectRooms, bookingReview, bookingUrl } from "../url";
 import { Navigate } from "react-router-dom";
+import { City } from "../City";
 
 const initalFormValidation = {
   first_name: null,
   last_name: null,
   email: null,
-  mobile_number: null,
+  contact_number: null,
   no_guest: null,
   street_address: null,
   province: null,
@@ -37,13 +39,24 @@ const GuestDetailsView = ({ navigate, params }) => {
     first_name,
     last_name,
     email,
-    mobile_number,
+    contact_number,
     no_guest,
     street_address,
     province,
     city,
-  } = bookingState.guest_details;
+  } = bookingState.guest;
   const [formError, setErrorValdiation] = React.useState(initalFormValidation);
+
+  const Cities = new City();
+  const provinces = Cities.getProvinces();
+
+  const handleCities = () => {
+    const citys = Cities.getCities(province);
+
+    console.log(citys);
+
+    return citys;
+  };
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -58,6 +71,20 @@ const GuestDetailsView = ({ navigate, params }) => {
           },
         });
       }
+    } else if (name === "province") {
+      bookingDispatch({
+        type: "SET_GUEST_DETAILS",
+        payload: {
+          [name]: value,
+        },
+      });
+
+      bookingDispatch({
+        type: "SET_GUEST_DETAILS",
+        payload: {
+          city: null,
+        },
+      });
     } else {
       if (!validate) {
         bookingDispatch({
@@ -71,7 +98,7 @@ const GuestDetailsView = ({ navigate, params }) => {
   };
 
   const handleSave = () => {
-    const validate = formValidation(bookingState.guest_details);
+    const validate = formValidation(bookingState.guest);
     setErrorValdiation(validate);
     if (hasNoError(validate)) {
       // navigate here
@@ -156,12 +183,12 @@ const GuestDetailsView = ({ navigate, params }) => {
                   <Grid item xs={12} sm={4}>
                     <Box>
                       <TextField
-                        label="Mobile number"
+                        label="Contact number"
                         variant="outlined"
-                        name="mobile_number"
-                        value={mobile_number}
-                        error={!!formError.mobile_number}
-                        helperText={formError.mobile_number}
+                        name="contact_number"
+                        value={contact_number}
+                        error={!!formError.contact_number}
+                        helperText={formError.contact_number}
                         inputProps={{
                           placeholder: "Ex. 09479927894",
                           maxLength: 11,
@@ -224,7 +251,7 @@ const GuestDetailsView = ({ navigate, params }) => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item xs={12} sm={4}>
+                  {/* <Grid item xs={12} sm={4}>
                     <Box>
                       <TextField
                         label="Province"
@@ -236,17 +263,26 @@ const GuestDetailsView = ({ navigate, params }) => {
                         fullWidth
                       />
                     </Box>
+                  </Grid> */}
+                  <Grid item xs={12} sm={4}>
+                    <Box>
+                      <Select
+                        label="Province"
+                        value={province}
+                        name="province"
+                        choices={provinces}
+                        onChange={handleOnChange}
+                      />
+                    </Box>
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <Box>
-                      <TextField
+                      <Select
                         label="City"
-                        variant="outlined"
-                        name="city"
                         value={city}
+                        name="city"
+                        choices={handleCities()}
                         onChange={handleOnChange}
-                        required
-                        fullWidth
                       />
                     </Box>
                   </Grid>
@@ -259,7 +295,7 @@ const GuestDetailsView = ({ navigate, params }) => {
           onSubmit={handleSave}
           onBack={handleBack}
           saveLabel={buttonMessage.continue}
-          disabledSave={hasNull(bookingState.guest_details)}
+          disabledSave={hasNull(bookingState.guest)}
         />
       </>
     );

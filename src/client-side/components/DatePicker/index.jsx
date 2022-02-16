@@ -33,17 +33,23 @@ const useStyles = makeStyles(
 );
 
 const DatePickerComponent = (props) => {
-  const { name, dates, setDates } = props;
+  const { name, dates, setDates, minDate, disabled } = props;
   const classes = useStyles(props);
 
   const handleOnChange = (date) => {
-    setDates({ ...dates, [name]: date });
+    if (name === "check_in" && dates.check_out) {
+      setDates({ ...dates, [name]: date, check_out: "" });
+    } else {
+      setDates({ ...dates, [name]: date });
+    }
 
     // setDates({ ...dates, [name]: date });
   };
 
   const handleGetMinDate = () => {
-    return new Date(moment(new Date()).add(DATE_MIN_DATE, "days").format());
+    return minDate
+      ? new Date(moment(minDate).add(DATE_MIN_DATE, "days").format())
+      : new Date(moment(new Date()).add(DATE_MIN_DATE, "days").format());
   };
 
   return (
@@ -58,6 +64,9 @@ const DatePickerComponent = (props) => {
         minDate={handleGetMinDate()}
         placeholderText="Select Date"
         shouldCloseOnSelect={false}
+        autoComplete="off"
+        onChangeRaw={(e) => e.preventDefault()}
+        disabled={disabled}
       />
     </div>
   );

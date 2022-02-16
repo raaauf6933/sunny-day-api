@@ -22,6 +22,8 @@ import { VAT_RATE } from "../../../config";
 
 import Alert from "./../../components/Alert";
 
+import BookingSummary from "../../components/BookingSummary/BookingSummary";
+
 const useStyles = makeStyles(
   () => ({
     sectionField: {
@@ -56,17 +58,7 @@ const ReviewBooking = (props) => {
   const [onFetch, setOnFetch] = React.useState(false);
   const [onFetchError, setOnFetchError] = React.useState(false);
   const { bookingState, bookingDispatch } = React.useContext(bookingContext);
-  const { guest_details, room_details } = bookingState;
-  const {
-    first_name,
-    last_name,
-    email,
-    mobile_number,
-    street_address,
-    city,
-    province,
-    no_guest,
-  } = guest_details;
+  const { guest, room_details } = bookingState;
 
   const getNoQuantity = (roomtype_id) => {
     return room_details.filter((obj) => obj.roomtype_id === roomtype_id).length;
@@ -127,23 +119,22 @@ const ReviewBooking = (props) => {
       ...bookingState,
       check_in: moment(bookingState.check_in).format("YYYY-MM-DD"),
       check_out: moment(bookingState.check_out).format("YYYY-MM-DD"),
+      rooms: bookingState.room_details,
       totalAmount: getTotalAmount(),
     };
-    const result = await createBooking(data);
 
-    if (result?.data) {
-      if (result?.data?.booking === "success") {
-        bookingDispatch({
-          type: "SET_BOOKING_SUCCESS",
-          payload: result?.data?.booking_reference,
-        });
-        navigate(bookingUrl(params, bookingSuccess));
-      } else {
-        setOnFetchError("Booking Error");
-      }
+    try {
+      const result = await createBooking(data);
+      bookingDispatch({
+        type: "SET_BOOKING_SUCCESS",
+        payload: result?.data?.booking_reference,
+      });
+
+      navigate(bookingUrl(params, bookingSuccess));
       setOnFetch(false);
-    } else {
-      setOnFetchError("Internal Server Error");
+    } catch (error) {
+      setOnFetch(false);
+      setOnFetchError("Booking Error");
     }
   };
 
@@ -159,115 +150,17 @@ const ReviewBooking = (props) => {
             {/* <CardHeader title="Review Booking" />
             <Divider variant="fullWidth" /> */}
             <CardContent>
-              <Grid container>
-                <Grid container xs={12} sm={6} justifyContent="space-between">
-                  <Grid item xs={12} sm={12}>
-                    <Typography variant="h5">Guest Details</Typography>
-                  </Grid>
-                  <Grid item xs={12} sm={12} className={classes.sectionField}>
-                    <span>
-                      <b>Name: </b>
-                    </span>
-                    <Typography variant="body1">
-                      {first_name} {last_name}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12} sm={12} className={classes.sectionField}>
-                    <span>
-                      <b>Mobile Number: </b>
-                    </span>
-                    <Typography variant="body1">{mobile_number}</Typography>
-                  </Grid>
-                  <Grid item xs={12} sm={12} className={classes.sectionField}>
-                    <span>
-                      <b>Email: </b>
-                    </span>
-                    <Typography variant="body1">{email}</Typography>
-                  </Grid>
-                  <Grid item xs={12} sm={12} className={classes.sectionField}>
-                    <span>
-                      <b>Address: </b>
-                    </span>
-                    <Typography variant="body1" textAlign="right">
-                      {street_address} {city} {province}
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container xs={12} sm={6} justifyContent="space-between">
-                  <Grid item xs={12} sm={12}>
-                    <Typography variant="h6">Booking Details</Typography>
-                  </Grid>
-
-                  <Grid item xs={12} sm={12} className={classes.sectionField}>
-                    <span style={{ whiteSpace: "nowrap" }}>
-                      <b>Check-In: </b>
-                    </span>
-                    <Typography variant="body1" noWrap>
-                      {moment(bookingState.check_in).format("ll")} 02:00PM
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12} sm={12} className={classes.sectionField}>
-                    <span style={{ whiteSpace: "nowrap" }}>
-                      <b>Check-Out: </b>
-                    </span>
-                    <Typography variant="body1" noWrap>
-                      {moment(bookingState.check_out).format("ll")} 12:00PM
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12} sm={12} className={classes.sectionField}>
-                    <span>
-                      <b>No. Night(s) </b>
-                    </span>
-                    <Typography variant="body1">
-                      {handleGetNoNights()}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12} sm={12} className={classes.sectionField}>
-                    <span>
-                      <b>No. Guest</b>
-                    </span>
-                    <Typography variant="body1">{no_guest}</Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </CardContent>
-            <CardContent>
-              <AvailedRoomTable rooms={handleGetRooms()} />
-              <div className={classes.breakdownSection}>
-                <Grid container justifyContent="end" textAlign="right">
-                  <Grid item xs={6} sm={8}>
-                    <span>
-                      <b>Sub-total</b>
-                    </span>
-                  </Grid>
-                  <Grid item xs={6} sm={4}>
-                    <Typography variant="body1">
-                      {currencyFormat(getSubTotal())} X {handleGetNoNights()}{" "}
-                      (Nights)
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={6} sm={8}>
-                    <span>
-                      <b>Vatable Sale</b>
-                    </span>
-                  </Grid>
-                  <Grid item xs={6} sm={4}>
-                    <Typography variant="body1" noWrap>
-                      {currencyFormat(handleVat().vatable_sales)}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={6} sm={8}>
-                    <span>
-                      <b>VAT Amount</b>
-                    </span>
-                  </Grid>
-                  <Grid item xs={6} sm={4}>
-                    <Typography variant="body1" noWrap>
-                      {currencyFormat(handleVat().vat)}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </div>
+              <BookingSummary
+                booking_details={{
+                  ...guest,
+                  check_in: bookingState.check_in,
+                  check_out: bookingState.check_out,
+                  no_nights: handleGetNoNights(),
+                  rooms: handleGetRooms(),
+                  sub_total: getSubTotal(),
+                  vat: handleVat(),
+                }}
+              />
             </CardContent>
             <div>
               <Grid container textAlign="center">

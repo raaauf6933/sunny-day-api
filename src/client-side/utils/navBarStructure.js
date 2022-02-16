@@ -27,6 +27,6 @@ export const navBarStructure = [
   {
     name: "mybooking",
     label: "My Booking",
-    url: "/my-booking",
+    url: "/my-booking?awakeNavBar=true",
   },
 ];

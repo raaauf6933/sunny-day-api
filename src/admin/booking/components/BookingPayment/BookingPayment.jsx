@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardHeader, Table, TableRow, TableCell } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { currencyFormat } from "./../../../../misc";
+import { currencyFormat, getNoNights } from "./../../../../misc";
 
 const useStyles = makeStyles(
   () => ({
@@ -27,6 +27,8 @@ const useStyles = makeStyles(
 
 const BookingPayment = (props) => {
   const classes = useStyles(props);
+  const { billing, booking } = props;
+
   return (
     <Card>
       <CardHeader className={classes.cardHeader} title="Payment Details" />
@@ -39,17 +41,31 @@ const BookingPayment = (props) => {
         <Table className={classes.tableRoot}>
           <TableRow>
             <TableCell className={classes.tableCellBold}>Sub-Total: </TableCell>
-            <TableCell>{currencyFormat(5512)}</TableCell>
+            <TableCell>
+              <span>
+                {currencyFormat(billing?.sub_total)} X{" "}
+                {getNoNights(booking.check_in, booking.check_out)} night(s)
+              </span>
+            </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className={classes.tableCellBold}>Discount: </TableCell>
-            <TableCell>{currencyFormat(2231)}</TableCell>
+            <TableCell className={classes.tableCellBold}>
+              Discount:{" "}
+              {billing?.discount ? (
+                <span>({billing?.discount.type})</span>
+              ) : null}
+            </TableCell>
+            <TableCell>
+              {billing?.discount
+                ? currencyFormat(billing.discount.amount)
+                : currencyFormat(0)}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className={classes.tableCellBold}>
               Total Amount:{" "}
             </TableCell>
-            <TableCell>{currencyFormat(223)}</TableCell>
+            <TableCell>{currencyFormat(billing?.total_amount)}</TableCell>
           </TableRow>
         </Table>
       </div>
