@@ -11,13 +11,12 @@ import {
 import Form from "./../../components/Form/Form";
 import { makeStyles } from "@mui/styles";
 import { useAuth } from "./../../context/auth/context";
+
 const useStyles = makeStyles(
   () => ({
     root: {
-      background: "white !important",
-      //   "& > *": {
-      //     margin: "1em !important",
-      //   },
+      display: "flex !important",
+      alignItems: "center",
     },
   }),
   {
@@ -34,7 +33,7 @@ const LoginView = (props) => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className={classes.root}>
       <Box
         sx={{
           display: "flex",
@@ -47,8 +46,13 @@ const LoginView = (props) => {
         <Card>
           <CardContent>
             {" "}
-            <Typography component="h1" variant="h5">
-              Sign in
+            <Typography
+              component="h1"
+              variant="h5"
+              textAlign="center"
+              padding="30px"
+            >
+              Villa Gregoria Resort | Admin Dashboard
             </Typography>
             <Form
               initial={{ username: "", password: "" }}
@@ -89,7 +93,7 @@ const LoginView = (props) => {
                     onChange={change}
                   />
                   <Button
-                    disabled={!hasChanged}
+                    disabled={!data.username || !data.password}
                     fullWidth
                     variant="contained"
                     onClick={submit}

@@ -27,6 +27,8 @@ const AppbarAwake = (props) => {
   const { navBarStructure, handleOpenDrawer, location } = props;
   const classes = useStyles(props);
 
+  console.log(location);
+
   return (
     <AppBar className={classes.appBarAllwaysAwake}>
       <AppContainer>
@@ -44,41 +46,43 @@ const AppbarAwake = (props) => {
             </IconButton>
           </Hidden>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Villa Gregoria Resort
+            {/* Villa Gregoria Resort */}
           </Typography>
           <Hidden smDown>
             {navBarStructure.map((e, index) => {
-              if (e.name === "mybooking") {
-                return (
-                  <Button variant="contained" href={e.url}>
-                    <NavLink
-                      key={index}
-                      to={e.url}
-                      style={{
-                        color: "white",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {e.label}
-                    </NavLink>
-                  </Button>
-                );
-              } else {
-                return (
-                  <NavLink
-                    key={index}
-                    to={e.url}
-                    style={{
-                      color:
-                        location.pathname === e.url ? "#f15d30" : "#000000a6",
-                      fontWeight: 600,
-                      marginRight: "2em",
-                    }}
-                  >
-                    {e.label}
-                  </NavLink>
-                );
-              }
+              // if (e.name === "mybooking") {
+              //   return (
+              //     <Button variant="contained" href={e.url}>
+              //       <NavLink
+              //         key={index}
+              //         to={e.url}
+              //         style={{
+              //           color: "white",
+              //           fontWeight: 600,
+              //         }}
+              //       >
+              //         {e.label}
+              //       </NavLink>
+              //     </Button>
+              //   );
+              // } else {
+              return (
+                <NavLink
+                  key={index}
+                  to={e.url}
+                  style={{
+                    color:
+                      location.pathname + location.search === e.url
+                        ? "#f15d30"
+                        : "#000000a6",
+                    fontWeight: 600,
+                    marginRight: "2em",
+                  }}
+                >
+                  {e.label}
+                </NavLink>
+              );
+              // }
             })}
           </Hidden>
         </Toolbar>

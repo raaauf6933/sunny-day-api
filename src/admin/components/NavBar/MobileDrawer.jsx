@@ -11,6 +11,7 @@ import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import ListItemButton from "@mui/material/ListItemButton";
+import { NavLink } from "react-router-dom";
 
 const spin = keyframes`
 0% {
@@ -80,17 +81,19 @@ export default function MobileDrawer({
               );
             } else {
               return (
-                <ListItem button key={e.label}>
-                  <ListItemIcon>{e.icon}</ListItemIcon>
-                  <Box>
-                    <ListItemText
-                      primary={e.label}
-                      style={{
-                        animation: `${spin}`,
-                      }}
-                    />
-                  </Box>
-                </ListItem>
+                <NavLink to={e.url} style={{ color: "#6c6a6a" }}>
+                  <ListItem button key={e.label}>
+                    <ListItemIcon>{e.icon}</ListItemIcon>
+                    <Box>
+                      <ListItemText
+                        primary={e.label}
+                        style={{
+                          animation: `${spin}`,
+                        }}
+                      />
+                    </Box>
+                  </ListItem>
+                </NavLink>
               );
             }
           })}

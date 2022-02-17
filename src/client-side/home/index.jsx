@@ -13,6 +13,8 @@ import { Typography } from "@mui/material";
 import SectionLabel from "../components/SectionLabel";
 import { Link } from "react-router-dom";
 import navbarContext from "../context/navBar/navBarContext";
+import { WindowTitle } from "../../admin/components/WindowTitle/WindowTitle";
+import { resortName } from "./../../config";
 
 const Home = () => {
   const { navbarDispatch } = React.useContext(navbarContext);
@@ -22,6 +24,7 @@ const Home = () => {
   }, []);
   return (
     <>
+      <WindowTitle title={resortName("Home")} />
       <Hero></Hero>
       <AppContainer>
         {/* <CheckAvailabilityCard /> */}

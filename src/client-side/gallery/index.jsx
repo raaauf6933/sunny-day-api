@@ -13,6 +13,8 @@ import { parse as parseQs } from "qs";
 import { useLocation, useNavigate } from "react-router-dom";
 import createDialogActionHandlers from "../utils/dialogActionHandlers";
 import { bookingUrl } from "./url";
+import { WindowTitle } from "../../admin/components/WindowTitle/WindowTitle";
+import { resortName } from "./../../config";
 
 const useStyles = makeStyles(
   () => ({
@@ -46,6 +48,7 @@ const Gallery = () => {
 
   return (
     <>
+      <WindowTitle title={resortName("Gallery")} />
       <Hero>
         <Box textAlign="center">
           <Typography variant="h1">Gallery</Typography>

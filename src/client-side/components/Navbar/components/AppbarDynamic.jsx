@@ -61,46 +61,46 @@ const AppbarDynamic = (props) => {
             component="div"
             sx={{ flexGrow: 1 }}
           >
-            {trigger ? "Villa Gregoria Resort" : ""}
+            {/* {trigger ? "Villa Gregoria Resort" : ""} */}
           </Typography>
 
           <Hidden smDown>
             {navBarStructure.map((e, index) => {
-              if (e.name === "mybooking") {
-                return (
-                  <Button variant="contained" href={e.url}>
-                    <NavLink
-                      key={index}
-                      to={e.url}
-                      style={{
-                        color: "white",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {e.label}
-                    </NavLink>
-                  </Button>
-                );
-              } else {
-                return (
-                  <NavLink
-                    key={index}
-                    to={e.url}
-                    style={{
-                      color:
-                        location.pathname === e.url
-                          ? "#f15d30"
-                          : trigger
-                          ? "#000000a6"
-                          : "white",
-                      fontWeight: 600,
-                      marginRight: "2em",
-                    }}
-                  >
-                    {e.label}
-                  </NavLink>
-                );
-              }
+              // if (e.name === "mybooking") {
+              //   return (
+              //     <Button variant="contained" href={e.url}>
+              //       <NavLink
+              //         key={index}
+              //         to={e.url}
+              //         style={{
+              //           color: "white",
+              //           fontWeight: 600,
+              //         }}
+              //       >
+              //         {e.label}
+              //       </NavLink>
+              //     </Button>
+              //   );
+              // } else {
+              return (
+                <NavLink
+                  key={index}
+                  to={e.url}
+                  style={{
+                    color:
+                      location.pathname === e.url
+                        ? "#f15d30"
+                        : trigger
+                        ? "#000000a6"
+                        : "white",
+                    fontWeight: 600,
+                    marginRight: "2em",
+                  }}
+                >
+                  {e.label}
+                </NavLink>
+              );
+              // }
             })}
           </Hidden>
         </Toolbar>
