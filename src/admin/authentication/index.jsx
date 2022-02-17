@@ -6,8 +6,8 @@ const AuthRouter = () => {
   return (
     <>
       <Switch>
-        <Route path="/" element={<LoginView />} />
-        <Route path="*" element={<Navigate to={"/admin"} />} />
+        <Route path="/login" element={<LoginView />} />
+        <Route path="*" element={<Navigate to={"/admin/login"} />} />
       </Switch>
     </>
   );

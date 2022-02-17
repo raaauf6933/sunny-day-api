@@ -3,10 +3,13 @@ import AppContainer from "../components/AppContainer";
 import Hero from "../components/Hero";
 import { Typography, Box } from "@mui/material";
 import RoomSection from "../components/RoomSection";
+import { WindowTitle } from "../../admin/components/WindowTitle/WindowTitle";
+import { resortName } from "./../../config";
 
 const Rooms = () => {
   return (
     <>
+      <WindowTitle title={resortName("Gallery")} />
       <Hero>
         <Box textAlign="center">
           <Typography variant="h1">Our Rooms</Typography>

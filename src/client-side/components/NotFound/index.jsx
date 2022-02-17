@@ -3,6 +3,8 @@ import React from "react";
 import { Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Hero from "../Hero";
+import { WindowTitle } from "../../../admin/components/WindowTitle/WindowTitle";
+import { resortName } from "./../../../config";
 
 // const useStyles = makeStyles(
 //   (theme) => ({
@@ -38,8 +40,9 @@ const NotFound = (props) => {
   // const classes = useStyles(props);
   return (
     <>
+      <WindowTitle title={resortName("404 ")} />
       <div style={{ textAlign: "center" }}>
-        <Typography variant="h1" gutterBottom>
+        <Typography variant="h1" gutterBottom style={{ fontSize: "7vw" }}>
           <span>404 | Page Not Found</span>
         </Typography>
         <Typography variant="h4" fontWeight={600}>

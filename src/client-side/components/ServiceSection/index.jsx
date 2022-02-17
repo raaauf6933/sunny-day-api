@@ -8,6 +8,8 @@ import eventsImage from "../../assets/images/events_1.jpg";
 import accommodationImage from "../../assets/images/accommodation_1.jpg";
 import { Typography } from "@mui/material";
 import Fade from "react-reveal/Fade";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const useStyles = makeStyles(
   () => {
@@ -31,8 +33,9 @@ const useStyles = makeStyles(
 const ServiceSection = (props) => {
   const classes = useStyles(props);
   const videoElement = React.useRef(null);
+  const theme = useTheme();
+  const media_xs = useMediaQuery(theme.breakpoints.down("sm"));
 
-  console.log(videoElement);
   React.useEffect(() => {
     if (videoElement.current.play) {
       videoElement.current.play();
@@ -42,7 +45,13 @@ const ServiceSection = (props) => {
 
   return (
     <div>
-      <Grid container spacing={6}>
+      <Grid
+        container
+        spacing={6}
+        style={{
+          flexDirection: media_xs ? "column-reverse" : "unset",
+        }}
+      >
         <Grid container item xs={12} sm={6} spacing={3}>
           <Grid item xs={12} sm={6}>
             <Fade clear delay={100}>

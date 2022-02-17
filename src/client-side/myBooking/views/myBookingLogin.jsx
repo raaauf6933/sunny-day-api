@@ -47,12 +47,7 @@ const MyBookingLogIn = () => {
     >
       <Box sx={{ boxShadow: 3 }}>
         {" "}
-        <Card
-          style={{
-            maxWidth: "560px",
-            width: "560px",
-          }}
-        >
+        <Card>
           <CardHeader title="My Booking" />
           <CardContent>
             <form action="#" class=" pr-5 pl-5 pb-3 contact-form">

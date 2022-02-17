@@ -132,7 +132,7 @@ const DatePickerSection = (props) => {
                     variant="g5"
                     gutterBottom={true}
                   >
-                    CHECK-IN DATE
+                    CHECK-OUT DATE
                   </Typography>
                   <DatePicker
                     name="check_out"

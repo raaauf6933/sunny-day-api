@@ -14,12 +14,11 @@ const Room = (room) => {
           <span class="price">{currencyFormat(room.price)} / Night</span>
         </span>
         <div class="text p-4">
-          <span class="days">{room.maxPerson} Max Person</span>
-          <h3>Banaue Rice Terraces</h3>
-          <p class="location">
+          <h3>{room.roomName}</h3>
+          {/* <p class="location">
             <span class="fa fa-map-marker"></span> {room.roomName}
-          </p>
-          <ul>
+          </p> */}
+          {/* <ul>
             <li>
               <span class="flaticon-shower"></span>
               {room.noShower}
@@ -28,10 +27,18 @@ const Room = (room) => {
               <span class="flaticon-king-size"></span>
               {room.noBeds}
             </li>
-            {/* <li>
-            <span class="flaticon-mountains"></span>Near Mountain
-          </li> */}
-          </ul>
+         
+          </ul> */}
+          <span class="days">- {room.maxPerson} Max Person</span>
+          <br />
+          {room?.description &&
+            room.description.map((e) => {
+              return (
+                <>
+                  <span class="days">- {e}</span> <br />
+                </>
+              );
+            })}
         </div>
       </div>
     </div>
