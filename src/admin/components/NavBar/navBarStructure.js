@@ -1,4 +1,9 @@
-import { Dashboard, BookOnline, LocalHotel } from "@mui/icons-material";
+import {
+  Dashboard,
+  BookOnline,
+  LocalHotel,
+  SupervisorAccount,
+} from "@mui/icons-material";
 
 export const navbarStructure = () => {
   return [
@@ -20,6 +25,12 @@ export const navbarStructure = () => {
       label: "Room Management",
       url: "/admin/room-management",
       key: "room-management",
+    },
+    {
+      icon: <SupervisorAccount />,
+      label: "Users",
+      url: "/admin/users",
+      key: "users",
     },
   ];
 };

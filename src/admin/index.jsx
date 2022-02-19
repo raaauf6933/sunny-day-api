@@ -1,9 +1,10 @@
 import React from "react";
 import { Routes as Switch, Route, Navigate } from "react-router-dom";
+import AppLayout from "./components/NavBar/NavBar";
 import Dashboard from "./dashboard";
 import Booking from "./booking";
 import RoomMangement from "./room-management";
-import NavBar from "./components/NavBar/NavBar";
+import Users from "./users";
 import { AppStateProvider } from "./context/AppState/context";
 import AppStateContext from "./context/AppState/context";
 import { useLocation } from "react-router-dom";
@@ -16,7 +17,13 @@ const Admin = () => {
     <>
       <AppStateProvider>
         <AuthContextProvider>
-          <SnackbarProvider maxSnack={3}>
+          <SnackbarProvider
+            maxSnack={3}
+            anchorOrigin={{
+              horizontal: "right",
+              vertical: "top",
+            }}
+          >
             <Routes />
           </SnackbarProvider>
         </AuthContextProvider>
@@ -38,7 +45,7 @@ const Routes = () => {
   return (
     <>
       {isAuthenticated ? (
-        <NavBar>
+        <AppLayout>
           <Switch>
             <Route exact path="/" element={<Dashboard />} />
             <Route exact path="/bookings/*" element={<Booking />} />
@@ -47,9 +54,10 @@ const Routes = () => {
               path="/room-management/*"
               element={<RoomMangement />}
             />
+            <Route path="/users/*" element={<Users />} />
             <Route exact path="*" element={<Navigate from="*" to="/admin" />} />
           </Switch>
-        </NavBar>
+        </AppLayout>
       ) : (
         <AuthRouter />
       )}

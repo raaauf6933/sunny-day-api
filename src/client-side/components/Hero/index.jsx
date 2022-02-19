@@ -8,10 +8,7 @@ const Hero = ({ children }) => {
   const location = useLocation();
 
   return (
-    <Carousel
-      indicators={false}
-      autoPlay={location.pathname === "/" ? true : false}
-    >
+    <Carousel indicators={false} autoPlay duration={3} animation="fade">
       {heroItems.map((item, i) => (
         <HeroItem key={i} item={item}>
           {children}
