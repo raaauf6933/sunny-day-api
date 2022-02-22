@@ -7,15 +7,18 @@ import {
   Typography,
   Card,
   CardContent,
+  CardMedia,
 } from "@mui/material";
 import Form from "./../../components/Form/Form";
 import { makeStyles } from "@mui/styles";
 import { useAuth } from "./../../context/auth/context";
+import logo from "./../../../assets/images/admin_logo.png";
 
 const useStyles = makeStyles(
   () => ({
     root: {
       display: "flex !important",
+      justifyContent: "center",
       alignItems: "center",
     },
   }),
@@ -49,6 +52,13 @@ const LoginView = (props) => {
         }}
       >
         <Card>
+          {/* <CardMedia
+            component="img"
+            image={logo}
+            alt="Live from space album cover"
+            sx={{ width: "300px" }}
+          /> */}
+
           <CardContent>
             {" "}
             <Typography

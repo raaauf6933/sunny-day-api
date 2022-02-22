@@ -54,14 +54,21 @@ const useStyles = makeStyles(
 
 const BookingHistory = (props) => {
   const classes = useStyles(props);
-  const { events } = props;
+  const { events, showReceipt } = props;
 
   const eventType = (event) => {
     switch (event.type) {
       case "BOOKING_CREATED":
         return <TimelineEvents title="Booking Created" date={event.created} />;
       case "GUEST_IMAGE_UPLOAD":
-        return <TimelineImage title="Booking Created" date={event.created} />;
+        return (
+          <TimelineImage
+            title="Booking Created"
+            date={event.created}
+            image={event?.images}
+            showImage={showReceipt}
+          />
+        );
       case "UPDATE_STATUS":
         return <TimelineEventsMessage event={event} date={event.created} />;
       default:

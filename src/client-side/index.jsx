@@ -16,13 +16,22 @@ import Booking from "./booking";
 
 import { NavbarProvider } from "./context/navBar/navBarContext";
 import { BookingProvider } from "./context/booking/bookingContext";
+import { SnackbarProvider } from "notistack";
 
 const Client = () => {
   return (
     <>
       <NavbarProvider>
         <BookingProvider>
-          <Routes />
+          <SnackbarProvider
+            maxSnack={3}
+            anchorOrigin={{
+              horizontal: "right",
+              vertical: "top",
+            }}
+          >
+            <Routes />
+          </SnackbarProvider>
         </BookingProvider>
       </NavbarProvider>
     </>

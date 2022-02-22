@@ -7,12 +7,10 @@ import { Container } from "@mui/material";
 const MyBooking = () => {
   return (
     <>
-      <Container style={{ height: "100%" }}>
-        <Switch>
-          <Route path="/" element={<MyBookingLogIn />} />
-          <Route path=":id" element={<MyBookingDetails />} />
-        </Switch>
-      </Container>
+      <Switch>
+        <Route path="/" element={<MyBookingLogIn />} />
+        <Route path=":id" element={<MyBookingDetails />} />
+      </Switch>
     </>
   );
 };

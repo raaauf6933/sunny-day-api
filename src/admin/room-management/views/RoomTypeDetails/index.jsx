@@ -91,10 +91,13 @@ const RoomTypeDetails = () => {
         anchorOrigin: { vertical: "top", horizontal: "right" },
       });
     } catch (error) {
-      enqueueSnackbar("success", {
-        variant: "error",
-        anchorOrigin: { vertical: "top", horizontal: "right" },
-      });
+      enqueueSnackbar(
+        "Invalid file format. Please use valid image file (png/jpg)",
+        {
+          variant: "error",
+          anchorOrigin: { vertical: "top", horizontal: "right" },
+        }
+      );
     }
   };
 
