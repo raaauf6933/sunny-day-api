@@ -9,6 +9,7 @@ import { bookingPathParamsUrl } from "../../url";
 import AppStateContext from "../../../context/AppState/context";
 import { GET_BOOKING, UPDATE_BOOKING_STATUS } from "../../api";
 import ApiAxios from "./../../../../apiAxios";
+import ImagePreviewDialog from "./../../../components/ImagePreviewDialog/ImagePreviewDialog";
 
 const BookingDetails = () => {
   const { id } = useParams();
@@ -81,12 +82,22 @@ const BookingDetails = () => {
       <BookingDetailsPage
         booking={booking}
         onUpdateStatus={() => openModal("onUpdateStatus")}
+        showReceipt={(src) =>
+          openModal("showReceipt", {
+            receiptImage: src,
+          })
+        }
       />
       <ConfirmationDialog
         open={params.action === "onUpdateStatus"}
         onClose={closeModal}
         message={getConfirmationMessage()}
         onSubmit={() => UpdateStatus(booking?._id, booking?.status)}
+      />
+      <ImagePreviewDialog
+        imageSrc={params.receiptImage}
+        isOpenModal={params.action === "showReceipt"}
+        setIsOpenModal={() => closeModal({ receiptImage: undefined })}
       />
     </>
   );

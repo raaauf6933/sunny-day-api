@@ -17,12 +17,16 @@ const useStyles = makeStyles(
       appBarSleep: {
         background: "transparent !important",
         boxShadow: "none !important",
+        transition: ".3s all ease-out !important",
+        WebkitTransition: ".3s all ease-out !important",
       },
       appBarAwake: {
         background: "#FFFFFF !important",
         color: "black !important",
         boxShadow:
           "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%) !important",
+        transition: ".3s all ease-out !important",
+        WebkitTransition: ".3s all ease-out !important",
       },
       welcomeTitle: {
         fontSize: "1em",
@@ -39,7 +43,13 @@ const AppbarDynamic = (props) => {
   const classes = useStyles(props);
 
   return (
-    <AppBar className={trigger ? classes.appBarAwake : classes.appBarSleep}>
+    <AppBar
+      className={trigger ? classes.appBarAwake : classes.appBarSleep}
+      style={{
+        transition: ".3s all ease-out !important",
+        WebkitTransition: ".3s all ease-out !important",
+      }}
+    >
       <AppContainer>
         <Toolbar>
           <Hidden smUp>

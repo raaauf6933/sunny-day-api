@@ -9,7 +9,8 @@ import Typography from "@mui/material/Typography";
 import DateAgo from "../../components/DateAgo/DateAgo";
 
 const TimelineImage = (props) => {
-  const { title, date } = props;
+  const { date, image, showImage } = props;
+
   return (
     <TimelineItem>
       <TimelineSeparator>
@@ -26,7 +27,19 @@ const TimelineImage = (props) => {
         }}
         sx={{ py: "21px", px: 2 }}
       >
-        <Typography>Guest Uploaded an Image</Typography>
+        <Typography>
+          Guest Uploaded an Image{" "}
+          <span
+            style={{
+              cursor: "pointer",
+              color: "blue",
+            }}
+            onClick={() => showImage(image.src)}
+          >
+            <u>(Show)</u>
+          </span>
+        </Typography>
+
         <span>
           {" "}
           <DateAgo date={date} />

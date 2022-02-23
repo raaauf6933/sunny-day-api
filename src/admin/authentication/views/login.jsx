@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   TextField,
   Button,
@@ -7,15 +7,18 @@ import {
   Typography,
   Card,
   CardContent,
+  CardMedia,
 } from "@mui/material";
 import Form from "./../../components/Form/Form";
 import { makeStyles } from "@mui/styles";
 import { useAuth } from "./../../context/auth/context";
+import logo from "./../../../assets/images/admin_logo.png";
 
 const useStyles = makeStyles(
   () => ({
     root: {
       display: "flex !important",
+      justifyContent: "center",
       alignItems: "center",
     },
   }),
@@ -27,9 +30,14 @@ const useStyles = makeStyles(
 const LoginView = (props) => {
   const classes = useStyles(props);
   const { login } = useAuth();
+  const [error, setError] = useState(false);
 
-  const handleLogin = () => {
-    login();
+  const handleLogin = async (formData) => {
+    setError(false);
+    let err = await login(formData);
+    if (err) {
+      setError(true);
+    }
   };
 
   return (
@@ -44,6 +52,13 @@ const LoginView = (props) => {
         }}
       >
         <Card>
+          {/* <CardMedia
+            component="img"
+            image={logo}
+            alt="Live from space album cover"
+            sx={{ width: "300px" }}
+          /> */}
+
           <CardContent>
             {" "}
             <Typography
@@ -56,7 +71,7 @@ const LoginView = (props) => {
             </Typography>
             <Form
               initial={{ username: "", password: "" }}
-              onSubmit={() => handleLogin()}
+              onSubmit={handleLogin}
             >
               {({ data, change, hasChanged, submit }) => (
                 <>
@@ -75,6 +90,8 @@ const LoginView = (props) => {
                       },
                     }}
                     autoFocus
+                    error={error}
+                    helperText={error ? "Invalid username or password" : ""}
                   />
                   <TextField
                     margin="normal"
@@ -84,6 +101,7 @@ const LoginView = (props) => {
                     label="Password"
                     value={data.password}
                     type="password"
+                    error={error}
                     inputProps={{
                       autocomplete: "new-password",
                       form: {
@@ -98,6 +116,10 @@ const LoginView = (props) => {
                     variant="contained"
                     onClick={submit}
                     sx={{ mt: 3, mb: 2 }}
+                    color="primary"
+                    style={{
+                      outline: "none",
+                    }}
                   >
                     SIGN IN
                   </Button>
