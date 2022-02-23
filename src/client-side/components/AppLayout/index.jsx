@@ -1,12 +1,12 @@
 import React from "react";
-import NavBar from "./../NavBar";
+import NavigationBar from "./../NavigationBar";
 import DrawerComponent from "./../Drawer";
 import Footer from "./../Footer";
 
 const AppLayout = ({ children }) => {
   return (
     <>
-      <NavBar />
+      <NavigationBar />
       <DrawerComponent />
       <main>{children}</main>
       <Footer />
