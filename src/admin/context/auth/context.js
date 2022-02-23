@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ApiAxios from "./../../../apiAxios";
 import { AUTH_ADMIN } from "./api";
 import AppStateContext from "./../AppState/context";
+import jwtDecode from "jwt-decode";
 
 const AuthContext = React.createContext({});
 
@@ -37,20 +38,25 @@ export function AuthContextProvider({ children }) {
     navigate("/admin/");
   };
 
+  const getUser = () => {
+    return isAuthenticated() ? jwtDecode(getToken()) : null;
+  };
+
   return (
-    <AuthContext.Provider value={{ login, logout }}>
+    <AuthContext.Provider value={{ login, logout, getUser }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
 export const useAuth = () => {
-  const { login, logout } = useContext(AuthContext);
+  const { login, logout, getUser } = useContext(AuthContext);
 
   return {
     login,
     logout,
     isAuthenticated: isAuthenticated(),
+    user: getUser(),
   };
 };
 

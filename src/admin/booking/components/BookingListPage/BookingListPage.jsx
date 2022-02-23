@@ -137,7 +137,7 @@ const BookingListPage = (props) => {
                       {booking?.guest?.first_name} {booking?.guest?.last_name}
                     </TableCell>
                     <TableCell>
-                      {moment(booking.created).format("lll")}
+                      {moment(booking.createdAt).format("lll")}
                     </TableCell>
                     <TableCell>
                       {moment(booking.check_in).format("ll")}
