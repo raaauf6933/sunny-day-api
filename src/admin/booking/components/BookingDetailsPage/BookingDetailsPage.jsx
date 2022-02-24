@@ -35,7 +35,7 @@ const useStyles = makeStyles(
 );
 
 const BookingDetailsPage = (props) => {
-  const { booking, onUpdateStatus, showReceipt } = props;
+  const { booking, onUpdateStatus, showReceipt, onConfirmBooking } = props;
   const classes = useStyles(props);
 
   const saveButtonLabel = () => {
@@ -51,8 +51,15 @@ const BookingDetailsPage = (props) => {
     }
   };
 
-  const handleSubmit = () => {
-    onUpdateStatus(booking?.reservation?.id, booking?.reservation?.status);
+  const submitHandlers = () => {
+    switch (booking?.status) {
+      case "PENDING":
+        onConfirmBooking();
+        break;
+      default:
+        onUpdateStatus(booking?.reservation?.id, booking?.reservation?.status);
+        break;
+    }
   };
 
   return (
@@ -107,7 +114,7 @@ const BookingDetailsPage = (props) => {
           save: saveButtonLabel(),
         }}
         hideSaveButton={booking?.status === "CHECK_OUT"}
-        onClickSave={() => handleSubmit()}
+        onClickSave={() => submitHandlers()}
       />
     </>
   );

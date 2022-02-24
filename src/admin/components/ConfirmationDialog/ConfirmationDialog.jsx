@@ -18,11 +18,11 @@ const ConfirmationDialog = (props) => {
   };
   return (
     <>
-      <Dialog fullWidth maxWidth="xs" open={open} onClose={onClose}>
+      <Dialog fullWidth maxWidth="xs" open={open} onClose={() => onClose()}>
         <DialogTitle>Confirmation</DialogTitle>
         <DialogContent dividers>{message}</DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={onClose}>
+          <Button variant="outlined" onClick={() => onClose()}>
             Cancel
           </Button>
           <Button variant="contained" onClick={handleSubmit}>

@@ -56,7 +56,12 @@ const UserDetailsDialog = (props) => {
     <>
       <Form initial={initialData} onSubmit={handleSubmit}>
         {({ change, data, hasChanged, submit, reset }) => (
-          <Dialog fullWidth maxWidth="xs" open={open} onClose={onClose}>
+          <Dialog
+            fullWidth
+            maxWidth="xs"
+            open={open}
+            onClose={() => onClose({ type: undefined, id: undefined })}
+          >
             <DialogTitle>
               {params?.type === "create" ? "Create User" : user?.username}
             </DialogTitle>

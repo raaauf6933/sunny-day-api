@@ -5,11 +5,12 @@ import createDialogActionHandlers from "../../dialogActionHandlers";
 import { useLocation, useNavigate } from "react-router-dom";
 import { parse as parseQs } from "qs";
 import ConfirmationDialog from "../../../components/ConfirmationDialog/ConfirmationDialog";
-import { bookingPathParamsUrl } from "../../url";
+import { bookingPathParamsUrl, bookingUrl } from "../../url";
 import AppStateContext from "../../../context/AppState/context";
 import { GET_BOOKING, UPDATE_BOOKING_STATUS } from "../../api";
 import ApiAxios from "./../../../../apiAxios";
 import ImagePreviewDialog from "./../../../components/ImagePreviewDialog/ImagePreviewDialog";
+import ConfirmBookingDialog from "./../../components/ConfirmBookingDialog";
 
 const BookingDetails = () => {
   const { id } = useParams();
@@ -30,13 +31,25 @@ const BookingDetails = () => {
     } catch (error) {}
   };
 
-  const UpdateStatus = async (id, status) => {
-    const data = await ApiAxios(
-      { data: { id, status }, url: UPDATE_BOOKING_STATUS, method: "POST" },
-      appStateDispatch
-    );
-    fetchBooking();
-    return data;
+  const UpdateStatus = async ({ id, status, paymentAmount }) => {
+    try {
+      const data = await ApiAxios(
+        {
+          data: {
+            id,
+            status: status || booking?.status,
+            paymentAmount: paymentAmount ? paymentAmount : null,
+          },
+          url: UPDATE_BOOKING_STATUS,
+          method: "POST",
+        },
+        appStateDispatch
+      );
+
+      fetchBooking();
+    } catch (error) {
+      return error.response;
+    }
   };
 
   const [openModal, closeModal] = createDialogActionHandlers(
@@ -82,9 +95,21 @@ const BookingDetails = () => {
       <BookingDetailsPage
         booking={booking}
         onUpdateStatus={() => openModal("onUpdateStatus")}
+        onConfirmBooking={() => openModal("onConfirmBooking")}
         showReceipt={(src) =>
           openModal("showReceipt", {
             receiptImage: src,
+          })
+        }
+      />
+      <ConfirmBookingDialog
+        open={params.action === "onConfirmBooking"}
+        onClose={closeModal}
+        onSubmit={(paymentAmount) =>
+          UpdateStatus({
+            id: booking?._id,
+            status: booking?.status,
+            paymentAmount,
           })
         }
       />
@@ -92,7 +117,9 @@ const BookingDetails = () => {
         open={params.action === "onUpdateStatus"}
         onClose={closeModal}
         message={getConfirmationMessage()}
-        onSubmit={() => UpdateStatus(booking?._id, booking?.status)}
+        onSubmit={() =>
+          UpdateStatus({ id: booking?._id, status: booking?.status })
+        }
       />
       <ImagePreviewDialog
         imageSrc={params.receiptImage}

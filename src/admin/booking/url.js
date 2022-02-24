@@ -7,7 +7,7 @@ export const bookingListPath = BookingSectionUrl;
 
 export const BookingPath = (id) => urlJoin("admin" + BookingSectionUrl, id);
 
-export const bookingUrl = (id, params) =>
+export const bookingUrl = (params, id) =>
   BookingPath(encodeURIComponent(id)) + "?" + stringifyQs(params);
 
 export const bookingPathParamsUrl = (params) => {

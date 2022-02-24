@@ -19,7 +19,7 @@ const CreateRoomDialog = (props) => {
   };
   return (
     <>
-      <Dialog fullWidth maxWidth="xs" open={open} onClose={onClose}>
+      <Dialog fullWidth maxWidth="xs" open={open} onClose={() => onClose()}>
         <DialogTitle>Create Room</DialogTitle>
         <DialogContent dividers>
           <TextField
@@ -35,7 +35,7 @@ const CreateRoomDialog = (props) => {
           <Button
             style={{ outline: "none" }}
             variant="outlined"
-            onClick={onClose}
+            onClick={() => onClose()}
             fullWidth
           >
             Cancel

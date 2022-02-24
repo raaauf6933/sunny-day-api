@@ -1,7 +1,9 @@
 import React from "react";
-import { Card, CardHeader, Table, TableRow, TableCell } from "@mui/material";
+import { Card, CardContent, CardHeader, Divider, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { currencyFormat, getNoNights } from "./../../../../misc";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 
 const useStyles = makeStyles(
   () => ({
@@ -12,6 +14,10 @@ const useStyles = makeStyles(
     },
     tableCellBold: {
       fontWeight: "600",
+    },
+    flexGrid: {
+      display: "flex",
+      justifyContent: "space-between",
     },
     tableRoot: {
       "&.MuiTable-root .MuiTableCell-root": {
@@ -32,43 +38,61 @@ const BookingPayment = (props) => {
   return (
     <Card>
       <CardHeader className={classes.cardHeader} title="Payment Details" />
-      <div
-        style={{
-          padding: "5px",
-          marginBottom: "1em",
-        }}
-      >
-        <Table className={classes.tableRoot}>
-          <TableRow>
-            <TableCell className={classes.tableCellBold}>Sub-Total: </TableCell>
-            <TableCell>
-              <span>
-                {currencyFormat(billing?.sub_total)} X{" "}
-                {getNoNights(booking.check_in, booking.check_out)} night(s)
-              </span>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className={classes.tableCellBold}>
-              Discount:{" "}
-              {billing?.discount ? (
-                <span>({billing?.discount.type})</span>
-              ) : null}
-            </TableCell>
-            <TableCell>
-              {billing?.discount
-                ? currencyFormat(billing.discount.amount)
-                : currencyFormat(0)}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className={classes.tableCellBold}>
-              Total Amount:{" "}
-            </TableCell>
-            <TableCell>{currencyFormat(billing?.total_amount)}</TableCell>
-          </TableRow>
-        </Table>
-      </div>
+      <CardContent>
+        <div className={classes.flexGrid}>
+          <span>Sub-Total</span>
+          <span>
+            {currencyFormat(billing?.sub_total)} X{" "}
+            {getNoNights(booking.check_in, booking.check_out)} night(s)
+          </span>
+        </div>
+        <div className={classes.flexGrid}>
+          <span>
+            Discount{" "}
+            {billing?.discount ? <span>({billing?.discount.type})</span> : null}
+          </span>
+          <span>
+            {billing?.discount
+              ? currencyFormat(billing.discount.amount)
+              : currencyFormat(0)}
+          </span>
+        </div>
+        <div className={classes.flexGrid}>
+          <span>
+            <b>Total Amount</b>
+          </span>
+          <span>{currencyFormat(billing?.total_amount)}</span>
+        </div>
+        <Divider sx={{ margin: "10px 0px 10px 0px" }} />
+        <div className={classes.flexGrid}>
+          <span>Captured amount</span>
+          <span>{currencyFormat(booking?.payment_amount)}</span>
+        </div>
+        <div className={classes.flexGrid}>
+          <span>
+            <b>Outstanding Balance</b>
+          </span>
+          <span>{currencyFormat(booking?.total_balance)}</span>
+        </div>
+        {/* <Divider sx={{ margin: "10px 0px 10px 0px" }} />
+        <Button
+          variant="contained"
+          color="info"
+          size="small"
+          sx={{ marginRight: "1em" }}
+          startIcon={<PaymentsIcon />}
+        >
+          Add Payment
+        </Button>
+        <Button
+          startIcon={<LocalOfferIcon />}
+          variant="contained"
+          color="info"
+          size="small"
+        >
+          Add Discount
+        </Button> */}
+      </CardContent>
     </Card>
   );
 };

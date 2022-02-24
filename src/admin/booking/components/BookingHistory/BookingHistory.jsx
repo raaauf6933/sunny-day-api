@@ -8,18 +8,12 @@ import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
-import {
-  Edit,
-  ImageOutlined,
-  CheckCircle,
-  AddCircle,
-  Paid,
-} from "@mui/icons-material/";
 import Typography from "@mui/material/Typography";
 
 import TimelineEvents from "../../../components/Timeline/TimelineEvents";
 import TimelineImage from "../../../components/Timeline/TimelineImage";
 import TimelineEventsMessage from "../../../components/Timeline/TimelineEventsMessage";
+import TimelinePayment from "../../../components/Timeline/TimelinePayment";
 
 const useStyles = makeStyles(
   () => ({
@@ -71,6 +65,8 @@ const BookingHistory = (props) => {
         );
       case "UPDATE_STATUS":
         return <TimelineEventsMessage event={event} date={event.created} />;
+      case "PAYMENT_CAPTURED":
+        return <TimelinePayment event={event} date={event.created} />;
       default:
         break;
     }
