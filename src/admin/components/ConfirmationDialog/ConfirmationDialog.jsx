@@ -11,10 +11,9 @@ const ConfirmationDialog = (props) => {
   const { open, onClose, message, onSubmit } = props;
 
   const handleSubmit = async () => {
-    const result = await onSubmit();
-    if (result.data) {
-      onClose();
-    }
+    await onSubmit();
+
+    onClose();
   };
   return (
     <>

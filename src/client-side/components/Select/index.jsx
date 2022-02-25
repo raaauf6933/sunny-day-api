@@ -1,10 +1,10 @@
 import React from "react";
 import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 
-const SelectComponent = ({ name, label, choices, onChange, value }) => {
+const SelectComponent = ({ name, label, choices, onChange, value, margin }) => {
   return (
     <>
-      <FormControl required fullWidth>
+      <FormControl required fullWidth margin={margin ? margin : "none"}>
         <InputLabel id="demo-simple-select-autowidth-label">{label}</InputLabel>
         <Select
           name={name}

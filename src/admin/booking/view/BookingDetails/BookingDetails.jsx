@@ -105,6 +105,7 @@ const BookingDetails = () => {
       <ConfirmBookingDialog
         open={params.action === "onConfirmBooking"}
         onClose={closeModal}
+        status={booking?.status}
         onSubmit={(paymentAmount) =>
           UpdateStatus({
             id: booking?._id,

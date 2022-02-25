@@ -53,8 +53,6 @@ const GuestDetailsView = ({ navigate, params }) => {
   const handleCities = () => {
     const citys = Cities.getCities(province);
 
-    console.log(citys);
-
     return citys;
   };
 

@@ -56,6 +56,12 @@ const BookingDetailsPage = (props) => {
       case "PENDING":
         onConfirmBooking();
         break;
+      case "CONFIRMED":
+        onConfirmBooking();
+        break;
+      case "CHECK_IN":
+        onConfirmBooking();
+        break;
       default:
         onUpdateStatus(booking?.reservation?.id, booking?.reservation?.status);
         break;
