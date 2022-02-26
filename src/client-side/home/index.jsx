@@ -6,22 +6,28 @@ import React from "react";
 // import service4 from "../assets/images/services-4.jpg";
 import DatePickerSection from "../components/DatePickerSection";
 import ServiceSection from "../components/ServiceSection";
-import RoomSection from "../components/RoomSection";
+// import RoomSection from "../components/RoomSection";
 import AppContainer from "../components/AppContainer";
 import Hero from "../components/Hero";
-import { Typography } from "@mui/material";
-import SectionLabel from "../components/SectionLabel";
-import { Link } from "react-router-dom";
+// import { Typography } from "@mui/material";
+// import SectionLabel from "../components/SectionLabel";
+// import { Link } from "react-router-dom";
 import navbarContext from "../context/navBar/navBarContext";
 import { WindowTitle } from "../../admin/components/WindowTitle/WindowTitle";
 import { resortName } from "./../../config";
+import bookingContext from "../context/booking/bookingContext";
 
 const Home = () => {
   const { navbarDispatch } = React.useContext(navbarContext);
+  const { bookingDispatch } = React.useContext(bookingContext);
   React.useEffect(() => {
     navbarDispatch({ type: "SET_ALLWAYS_AWAKE", payload: false });
+    bookingDispatch({
+      type: "RESET_ROOMS",
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <>
       <WindowTitle title={resortName("Home")} />

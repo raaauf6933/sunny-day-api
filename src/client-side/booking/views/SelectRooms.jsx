@@ -15,6 +15,8 @@ import { buttonMessage } from "../../utils/intl";
 import { bookingSelectRooms, bookingGuestDetails, bookingUrl } from "../url";
 import createDialogActionHandlers from "../../utils/dialogActionHandlers";
 import { Navigate } from "react-router-dom";
+import { GET_AVAILABLE_ROOMTYPE } from "./../api";
+import apiAxios from "./../../../apiAxios";
 
 const SelectRooms = ({ params, navigate }) => {
   // const [state, setState] = React.useState({ currentPage: 1, pageSize: 3 });
@@ -31,7 +33,12 @@ const SelectRooms = ({ params, navigate }) => {
 
   const getRooms = async (dates) => {
     try {
-      const result = await getAvailableRooms(dates);
+      const result = await apiAxios({
+        url: GET_AVAILABLE_ROOMTYPE,
+        method: "POST",
+        data: dates,
+      });
+
       setRooms(result.data);
     } catch (error) {
       console.log(error);
@@ -54,8 +61,8 @@ const SelectRooms = ({ params, navigate }) => {
 
   React.useEffect(() => {
     getRooms({
-      checkIn: "testIn",
-      checkOut: "testOut",
+      checkIn: bookingState.check_in,
+      checkOut: bookingState.check_out,
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

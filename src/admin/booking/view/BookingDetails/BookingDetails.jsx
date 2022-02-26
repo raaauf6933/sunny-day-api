@@ -11,6 +11,7 @@ import { GET_BOOKING, UPDATE_BOOKING_STATUS } from "../../api";
 import ApiAxios from "./../../../../apiAxios";
 import ImagePreviewDialog from "./../../../components/ImagePreviewDialog/ImagePreviewDialog";
 import ConfirmBookingDialog from "./../../components/ConfirmBookingDialog";
+import { useSnackbar } from "notistack";
 
 const BookingDetails = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const BookingDetails = () => {
   const qs = parseQs(location.search.substr(1));
   const params = qs;
   const { appStateDispatch } = React.useContext(AppStateContext);
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchBooking = async () => {
     try {
@@ -33,22 +35,36 @@ const BookingDetails = () => {
 
   const UpdateStatus = async ({ id, status, paymentAmount }) => {
     try {
-      const data = await ApiAxios(
+      await ApiAxios(
         {
           data: {
             id,
             status: status || booking?.status,
-            paymentAmount: paymentAmount ? paymentAmount : null,
+            paymentAmount:
+              paymentAmount !== null || paymentAmount !== undefined
+                ? paymentAmount
+                : null,
           },
           url: UPDATE_BOOKING_STATUS,
           method: "POST",
         },
         appStateDispatch
       );
-
+      enqueueSnackbar("Booking Updated!", {
+        variant: "success",
+      });
       fetchBooking();
     } catch (error) {
-      return error.response;
+      if (error.data?.code === "PAYMENT_EXCEED") {
+        enqueueSnackbar(error.data?.message, {
+          variant: "error",
+        });
+      } else if (error.data?.code === "PAYMENT_INSUFFICIENT") {
+        enqueueSnackbar(error.data?.message, {
+          variant: "error",
+        });
+      }
+      return error.data;
     }
   };
 

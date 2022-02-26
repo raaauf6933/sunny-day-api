@@ -92,7 +92,7 @@ const BookingListPage = (props) => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell className={classes.tableCellHeader}>
+                <TableCell className={classes.tableCellHeader} align="center">
                   Booking Reference
                 </TableCell>
                 <TableCell className={classes.tableCellHeader}>Guest</TableCell>

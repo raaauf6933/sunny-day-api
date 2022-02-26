@@ -19,6 +19,7 @@ const ConfirmBookingDialog = (props) => {
   const { open, onClose, onSubmit, status } = props;
 
   const handleSubmit = async ({ discount_type, payment_amount }) => {
+    console.log(numeral(payment_amount)._value);
     onSubmit(numeral(payment_amount)._value);
     onClose();
   };
@@ -88,7 +89,7 @@ const ConfirmBookingDialog = (props) => {
                     Cancel
                   </Button>
                   <Button
-                    disabled={data.payment_amount < 1 || !data.discount_type}
+                    // disabled={data.payment_amount < 1}
                     variant="contained"
                     onClick={submit}
                   >

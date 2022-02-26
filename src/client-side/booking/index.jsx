@@ -36,6 +36,7 @@ const Booking = () => {
   });
 
   console.log(bookingState);
+
   return (
     <AppContainer>
       <Box marginTop="7em" marginBottom="3em">

@@ -59,7 +59,7 @@ const Dashboard = () => {
                 <Box marginLeft="1em">
                   <Typography variant="h6">Sales (today)</Typography>
                   <Typography variant="h4">
-                    {reports?.sales_today ? (
+                    {reports?.sales_today !== undefined ? (
                       currencyFormat(reports.sales_today)
                     ) : (
                       <Skeleton />
@@ -91,7 +91,11 @@ const Dashboard = () => {
                 <Box marginLeft="1em">
                   <Typography variant="h6">New Bookings (today)</Typography>
                   <Typography variant="h4">
-                    {reports?.new_booking ? reports?.new_booking : <Skeleton />}
+                    {reports?.new_booking !== undefined ? (
+                      reports?.new_booking
+                    ) : (
+                      <Skeleton />
+                    )}
                   </Typography>
                 </Box>
               </Box>
@@ -119,7 +123,7 @@ const Dashboard = () => {
                 <Box marginLeft="1em">
                   <Typography variant="h6">Pending Bookings</Typography>
                   <Typography variant="h4">
-                    {reports?.pending_booking ? (
+                    {reports?.pending_booking !== undefined ? (
                       reports?.pending_booking
                     ) : (
                       <Skeleton />
@@ -152,7 +156,7 @@ const Dashboard = () => {
                 <Box marginLeft="1em">
                   <Typography variant="h6">Confirmed Bookings</Typography>
                   <Typography variant="h4">
-                    {reports?.confirmed_booking ? (
+                    {reports?.confirmed_booking !== undefined ? (
                       reports?.confirmed_booking
                     ) : (
                       <Skeleton />

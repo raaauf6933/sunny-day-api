@@ -22,6 +22,13 @@ const useStyles = makeStyles(
         marginLeft: "1em",
         marginBottom: "1em",
       },
+      stickyCard: {
+        position: "sticky",
+        top: "80px",
+        overflow: "hidden",
+        marginLeft: "1em",
+        marginBottom: "1em",
+      },
       title: {
         textAlign: "center",
         borderBottom: "2px solid #7766664f",
@@ -98,8 +105,8 @@ const BookingSummary = (props) => {
   };
 
   return (
-    <div style={{ width: "inherit" }}>
-      <Card className={classes.card}>
+    <div style={{ width: "inherit", overflow: "inherit" }}>
+      <Card className={classes.stickyCard}>
         <CardHeader className={classes.title} title={"Booking Summary"} />
         <CardContent>
           <Typography variant="body1" fontWeight="bold">
