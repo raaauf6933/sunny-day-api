@@ -66,7 +66,7 @@ const SelectRooms = ({ params, navigate }) => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [bookingState.check_in, bookingState.check_out]);
 
   // const handlePageChange = (page) => {
   //   setState({ ...state, currentPage: page });

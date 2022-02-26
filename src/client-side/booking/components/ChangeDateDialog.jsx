@@ -14,6 +14,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import Box from "@mui/material/Box";
 import { hasNull } from "../../utils/validators/guestForm";
 import bookingContext from "../../context/booking/bookingContext";
+import moment from "moment";
 
 const ChangeDateDialog = (props) => {
   const { isOpenModal, closeModal } = props;
@@ -43,6 +44,7 @@ const ChangeDateDialog = (props) => {
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <StaticDateRangePicker
             disablePast
+            minDate={new Date(moment(new Date()).add(1, "days").format())}
             displayStaticWrapperAs="desktop"
             value={value}
             onChange={(newValue) => {
