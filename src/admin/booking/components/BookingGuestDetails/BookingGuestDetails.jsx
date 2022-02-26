@@ -5,7 +5,7 @@ import {
   Table,
   TableRow,
   TableCell,
-  Grid,
+  // Grid,
   Skeleton,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -34,7 +34,7 @@ const useStyles = makeStyles(
 const BookingGuestDetails = (props) => {
   const classes = useStyles(props);
   const { booking } = props;
-  const { guest, reservation } = booking
+  const { guest } = booking
     ? booking
     : {
         guest: {},

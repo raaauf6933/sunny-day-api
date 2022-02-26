@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PageHeader from "../../../components/PageHeader/PageHeader";
 import BookingRoomDetails from "../../components/BookingRoomDetails/BookingRoomDetails";

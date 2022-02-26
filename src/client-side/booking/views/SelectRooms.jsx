@@ -8,7 +8,6 @@ import SummarySideBar from "../components/SummarySideBar";
 import ChangeDateDialog from "./../components/ChangeDateDialog";
 import ImagePreviewDialog from "../../components/ImagePreviewDialog";
 import bookingContext from "../../context/booking/bookingContext";
-import { getAvailableRooms } from "../api/booking";
 import CardLoadingSpinner from "../../components/CardLoadingSpinner";
 import SaveButton from "../components/SaveButton";
 import { buttonMessage } from "../../utils/intl";
@@ -147,6 +146,7 @@ const SelectRooms = ({ params, navigate }) => {
           </Grid>
         </Grid>
         <ChangeDateDialog
+          setRooms={setRooms}
           isOpenModal={params.action === "onChangeDate"}
           closeModal={closeModal}
         />

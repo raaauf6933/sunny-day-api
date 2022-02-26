@@ -1,7 +1,7 @@
 import React from "react";
 import { GET_ROOM_TYPES } from "../../api";
 import AppStateContext from "../../../context/AppState/context";
-import { createApiRequest } from "./../../../utils/createApiRequest";
+// import { createApiRequest } from "./../../../utils/createApiRequest";
 import RoomTypeListPage from "../../components/RoomTypeListPage";
 import { useNavigate } from "react-router-dom";
 import { roomManagementAddUrl } from "./../../url";

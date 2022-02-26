@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { getToken, removeTokens, setToken, isAuthenticated } from "./utils";
 import { useNavigate } from "react-router-dom";
 import ApiAxios from "./../../../apiAxios";

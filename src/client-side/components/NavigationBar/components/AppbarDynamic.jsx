@@ -6,10 +6,10 @@ import Hidden from "@mui/material/Hidden";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+// import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import logo from "./../../../assets/images/logo.png";
+// import logo from "./../../../assets/images/logo.png";
 
 const useStyles = makeStyles(
   () => {

@@ -7,12 +7,11 @@ import {
   Typography,
   Card,
   CardContent,
-  CardMedia,
 } from "@mui/material";
 import Form from "./../../components/Form/Form";
 import { makeStyles } from "@mui/styles";
 import { useAuth } from "./../../context/auth/context";
-import logo from "./../../../assets/images/admin_logo.png";
+// import logo from "./../../../assets/images/admin_logo.png";
 
 const useStyles = makeStyles(
   () => ({

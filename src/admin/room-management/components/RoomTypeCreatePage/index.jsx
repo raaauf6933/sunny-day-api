@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import RoomTypeDetailsList from "../RoomTypeDetailsList";
+import React from "react";
+// import RoomTypeDetailsList from "../RoomTypeDetailsList";
 import RoomTypeGenInfo from "../RoomTypeGenInfo/RoomTypeGenInfo";
-import RoomTypeImages from "../RoomTypeImages";
+// import RoomTypeImages from "../RoomTypeImages";
 import SaveButtonBar from "../../../components/SaveButtonBar/SaveButtonBar";
 
 import Form from "../../../components/Form/Form.jsx";
 import { makeStyles } from "@mui/styles";
 
-import { maybe } from "../../../../misc";
+// import { maybe } from "../../../../misc";
 
 const useStyles = makeStyles(
   () => ({

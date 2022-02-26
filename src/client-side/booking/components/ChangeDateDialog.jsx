@@ -17,7 +17,7 @@ import bookingContext from "../../context/booking/bookingContext";
 import moment from "moment";
 
 const ChangeDateDialog = (props) => {
-  const { isOpenModal, closeModal } = props;
+  const { isOpenModal, closeModal, setRooms } = props;
   const { bookingState, bookingDispatch } = React.useContext(bookingContext);
   const [value, setValue] = React.useState([
     bookingState?.check_in ? bookingState.check_in : null,
@@ -35,6 +35,7 @@ const ChangeDateDialog = (props) => {
     bookingDispatch({
       type: "RESET_ROOMS",
     });
+    setRooms([]);
     closeModal();
   };
 

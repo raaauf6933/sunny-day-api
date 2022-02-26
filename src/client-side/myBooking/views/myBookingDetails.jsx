@@ -3,12 +3,9 @@ import {
   Box,
   Card,
   CardContent,
-  TextField,
   Button,
   Divider,
   CardHeader,
-  Table,
-  Grid,
   Container,
   CardActions,
 } from "@mui/material";
@@ -95,6 +92,7 @@ const MyBookingDetails = (props) => {
 
   React.useEffect(() => {
     getBooking();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jwtId._id]);
 
   const getNoQuantity = (roomtype_id) => {

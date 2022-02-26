@@ -10,7 +10,7 @@ import {
   Snackbar,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import AvailedRoomTable from "../components/AvailedRoomTable";
+// import AvailedRoomTable from "../components/AvailedRoomTable";
 import SaveButton from "../components/SaveButton";
 import { buttonMessage } from "../../utils/intl";
 import bookingContext from "../../context/booking/bookingContext";

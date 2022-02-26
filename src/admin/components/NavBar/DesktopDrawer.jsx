@@ -4,19 +4,17 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import ListItemButton from "@mui/material/ListItemButton";
-import { Hidden, Typography } from "@mui/material";
+import { Hidden } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import menuArrowIcon from "../../../assets/images/menu-arrow-icon.svg";
 import classNames from "classnames";
 import { keyframes } from "@mui/system";
 import { createTheme } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
-import { createHref } from "../../../misc";
+// import { createHref } from "../../../misc";
 import SVG from "react-inlinesvg";
-import { NavLink, useMatch as patchMatch } from "react-router-dom";
-import { matchPath } from "react-router";
+import { NavLink } from "react-router-dom";
 
 import Collapse from "@mui/material/Collapse";
 

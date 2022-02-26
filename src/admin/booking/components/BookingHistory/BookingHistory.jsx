@@ -1,14 +1,8 @@
 import React from "react";
-import { Card, CardHeader, CardContent, Skeleton } from "@mui/material";
+import { Card, CardHeader, Skeleton } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 import Timeline from "@mui/lab/Timeline";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineContent from "@mui/lab/TimelineContent";
-import TimelineDot from "@mui/lab/TimelineDot";
-import Typography from "@mui/material/Typography";
 
 import TimelineEvents from "../../../components/Timeline/TimelineEvents";
 import TimelineImage from "../../../components/Timeline/TimelineImage";

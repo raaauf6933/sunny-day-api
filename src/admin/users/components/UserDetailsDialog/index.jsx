@@ -17,8 +17,14 @@ const initialErrorValidation = {
 };
 
 const UserDetailsDialog = (props) => {
-  const { open, onClose, user, params, createUser, updateUser, onSubmit } =
-    props;
+  const {
+    open,
+    onClose,
+    user,
+    params,
+    createUser,
+    // updateUser, onSubmit
+  } = props;
 
   const [error, setErrorValdiation] = useState(initialErrorValidation);
 

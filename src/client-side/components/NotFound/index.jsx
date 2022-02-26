@@ -2,7 +2,7 @@ import React from "react";
 // import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import Hero from "../Hero";
+// import Hero from "../Hero";
 import { WindowTitle } from "../../../admin/components/WindowTitle/WindowTitle";
 import { resortName } from "./../../../config";
 

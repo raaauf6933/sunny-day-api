@@ -50,6 +50,7 @@ const UserList = () => {
     if (params?.action === "userDialog" && params?.type === "edit") {
       fetchUser(params?.id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params?.id]);
 
   const createUser = async (data) => {

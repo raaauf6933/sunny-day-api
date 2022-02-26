@@ -12,7 +12,7 @@ import PageHeader from "./../../../components/PageHeader/PageHeader";
 import moment from "moment";
 import { TextField, Box, TablePagination, Skeleton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { bookingUrl } from "../../url";
+// import { bookingUrl } from "../../url";
 import BookingStatus from "../BookingStatus/BookingStatus";
 import NoData from "./../../../components/NoData/NoData";
 

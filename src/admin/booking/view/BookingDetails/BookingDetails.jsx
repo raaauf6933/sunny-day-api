@@ -5,7 +5,7 @@ import createDialogActionHandlers from "../../dialogActionHandlers";
 import { useLocation, useNavigate } from "react-router-dom";
 import { parse as parseQs } from "qs";
 import ConfirmationDialog from "../../../components/ConfirmationDialog/ConfirmationDialog";
-import { bookingPathParamsUrl, bookingUrl } from "../../url";
+import { bookingPathParamsUrl } from "../../url";
 import AppStateContext from "../../../context/AppState/context";
 import { GET_BOOKING, UPDATE_BOOKING_STATUS } from "../../api";
 import ApiAxios from "./../../../../apiAxios";
