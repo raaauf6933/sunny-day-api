@@ -8,6 +8,8 @@ export const getBookingStatusFormat = (status) => {
       return "CHECK-IN";
     case "CHECK_OUT":
       return "CHECK-OUT";
+    case "EXPIRED":
+      return "EXPIRED";
     default:
       break;
   }

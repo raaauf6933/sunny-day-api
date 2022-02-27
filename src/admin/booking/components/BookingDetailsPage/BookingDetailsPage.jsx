@@ -119,7 +119,7 @@ const BookingDetailsPage = (props) => {
         labels={{
           save: saveButtonLabel(),
         }}
-        hideSaveButton={booking?.status === "CHECK_OUT"}
+        hideSaveButton={["CHECK_OUT", "EXPIRED"].includes(booking?.status)}
         onClickSave={() => submitHandlers()}
       />
     </>

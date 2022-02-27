@@ -15,6 +15,18 @@ import Box from "@mui/material/Box";
 import { hasNull } from "../../utils/validators/guestForm";
 import bookingContext from "../../context/booking/bookingContext";
 import moment from "moment";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles(
+  () => ({
+    root: {
+      overflow: "auto",
+    },
+  }),
+  {
+    name: "ChangeDateDialog",
+  }
+);
 
 const ChangeDateDialog = (props) => {
   const { isOpenModal, closeModal, setRooms } = props;
@@ -23,6 +35,8 @@ const ChangeDateDialog = (props) => {
     bookingState?.check_in ? bookingState.check_in : null,
     bookingState?.check_out ? bookingState?.check_out : null,
   ]);
+
+  const classes = useStyles(props);
 
   const handleSave = () => {
     bookingDispatch({
@@ -58,6 +72,7 @@ const ChangeDateDialog = (props) => {
                 <TextField {...endProps} />
               </React.Fragment>
             )}
+            className={classes.root}
           />
         </LocalizationProvider>
         <Typography color="gray">

@@ -89,6 +89,7 @@ const BookingStatus = (props) => {
           [classes.pendingStatus]: status === "PENDING",
           [classes.defaultStatus1]: ["CONFIRMED", "CHECK_IN"].includes(status),
           [classes.successStatus]: status === "CHECK_OUT",
+          [classes.cancelled]: ["EXPIRED", "NO_SHOW"].includes(status),
         })}
       >
         <FiberManualRecordIcon />
