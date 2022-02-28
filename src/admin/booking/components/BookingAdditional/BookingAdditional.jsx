@@ -1,11 +1,82 @@
 import React from "react";
-import { Card, CardContent } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  Typography,
+  TableBody,
+  CardHeader,
+  Button,
+  Divider,
+} from "@mui/material";
+import { renderCollection, currencyFormat } from "./../../../../misc";
+import NoData from "../../../components/NoData/NoData";
 
-const BookingAdditional = () => {
+const BookingAdditional = ({ booking, onAddAmenity }) => {
   return (
     <Card>
+      <CardHeader
+        title="Additionals"
+        action={
+          <>
+            {booking.status === "CHECK_IN" ? (
+              <Button
+                onClick={() => onAddAmenity()}
+                style={{ outline: "none" }}
+                variant="outlined"
+              >
+                <b>Add</b>
+              </Button>
+            ) : null}
+          </>
+        }
+      />
+      <Divider />
       <CardContent>
-        <h5>Additionial/Extras</h5>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                <Typography fontWeight={600}>Type</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography fontWeight={600}> Rate</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography fontWeight={600}> Qty</Typography>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {renderCollection(
+              booking?.additionals,
+              (amenity) => (
+                <TableRow
+                  key={amenity.id}
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
+                >
+                  <TableCell>{amenity.name}</TableCell>
+                  <TableCell>{currencyFormat(amenity.rate)}</TableCell>
+                  <TableCell>{amenity.qty}</TableCell>
+                </TableRow>
+              ),
+              () => {
+                return (
+                  <TableRow>
+                    <TableCell colSpan={5} align="center">
+                      <NoData />
+                    </TableCell>
+                  </TableRow>
+                );
+              }
+            )}
+          </TableBody>
+        </Table>
       </CardContent>
     </Card>
   );

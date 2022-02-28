@@ -7,11 +7,13 @@ import { parse as parseQs } from "qs";
 import ConfirmationDialog from "../../../components/ConfirmationDialog/ConfirmationDialog";
 import { bookingPathParamsUrl } from "../../url";
 import AppStateContext from "../../../context/AppState/context";
-import { GET_BOOKING, UPDATE_BOOKING_STATUS } from "../../api";
+import { GET_BOOKING, UPDATE_BOOKING_STATUS, ADD_AMENITY } from "../../api";
 import ApiAxios from "./../../../../apiAxios";
 import ImagePreviewDialog from "./../../../components/ImagePreviewDialog/ImagePreviewDialog";
 import ConfirmBookingDialog from "./../../components/ConfirmBookingDialog";
+import BookingAdditionalDialog from "../../components/BookingAdditionalDialog";
 import { useSnackbar } from "notistack";
+import { GET_AMENITIES } from "./../../../amenities/api";
 
 const BookingDetails = () => {
   const { id } = useParams();
@@ -32,6 +34,11 @@ const BookingDetails = () => {
       setBooking(result.data);
     } catch (error) {}
   };
+
+  React.useEffect(() => {
+    fetchBooking();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const UpdateStatus = async ({ id, status, paymentAmount }) => {
     try {
@@ -68,17 +75,43 @@ const BookingDetails = () => {
     }
   };
 
+  const fetchAmenities = async () => {
+    try {
+      const result = await ApiAxios(
+        { url: GET_AMENITIES, method: "GET" },
+        appStateDispatch
+      );
+      return result.data;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const addAmenity = async (formData) => {
+    try {
+      const result = await ApiAxios(
+        { url: ADD_AMENITY, method: "POST", data: { id, ...formData } },
+        appStateDispatch
+      );
+      enqueueSnackbar("Saved Changes!", {
+        variant: "success",
+      });
+
+      fetchBooking();
+      return result.data;
+    } catch (error) {
+      enqueueSnackbar("Something Went Wrong", {
+        variant: "error",
+      });
+    }
+  };
+
   const [openModal, closeModal] = createDialogActionHandlers(
     navigate,
     id,
     bookingPathParamsUrl,
     params
   );
-
-  React.useEffect(() => {
-    fetchBooking();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const getConfirmationMessage = () => {
     switch (booking?.status) {
@@ -117,6 +150,7 @@ const BookingDetails = () => {
             receiptImage: src,
           })
         }
+        onAddAmenity={() => openModal("onAddAmenity")}
       />
       <ConfirmBookingDialog
         open={params.action === "onConfirmBooking"}
@@ -142,6 +176,12 @@ const BookingDetails = () => {
         imageSrc={params.receiptImage}
         isOpenModal={params.action === "showReceipt"}
         setIsOpenModal={() => closeModal({ receiptImage: undefined })}
+      />
+      <BookingAdditionalDialog
+        open={params.action === "onAddAmenity"}
+        onClose={closeModal}
+        fetchAmenities={fetchAmenities}
+        addAmenity={addAmenity}
       />
     </>
   );

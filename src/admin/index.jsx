@@ -3,6 +3,7 @@ import { Routes as Switch, Route, Navigate } from "react-router-dom";
 import AppLayout from "./components/NavBar/NavBar";
 import Dashboard from "./dashboard";
 import Booking from "./booking";
+import Amenities from "./amenities";
 import RoomMangement from "./room-management";
 import Users from "./users";
 import { AppStateProvider } from "./context/AppState/context";
@@ -49,6 +50,7 @@ const Routes = () => {
           <Switch>
             <Route exact path="/" element={<Dashboard />} />
             <Route exact path="/bookings/*" element={<Booking />} />
+            <Route path="/amenities/*" element={<Amenities />} />
             <Route
               exact
               path="/room-management/*"

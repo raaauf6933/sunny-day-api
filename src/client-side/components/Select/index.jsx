@@ -13,11 +13,17 @@ const SelectComponent = ({ name, label, choices, onChange, value, margin }) => {
           labelId="demo-simple-select-autowidth-label"
           onChange={onChange}
         >
-          {choices.map((province) => (
-            <MenuItem value={province.value}>
-              <em>{province.label}</em>
+          {choices && choices.lenght !== 0 ? (
+            choices.map((province) => (
+              <MenuItem value={province.value}>
+                <em>{province.label}</em>
+              </MenuItem>
+            ))
+          ) : (
+            <MenuItem value={null}>
+              <em></em>
             </MenuItem>
-          ))}
+          )}
         </Select>
       </FormControl>
     </>

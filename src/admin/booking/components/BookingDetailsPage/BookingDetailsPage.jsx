@@ -35,7 +35,13 @@ const useStyles = makeStyles(
 );
 
 const BookingDetailsPage = (props) => {
-  const { booking, onUpdateStatus, showReceipt, onConfirmBooking } = props;
+  const {
+    booking,
+    onUpdateStatus,
+    showReceipt,
+    onConfirmBooking,
+    onAddAmenity,
+  } = props;
   const classes = useStyles(props);
 
   const saveButtonLabel = () => {
@@ -110,7 +116,10 @@ const BookingDetailsPage = (props) => {
               <BookingGuest booking={booking} />
             </div>
             <div className={classes.section}>
-              <BookingAdditional />
+              <BookingAdditional
+                booking={booking}
+                onAddAmenity={onAddAmenity}
+              />
             </div>
           </Grid>
         </Grid>

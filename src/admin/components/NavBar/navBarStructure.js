@@ -3,6 +3,7 @@ import {
   BookOnline,
   LocalHotel,
   SupervisorAccount,
+  Category,
 } from "@mui/icons-material";
 
 export const navbarStructure = () => {
@@ -19,6 +20,12 @@ export const navbarStructure = () => {
       label: "Bookings",
       url: "/admin/bookings",
       key: "booking",
+    },
+    {
+      icon: <Category />,
+      label: "Amenities",
+      url: "/admin/amenities",
+      key: "amenities",
     },
     {
       icon: <LocalHotel />,

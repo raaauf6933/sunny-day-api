@@ -8,6 +8,7 @@ import TimelineEvents from "../../../components/Timeline/TimelineEvents";
 import TimelineImage from "../../../components/Timeline/TimelineImage";
 import TimelineEventsMessage from "../../../components/Timeline/TimelineEventsMessage";
 import TimelinePayment from "../../../components/Timeline/TimelinePayment";
+import TimelineAdditionals from "../../../components/Timeline/TimelineAdditionals";
 
 const useStyles = makeStyles(
   () => ({
@@ -61,6 +62,8 @@ const BookingHistory = (props) => {
         return <TimelineEventsMessage event={event} date={event.created} />;
       case "PAYMENT_CAPTURED":
         return <TimelinePayment event={event} date={event.created} />;
+      case "ADD_AMENITY":
+        return <TimelineAdditionals event={event} date={event.created} />;
       default:
         break;
     }
