@@ -40,11 +40,15 @@ const BookingPayment = (props) => {
       <CardHeader className={classes.cardHeader} title="Payment Details" />
       <CardContent>
         <div className={classes.flexGrid}>
-          <span>Sub-Total</span>
+          <span>Sub-Total (Rooms)</span>
           <span>
             {currencyFormat(billing?.sub_total)} X{" "}
             {getNoNights(booking.check_in, booking.check_out)} night(s)
           </span>
+        </div>
+        <div className={classes.flexGrid}>
+          <span>Additional Amount</span>
+          <span>{currencyFormat(billing?.additional_total)}</span>
         </div>
         <div className={classes.flexGrid}>
           <span>

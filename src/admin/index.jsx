@@ -6,6 +6,8 @@ import Booking from "./booking";
 import Amenities from "./amenities";
 import RoomMangement from "./room-management";
 import Users from "./users";
+import Configuration from "./configuration";
+import Discounts from "./discounts";
 import { AppStateProvider } from "./context/AppState/context";
 import AppStateContext from "./context/AppState/context";
 import { useLocation } from "react-router-dom";
@@ -57,6 +59,8 @@ const Routes = () => {
               element={<RoomMangement />}
             />
             <Route path="/users/*" element={<Users />} />
+            <Route path="/configurations/*" element={<Configuration />} />
+            <Route path="/discounts/*" element={<Discounts />} />
             <Route exact path="*" element={<Navigate from="*" to="/admin" />} />
           </Switch>
         </AppLayout>

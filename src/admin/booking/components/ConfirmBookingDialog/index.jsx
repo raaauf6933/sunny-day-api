@@ -16,21 +16,34 @@ import numeral from "numeral";
 import Form from "./../../../components/Form/Form";
 
 const ConfirmBookingDialog = (props) => {
-  const { open, onClose, onSubmit, status } = props;
+  const { open, onClose, onSubmit, status, fetchDiscounts } = props;
+  const [discountChoices, setDiscountChoices] = React.useState([]);
 
-  const handleSubmit = async ({ discount_type, payment_amount }) => {
-    console.log(numeral(payment_amount)._value);
+  const getDiscounts = async () => {
+    const result = await fetchDiscounts();
+    setDiscountChoices(
+      result
+        ? result.map((e) => ({
+            value: JSON.stringify({
+              id: e._id,
+              discount_rate: e.rate,
+              name: e.name,
+              type: e.type,
+            }),
+            label: e.name,
+          }))
+        : []
+    );
+  };
+
+  React.useEffect(() => {
+    getDiscounts();
+  }, []);
+
+  const handleSubmit = async ({ payment_amount }) => {
     onSubmit(numeral(payment_amount)._value);
     onClose();
   };
-
-  const discountChoices = [
-    { value: "none", label: "none" },
-    {
-      value: "PWD_SENIOR_20%",
-      label: "SENIOR/PWD 20%",
-    },
-  ];
 
   return (
     <>

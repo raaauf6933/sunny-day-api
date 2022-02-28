@@ -4,6 +4,7 @@ import {
   LocalHotel,
   SupervisorAccount,
   Category,
+  Settings,
 } from "@mui/icons-material";
 
 export const navbarStructure = () => {
@@ -38,6 +39,12 @@ export const navbarStructure = () => {
       label: "Users",
       url: "/admin/users",
       key: "users",
+    },
+    {
+      icon: <Settings />,
+      label: "Configuration",
+      url: "/admin/configurations",
+      key: "configuration",
     },
   ];
 };

@@ -14,6 +14,7 @@ import ConfirmBookingDialog from "./../../components/ConfirmBookingDialog";
 import BookingAdditionalDialog from "../../components/BookingAdditionalDialog";
 import { useSnackbar } from "notistack";
 import { GET_AMENITIES } from "./../../../amenities/api";
+import { GET_DISCOUNTS } from "./../../../discounts/api";
 
 const BookingDetails = () => {
   const { id } = useParams();
@@ -106,6 +107,18 @@ const BookingDetails = () => {
     }
   };
 
+  const fetchDiscounts = async () => {
+    try {
+      const result = await ApiAxios(
+        { url: GET_DISCOUNTS, method: "GET" },
+        appStateDispatch
+      );
+      return result.data;
+    } catch (error) {
+      return error;
+    }
+  };
+
   const [openModal, closeModal] = createDialogActionHandlers(
     navigate,
     id,
@@ -163,6 +176,7 @@ const BookingDetails = () => {
             paymentAmount,
           })
         }
+        fetchDiscounts={fetchDiscounts}
       />
       <ConfirmationDialog
         open={params.action === "onUpdateStatus"}
