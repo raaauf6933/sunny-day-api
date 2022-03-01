@@ -1,7 +1,15 @@
 import React from "react";
 import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 
-const SelectComponent = ({ name, label, choices, onChange, value, margin }) => {
+const SelectComponent = ({
+  name,
+  label,
+  choices,
+  onChange,
+  value,
+  margin,
+  hasDefaultNone,
+}) => {
   return (
     <>
       <FormControl required fullWidth margin={margin ? margin : "none"}>
@@ -13,6 +21,12 @@ const SelectComponent = ({ name, label, choices, onChange, value, margin }) => {
           labelId="demo-simple-select-autowidth-label"
           onChange={onChange}
         >
+          {hasDefaultNone ? (
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+          ) : null}
+
           {choices && choices.lenght !== 0 ? (
             choices.map((province) => (
               <MenuItem value={province.value}>

@@ -41,6 +41,7 @@ const BookingDetailsPage = (props) => {
     showReceipt,
     onConfirmBooking,
     onAddAmenity,
+    onAddDiscount,
   } = props;
   const classes = useStyles(props);
 
@@ -102,7 +103,11 @@ const BookingDetailsPage = (props) => {
               <BookingRoomDetails rooms={booking?.rooms} />
             </div>
             <div className={classes.section}>
-              <BookingPayment booking={booking} billing={booking?.billing} />
+              <BookingPayment
+                booking={booking}
+                billing={booking?.billing}
+                onAddDiscount={onAddDiscount}
+              />
             </div>
             <div className={classes.section}>
               <BookingHistory

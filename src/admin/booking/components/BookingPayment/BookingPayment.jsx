@@ -1,16 +1,16 @@
 import React from "react";
-import { Card, CardContent, CardHeader, Divider } from "@mui/material";
+import { Card, CardContent, CardHeader, Divider, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { currencyFormat, getNoNights } from "./../../../../misc";
 // import PaymentsIcon from "@mui/icons-material/Payments";
-// import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import { createAddDiscountBtn } from "./handlers";
 
 const useStyles = makeStyles(
   () => ({
     cardHeader: {
       background: "#28a745",
       color: "white",
-      padding: "5px 2px 5px 1em",
+      // padding: "5px 2px 5px 1em",
     },
     tableCellBold: {
       fontWeight: "600",
@@ -33,11 +33,19 @@ const useStyles = makeStyles(
 
 const BookingPayment = (props) => {
   const classes = useStyles(props);
-  const { billing, booking } = props;
+  const { billing, booking, onAddDiscount } = props;
 
   return (
     <Card>
-      <CardHeader className={classes.cardHeader} title="Payment Details" />
+      <CardHeader
+        className={classes.cardHeader}
+        title="Payment Details"
+        action={createAddDiscountBtn(
+          booking?.status,
+          billing?.discount?.amount,
+          onAddDiscount
+        )}
+      />
       <CardContent>
         <div className={classes.flexGrid}>
           <span>Sub-Total (Rooms)</span>
@@ -53,12 +61,23 @@ const BookingPayment = (props) => {
         <div className={classes.flexGrid}>
           <span>
             Discount{" "}
-            {billing?.discount ? <span>({billing?.discount.type})</span> : null}
+            {billing?.discount?.amount ? (
+              <span>
+                (
+                <b>
+                  {" "}
+                  <i>{billing?.discount.type}</i>{" "}
+                </b>
+                )
+              </span>
+            ) : null}
           </span>
           <span>
+            ({" "}
             {billing?.discount
               ? currencyFormat(billing.discount.amount)
-              : currencyFormat(0)}
+              : currencyFormat(0)}{" "}
+            )
           </span>
         </div>
         <div className={classes.flexGrid}>

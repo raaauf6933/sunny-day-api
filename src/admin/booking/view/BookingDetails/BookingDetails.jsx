@@ -7,11 +7,17 @@ import { parse as parseQs } from "qs";
 import ConfirmationDialog from "../../../components/ConfirmationDialog/ConfirmationDialog";
 import { bookingPathParamsUrl } from "../../url";
 import AppStateContext from "../../../context/AppState/context";
-import { GET_BOOKING, UPDATE_BOOKING_STATUS, ADD_AMENITY } from "../../api";
+import {
+  GET_BOOKING,
+  UPDATE_BOOKING_STATUS,
+  ADD_AMENITY,
+  ADD_DISCOUNT,
+} from "../../api";
 import ApiAxios from "./../../../../apiAxios";
 import ImagePreviewDialog from "./../../../components/ImagePreviewDialog/ImagePreviewDialog";
 import ConfirmBookingDialog from "./../../components/ConfirmBookingDialog";
 import BookingAdditionalDialog from "../../components/BookingAdditionalDialog";
+import BookingDiscountDialog from "../../components/BookingDiscountDialog";
 import { useSnackbar } from "notistack";
 import { GET_AMENITIES } from "./../../../amenities/api";
 import { GET_DISCOUNTS } from "./../../../discounts/api";
@@ -119,6 +125,25 @@ const BookingDetails = () => {
     }
   };
 
+  const addDiscount = async (formData) => {
+    try {
+      const result = await ApiAxios(
+        { url: ADD_DISCOUNT, method: "POST", data: { id, ...formData } },
+        appStateDispatch
+      );
+      enqueueSnackbar("Discount Added!", {
+        variant: "success",
+      });
+
+      fetchBooking();
+      return result.data;
+    } catch (error) {
+      enqueueSnackbar(error.data.message, {
+        variant: "error",
+      });
+    }
+  };
+
   const [openModal, closeModal] = createDialogActionHandlers(
     navigate,
     id,
@@ -164,6 +189,7 @@ const BookingDetails = () => {
           })
         }
         onAddAmenity={() => openModal("onAddAmenity")}
+        onAddDiscount={() => openModal("onAddDiscount")}
       />
       <ConfirmBookingDialog
         open={params.action === "onConfirmBooking"}
@@ -176,7 +202,6 @@ const BookingDetails = () => {
             paymentAmount,
           })
         }
-        fetchDiscounts={fetchDiscounts}
       />
       <ConfirmationDialog
         open={params.action === "onUpdateStatus"}
@@ -196,6 +221,12 @@ const BookingDetails = () => {
         onClose={closeModal}
         fetchAmenities={fetchAmenities}
         addAmenity={addAmenity}
+      />
+      <BookingDiscountDialog
+        open={params.action === "onAddDiscount"}
+        onClose={closeModal}
+        fetchDiscounts={fetchDiscounts}
+        addDiscount={addDiscount}
       />
     </>
   );

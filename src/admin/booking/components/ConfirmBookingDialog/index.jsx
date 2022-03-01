@@ -16,29 +16,7 @@ import numeral from "numeral";
 import Form from "./../../../components/Form/Form";
 
 const ConfirmBookingDialog = (props) => {
-  const { open, onClose, onSubmit, status, fetchDiscounts } = props;
-  const [discountChoices, setDiscountChoices] = React.useState([]);
-
-  const getDiscounts = async () => {
-    const result = await fetchDiscounts();
-    setDiscountChoices(
-      result
-        ? result.map((e) => ({
-            value: JSON.stringify({
-              id: e._id,
-              discount_rate: e.rate,
-              name: e.name,
-              type: e.type,
-            }),
-            label: e.name,
-          }))
-        : []
-    );
-  };
-
-  React.useEffect(() => {
-    getDiscounts();
-  }, []);
+  const { open, onClose, onSubmit, status } = props;
 
   const handleSubmit = async ({ payment_amount }) => {
     onSubmit(numeral(payment_amount)._value);
@@ -52,7 +30,6 @@ const ConfirmBookingDialog = (props) => {
         <Form
           initial={{
             payment_amount: 0.0,
-            discount_type: "",
           }}
           onSubmit={handleSubmit}
         >
@@ -60,16 +37,6 @@ const ConfirmBookingDialog = (props) => {
             return (
               <>
                 <DialogContent dividers>
-                  {status === "CONFIRMED" ? (
-                    <Select
-                      label="Discount"
-                      value={data.discount_type}
-                      name="discount_type"
-                      choices={discountChoices}
-                      onChange={change}
-                    />
-                  ) : null}
-
                   <FormControl fullWidth margin="normal">
                     <InputLabel required htmlFor="outlined-adornment-amount">
                       Enter Payment Amount
@@ -102,7 +69,7 @@ const ConfirmBookingDialog = (props) => {
                     Cancel
                   </Button>
                   <Button
-                    // disabled={data.payment_amount < 1}
+                    // disabled={!data.discount_type}
                     variant="contained"
                     onClick={submit}
                   >
