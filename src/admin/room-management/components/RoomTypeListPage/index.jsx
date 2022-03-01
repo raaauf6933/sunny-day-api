@@ -19,6 +19,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import NoData from "./../../../components/NoData/NoData";
+import Status from "./../../../components/Status";
 
 const useStyles = makeStyles(
   () => ({
@@ -131,7 +132,9 @@ const RoomTypeListPage = (props) => {
                     <TableCell>{roomType.name}</TableCell>
                     <TableCell>{currencyFormat(roomType.room_rate)}</TableCell>
                     <TableCell>{roomType?.rooms.length}</TableCell>
-                    <TableCell>{roomType.status}</TableCell>
+                    <TableCell>
+                      <Status status={roomType.status} />{" "}
+                    </TableCell>
                   </TableRow>
                 ),
                 () => (

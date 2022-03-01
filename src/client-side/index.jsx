@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes as Switch, Route } from "react-router-dom";
+import { Routes as Switch, Route, Navigate } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Rooms from "./rooms";
 import Home from "./home";
@@ -49,11 +49,11 @@ const Routes = () => {
           <Route exact path="/my-booking/*" element={<MyBooking />} />
           <Route exact path={bookingUrl} element={<Booking />} />
           <Route exact path="/404" element={<NotFound />} />
-          {/* <Route
+          <Route
             exact
             path="*"
             element={<Navigate from="*" to="/404?awakeNavBar=true" />}
-          /> */}
+          />
         </Switch>
       </AppLayout>
     </>

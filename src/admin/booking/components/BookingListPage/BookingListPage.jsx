@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 // import { bookingUrl } from "../../url";
 import BookingStatus from "../BookingStatus/BookingStatus";
 import NoData from "./../../../components/NoData/NoData";
+import FilterBar from "./../../../components/FilterBar";
 
 const useStyles = makeStyles(
   () => ({
@@ -33,7 +34,8 @@ const useStyles = makeStyles(
 );
 
 const BookingListPage = (props) => {
-  const { bookings } = props;
+  const { bookings, currentTab, onTabChange, tabs } = props;
+
   const [state, setState] = React.useState({
     currentPage: 0,
     pageSize: 10,
@@ -42,7 +44,7 @@ const BookingListPage = (props) => {
   });
   const classes = useStyles(props);
   const navigate = useNavigate();
-  console.log(bookings);
+
   const handlePageChange = (event, page) => {
     setState({ ...state, currentPage: page });
   };
@@ -62,6 +64,7 @@ const BookingListPage = (props) => {
     }
 
     const newBookings = paginate(filteredBookings, currentPage, pageSize);
+
     return {
       totalCount: filteredBookings?.length ? filteredBookings?.length : 0,
       data: newBookings,
@@ -76,7 +79,13 @@ const BookingListPage = (props) => {
   return (
     <>
       <PageHeader title={"Bookings"}></PageHeader>
+
       <Box className={classes.root}>
+        <FilterBar
+          currentTab={currentTab}
+          onTabChange={onTabChange}
+          tabs={tabs}
+        />
         <div className={classes.searchField}>
           <TextField
             label={"Search Booking"}

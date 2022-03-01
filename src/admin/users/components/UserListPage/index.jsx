@@ -17,7 +17,7 @@ import {
   Skeleton,
   Button,
 } from "@mui/material";
-
+import Status from "./../../../components/Status";
 import NoData from "./../../../components/NoData/NoData";
 
 const useStyles = makeStyles(
@@ -151,7 +151,9 @@ const UserListPage = (props) => {
                       {" "}
                       {moment(user.createdAt).format("lll")}
                     </TableCell>
-                    <TableCell>{user.status}</TableCell>
+                    <TableCell>
+                      <Status status={user.status} />
+                    </TableCell>
                   </TableRow>
                 ),
                 () => (

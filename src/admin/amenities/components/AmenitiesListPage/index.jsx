@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import { currencyFormat } from "./../../../../misc";
 import NoData from "./../../../components/NoData/NoData";
+import Status from "./../../../components/Status";
 
 const useStyles = makeStyles(
   () => ({
@@ -135,7 +136,9 @@ const AmenitiesListPage = (props) => {
                       )}
                     </TableCell>
                     <TableCell>{currencyFormat(amenity?.rate)}</TableCell>
-                    <TableCell>{amenity?.status}</TableCell>
+                    <TableCell>
+                      <Status status={amenity?.status} />
+                    </TableCell>
                   </TableRow>
                 ),
                 () => (

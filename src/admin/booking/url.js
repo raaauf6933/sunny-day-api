@@ -13,3 +13,12 @@ export const bookingUrl = (params, id) =>
 export const bookingPathParamsUrl = (params) => {
   return "?" + stringifyQs(params);
 };
+
+export const BookingListUrl = (params) => {
+  const BookingList = "/admin" + BookingSectionUrl;
+  if (params === undefined) {
+    return BookingList;
+  } else {
+    return urlJoin(BookingList, "?" + stringifyQs(params));
+  }
+};
