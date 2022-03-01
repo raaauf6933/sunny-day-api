@@ -5,6 +5,7 @@ import {
   SupervisorAccount,
   Category,
   Settings,
+  Summarize,
 } from "@mui/icons-material";
 
 export const navbarStructure = () => {
@@ -33,6 +34,12 @@ export const navbarStructure = () => {
       label: "Room Management",
       url: "/admin/room-management",
       key: "room-management",
+    },
+    {
+      icon: <Summarize />,
+      label: "Reports",
+      url: "/admin/reports",
+      key: "reports",
     },
     {
       icon: <SupervisorAccount />,

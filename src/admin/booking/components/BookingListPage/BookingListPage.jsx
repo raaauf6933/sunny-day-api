@@ -199,9 +199,9 @@ const BookingListPage = (props) => {
             page={state.currentPage}
             onPageChange={handlePageChange}
             rowsPerPage={state.pageSize}
-            onRowsPerPageChange={(row, rows) =>
-              setState({ ...state, pageSize: rows })
-            }
+            onRowsPerPageChange={(row, rows) => {
+              setState({ ...state, pageSize: rows.props.value });
+            }}
           />
         </div>
       </Box>

@@ -8,6 +8,7 @@ import { currencyFormat } from "./../../misc";
 import { useAuth } from "./../context/auth/context";
 import { GET_DASHBOARD_REPORT } from "./api";
 import ApiAxios from "./../../apiAxios";
+import PageHeader from "./../components/PageHeader/PageHeader";
 
 const Dashboard = () => {
   const [reports, setReports] = React.useState();
@@ -29,6 +30,7 @@ const Dashboard = () => {
 
   return (
     <>
+      <PageHeader title="Dashboard"></PageHeader>
       <Typography variant="h3" gutterBottom>
         Hello there, {user.first_name}
       </Typography>

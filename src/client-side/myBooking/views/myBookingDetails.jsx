@@ -199,7 +199,7 @@ const MyBookingDetails = (props) => {
                 <b>Mode of Payment</b>
               </h5>
               <ul>
-                <li>Gcash | Villa Gregoria Resort</li>
+                <li>Gcash - 09352335202 | Villa Gregoria Resort</li>
                 <li>BPI - 75544452 | Villa Gregoria Resort</li>
                 <li>BDO - 23564343 43112 | Villa Gregoria Resort</li>
               </ul>
@@ -221,18 +221,18 @@ const MyBookingDetails = (props) => {
             <Timeline events={events} />
           </CardContent>
           <CardActions>
-            {/* {status === "PENDING" ? ( */}
-            <>
-              <LoadingButton
-                fullWidth
-                onClick={() => upload.current.click()}
-                loading={loading}
-                loadingPosition="end"
-                variant="contained"
-              >
-                <b>Upload Receipt</b>
-              </LoadingButton>
-              {/* <Button
+            {status === "PENDING" ? (
+              <>
+                <LoadingButton
+                  fullWidth
+                  onClick={() => upload.current.click()}
+                  loading={loading}
+                  loadingPosition="end"
+                  variant="contained"
+                >
+                  <b>Upload Receipt</b>
+                </LoadingButton>
+                {/* <Button
                 fullWidth
                 onClick={}
                 variant="contained"
@@ -240,20 +240,20 @@ const MyBookingDetails = (props) => {
               >
                 <b>Upload Receipt</b>
               </Button> */}
-              <input
-                style={{ display: "none" }}
-                id="fileUpload"
-                onChange={(event) => checkFiles(event.target.files)}
-                multiple
-                type="file"
-                ref={upload}
-                accept="image/*"
-              />
-              <Button fullWidth variant="contained" color="info">
-                <b>Modify Booking</b>
-              </Button>
-            </>
-            {/* ) : null} */}
+                <input
+                  style={{ display: "none" }}
+                  id="fileUpload"
+                  onChange={(event) => checkFiles(event.target.files)}
+                  multiple
+                  type="file"
+                  ref={upload}
+                  accept="image/*"
+                />
+                <Button fullWidth variant="contained" color="info">
+                  <b>Modify Booking</b>
+                </Button>
+              </>
+            ) : null}
           </CardActions>
         </Card>{" "}
       </Box>
