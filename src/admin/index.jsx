@@ -8,6 +8,7 @@ import RoomMangement from "./room-management";
 import Users from "./users";
 import Configuration from "./configuration";
 import Discounts from "./discounts";
+import Reports from "./reports";
 import { AppStateProvider } from "./context/AppState/context";
 import AppStateContext from "./context/AppState/context";
 import { useLocation } from "react-router-dom";
@@ -61,6 +62,7 @@ const Routes = () => {
             <Route path="/users/*" element={<Users />} />
             <Route path="/configurations/*" element={<Configuration />} />
             <Route path="/discounts/*" element={<Discounts />} />
+            <Route path="/reports/*" element={<Reports />} />
             <Route exact path="*" element={<Navigate from="*" to="/admin" />} />
           </Switch>
         </AppLayout>

@@ -12,6 +12,7 @@ import Form from "./../../components/Form/Form";
 import { makeStyles } from "@mui/styles";
 import { useAuth } from "./../../context/auth/context";
 // import logo from "./../../../assets/images/admin_logo.png";
+import { LoadingButton } from "@mui/lab";
 
 const useStyles = makeStyles(
   () => ({
@@ -30,12 +31,20 @@ const LoginView = (props) => {
   const classes = useStyles(props);
   const { login } = useAuth();
   const [error, setError] = useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const handleLogin = async (formData) => {
     setError(false);
-    let err = await login(formData);
-    if (err) {
-      setError(true);
+    setLoading(true);
+
+    try {
+      let err = await login(formData);
+      if (err) {
+        setError(true);
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
     }
   };
 
@@ -109,7 +118,7 @@ const LoginView = (props) => {
                     }}
                     onChange={change}
                   />
-                  <Button
+                  {/* <Button
                     disabled={!data.username || !data.password}
                     fullWidth
                     variant="contained"
@@ -121,7 +130,16 @@ const LoginView = (props) => {
                     }}
                   >
                     SIGN IN
-                  </Button>
+                  </Button> */}
+                  <LoadingButton
+                    fullWidth
+                    onClick={submit}
+                    loading={loading}
+                    loadingPosition="end"
+                    variant="contained"
+                  >
+                    SIGN IN
+                  </LoadingButton>
                 </>
               )}
             </Form>

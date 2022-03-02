@@ -9,7 +9,7 @@ const RoomSection = (props) => {
     {
       id: 1,
       image:
-        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1645079870/ROOM_IMAGES/10293622_740617089321760_6142092653890469_o-1645079870429-423576824.jpg",
+        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1646030130/ROOM_IMAGES/hotel-room-4-1646030130790-419545990.jpg",
       price: 1500,
       maxPerson: 2,
       roomName: "Room Variant 1",
@@ -20,7 +20,7 @@ const RoomSection = (props) => {
     {
       id: 1,
       image:
-        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1645079807/ROOM_IMAGES/14542546_1249607201756077_5505280591008993674_o-1645079806945-67059345.jpg",
+        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1646030130/ROOM_IMAGES/hispalis-1646030130789-992435874.jpg",
       price: 2500,
       maxPerson: 4,
       roomName: "Room Variant 2",
@@ -31,7 +31,7 @@ const RoomSection = (props) => {
     {
       id: 1,
       image:
-        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1645079507/ROOM_IMAGES/10293622_740617085988427_254404023111341675_o-1645079506193-935831042.jpg",
+        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1646030121/ROOM_IMAGES/single-room-1646030121352-835846011.jpg",
       price: 3600,
       maxPerson: 4,
       roomName: "Room Variant 3",
@@ -42,7 +42,7 @@ const RoomSection = (props) => {
     {
       id: 1,
       image:
-        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1645079421/ROOM_IMAGES/1-1645079419965-259083282.jpg",
+        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1646030121/ROOM_IMAGES/img2-1646030121113-608776862.jpg",
       price: 3600,
       maxPerson: 6,
       roomName: "Rooom Variant 4",
@@ -53,7 +53,7 @@ const RoomSection = (props) => {
     {
       id: 1,
       image:
-        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1645025950/ROOM_IMAGES/1-1645025949073-749618466.jpg",
+        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1646030121/ROOM_IMAGES/ostrovok-7900095-008a22dfb798fca5b44e600470334b429ad4adf8-623299-1646030121333-778905160.jpg",
       price: 3600,
       maxPerson: 6,
       roomName: "Rooom Variant 5",
@@ -64,7 +64,7 @@ const RoomSection = (props) => {
     {
       id: 1,
       image:
-        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1645079870/ROOM_IMAGES/10293622_740617089321760_6142092653890469_o-1645079870429-423576824.jpg",
+        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1646029855/ROOM_IMAGES/Difference-Between-2-Star-and-3-Star-Hotels-1-1646029855005-350744829.jpg",
       price: 4300,
       maxPerson: 6,
       roomName: "Room Variant 6",
@@ -75,7 +75,7 @@ const RoomSection = (props) => {
     {
       id: 1,
       image:
-        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1645079507/ROOM_IMAGES/10293622_740617085988427_254404023111341675_o-1645079506193-935831042.jpg",
+        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1646029844/ROOM_IMAGES/2-star-bedroom-1646029843333-168609007.jpg",
       price: 5000,
       maxPerson: 12,
       roomName: "Room Variant 7",
@@ -86,7 +86,7 @@ const RoomSection = (props) => {
     {
       id: 1,
       image:
-        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1645079421/ROOM_IMAGES/1-1645079419965-259083282.jpg",
+        "https://res.cloudinary.com/dlqsqlkws/image/upload/v1646029601/ROOM_IMAGES/executive-one%281%29-1646029600608-447682339.jpg",
       price: 11000,
       maxPerson: 12,
       roomName: "Room Variant 8",
