@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PageHeader from "../../../components/PageHeader/PageHeader";
 import BookingRoomDetails from "../../components/BookingRoomDetails/BookingRoomDetails";
@@ -10,6 +10,12 @@ import BookingAdditional from "../../components/BookingAdditional/BookingAdditio
 import BookingStatus from "../BookingStatus/BookingStatus";
 import SaveButtonBar from "../../../components/SaveButtonBar/SaveButtonBar";
 import DateAgo from "../../../components/DateAgo/DateAgo";
+import htmlToPdfmake from "html-to-pdfmake";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+
+import { getInvoice } from "./../../invoiceTemplate";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const useStyles = makeStyles(
   () => ({
@@ -27,6 +33,13 @@ const useStyles = makeStyles(
     statusHolder: {
       display: "flex",
       marginLeft: "10px",
+    },
+    pageHeader: {
+      display: "flex",
+      justifyContent: "space-between",
+    },
+    test: {
+      color: "purple",
     },
   }),
   {
@@ -75,6 +88,10 @@ const BookingDetailsPage = (props) => {
     }
   };
 
+  const handlePrintInvoice = () => {
+    pdfMake.createPdf(getInvoice(booking)).open();
+  };
+
   return (
     <>
       <div
@@ -82,20 +99,33 @@ const BookingDetailsPage = (props) => {
           marginBottom: "5em",
         }}
       >
-        <div className={classes.headerHolder}>
-          <PageHeader
-            className={classes.header}
-            inline
-            title={booking?.booking_reference}
-          />
-          <span className={classes.statusHolder}>
-            {/* { booking?.reservation?.status ? ( */}
-            <BookingStatus status={booking?.status} />
-            {/* ) : (
+        <div className={classes.pageHeader}>
+          <div className={classes.headerHolder}>
+            <PageHeader
+              className={classes.header}
+              inline
+              title={booking?.booking_reference}
+            />
+            <span className={classes.statusHolder}>
+              {/* { booking?.reservation?.status ? ( */}
+              <BookingStatus status={booking?.status} />
+              {/* ) : (
             <Skeleton />
           )} */}
-          </span>
+            </span>
+          </div>
+          <Button
+            variant="outlined"
+            color="warning"
+            style={{
+              outline: "none",
+            }}
+            onClick={() => handlePrintInvoice()}
+          >
+            <b>Print Invoice</b>
+          </Button>
         </div>
+
         <DateAgo date={booking?.createdAt} />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={8} md={8}>

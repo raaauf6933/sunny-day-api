@@ -16,6 +16,7 @@
     "axios": "^0.24.0",
     "classnames": "^2.3.1",
     "date-fns": "^2.25.0",
+    "html-to-pdfmake": "^2.3.10",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
