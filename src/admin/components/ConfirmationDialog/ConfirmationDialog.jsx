@@ -10,8 +10,8 @@ import {
 const ConfirmationDialog = (props) => {
   const { open, onClose, message, onSubmit } = props;
 
-  const handleSubmit = async () => {
-    await onSubmit();
+  const handleSubmit = () => {
+    onSubmit();
 
     onClose();
   };

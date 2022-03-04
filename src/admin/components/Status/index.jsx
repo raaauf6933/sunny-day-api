@@ -9,11 +9,16 @@ const useStyles = makeStyles(
       display: "flex",
       alignItems: "center",
       flexDirection: "row",
+      whiteSpace: "nowrap",
       "& > *": {
         margin: "2px",
       },
     },
     disabled: {
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "row",
+      whiteSpace: "nowrap",
       color: "#d32f2f",
       "& > *": {
         margin: "2px",

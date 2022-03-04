@@ -55,6 +55,7 @@ const BookingDetailsPage = (props) => {
     onConfirmBooking,
     onAddAmenity,
     onAddDiscount,
+    onBack,
   } = props;
   const classes = useStyles(props);
 
@@ -163,6 +164,7 @@ const BookingDetailsPage = (props) => {
         labels={{
           save: saveButtonLabel(),
         }}
+        onBack={onBack}
         hideSaveButton={["CHECK_OUT", "EXPIRED"].includes(booking?.status)}
         onClickSave={() => submitHandlers()}
       />

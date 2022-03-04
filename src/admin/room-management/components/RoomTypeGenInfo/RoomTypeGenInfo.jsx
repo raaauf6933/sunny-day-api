@@ -20,7 +20,7 @@ import {
 } from "@mui/material";
 
 const RoomTypeGenInfo = (props) => {
-  const { data, change } = props;
+  const { data, change, onDeleteRoomType } = props;
 
   return (
     <>
@@ -29,7 +29,11 @@ const RoomTypeGenInfo = (props) => {
           title={"Room Details"}
           action={
             data?.new ? null : (
-              <Button variant="outlined" color="error">
+              <Button
+                onClick={() => onDeleteRoomType()}
+                variant="outlined"
+                color="error"
+              >
                 <b>Delete</b>
               </Button>
             )
@@ -45,6 +49,7 @@ const RoomTypeGenInfo = (props) => {
                 variant="outlined"
                 value={data.name}
                 onChange={change}
+                disabled={!data?.new}
                 fullWidth
               />
             </Grid>
@@ -180,6 +185,7 @@ const RoomTypeGenInfo = (props) => {
                   name="status"
                   defaultValue={data?.status}
                   value={data?.status}
+                  onChange={change}
                   style={{
                     display: "flex",
                     flexDirection: "row",

@@ -21,6 +21,9 @@ const SelectComponent = ({
           labelId="demo-simple-select-autowidth-label"
           onChange={onChange}
         >
+          {/* <MenuItem value={"ACT"}>
+            <em>ACTIVATE</em>
+          </MenuItem> */}
           {hasDefaultNone ? (
             <MenuItem value="">
               <em>None</em>
@@ -28,9 +31,9 @@ const SelectComponent = ({
           ) : null}
 
           {choices && choices.lenght !== 0 ? (
-            choices.map((province) => (
-              <MenuItem value={province.value}>
-                <em>{province.label}</em>
+            choices.map((item, index) => (
+              <MenuItem key={index} value={item.value}>
+                <em>{item.label}</em>
               </MenuItem>
             ))
           ) : (

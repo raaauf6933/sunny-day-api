@@ -6,3 +6,9 @@ export const CREATE_ROOM = "api/admin/room_Types/create_room";
 
 export const UPDATE_ROOM_TYPE = "api/admin/room_types/update_room_type";
 export const UPLOAD_ROOM_IMAGE = "api/admin/room_types/upload_room_image";
+
+export const DELETE_ROOMTYPE = "api/admin/room_types/delete_roomtype";
+
+export const DELETE_ROOM_IMAGE = "api/admin/room_types/delete_room_image";
+
+export const DELETE_ROOM = "api/admin/room_types/delete_room";

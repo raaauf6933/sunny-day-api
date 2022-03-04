@@ -21,7 +21,7 @@ import { Delete as DeleteIcon } from "@mui/icons-material";
 import NoData from "../../../components/NoData/NoData";
 
 const RoomTypeDetailsList = (props) => {
-  const { rooms, onCreateRoom } = props;
+  const { rooms, onCreateRoom, onDeleteRoom } = props;
   // const navigate = useNavigate();
 
   return (
@@ -67,7 +67,10 @@ const RoomTypeDetailsList = (props) => {
                     >
                       <TableCell>{room.room_number}</TableCell>
                       <TableCell>
-                        <IconButton style={{ outline: "none" }}>
+                        <IconButton
+                          onClick={() => onDeleteRoom(room._id)}
+                          style={{ outline: "none" }}
+                        >
                           <DeleteIcon />
                         </IconButton>
                       </TableCell>

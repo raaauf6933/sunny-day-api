@@ -27,10 +27,13 @@ const RoomTypeCreate = () => {
 
       navigate(roomTypePath(result.data._id));
     } catch (error) {
-      enqueueSnackbar("Something went Wrong, Changes not saved", {
-        variant: "error",
-        anchorOrigin: { vertical: "top", horizontal: "right" },
-      });
+      enqueueSnackbar(
+        error.data.message || "Something went Wrong, Changes not saved",
+        {
+          variant: "error",
+          anchorOrigin: { vertical: "top", horizontal: "right" },
+        }
+      );
     }
   };
 

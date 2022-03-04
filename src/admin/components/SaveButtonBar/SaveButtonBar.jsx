@@ -2,7 +2,6 @@ import React from "react";
 import { Card, CardContent, Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 // import { createTheme } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
 // const theme = createTheme();
 const useStyles = makeStyles(
   () => ({
@@ -81,8 +80,7 @@ const useStyles = makeStyles(
 
 const SaveButtonBar = (props) => {
   const classes = useStyles(props);
-  const { labels, onClickSave, disabled, hideSaveButton } = props;
-  const navigate = useNavigate();
+  const { labels, onClickSave, disabled, hideSaveButton, onBack } = props;
 
   return (
     <div className={classes.container}>
@@ -90,7 +88,7 @@ const SaveButtonBar = (props) => {
         <Card className={classes.paper} elevation={16}>
           <CardContent className={classes.content}>
             <Button
-              onClick={() => navigate(-1)}
+              onClick={onBack}
               className={classes.backButton}
               variant="text"
             >

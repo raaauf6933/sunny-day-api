@@ -37,7 +37,7 @@ const useStyles = makeStyles(
 );
 
 const AmenitiesListPage = (props) => {
-  const { amenities, showCreateModal } = props;
+  const { amenities, showCreateModal, showEditModal } = props;
   const [state, setState] = React.useState({
     currentPage: 0,
     pageSize: 10,
@@ -127,6 +127,7 @@ const AmenitiesListPage = (props) => {
                       cursor: "pointer",
                     }}
                     hover
+                    onClick={() => showEditModal(amenity._id)}
                   >
                     <TableCell>
                       {amenity.name ? (

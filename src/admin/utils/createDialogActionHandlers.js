@@ -1,14 +1,15 @@
 function createDialogActionHandlers(navigate, id, url, params) {
   const close = (closeParams) => {
-    const parameters = closeParams
-      ? { ...params, action: undefined, roomImage: undefined, ...closeParams }
-      : {
+    navigate(
+      url(
+        {
           ...params,
+          ...closeParams,
           action: undefined,
-          roomImage: undefined,
-        };
-
-    navigate(url(parameters, id ? id : null));
+        },
+        id ? id : null
+      )
+    );
   };
 
   const open = (action, newParams) => {

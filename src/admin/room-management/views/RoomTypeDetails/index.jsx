@@ -7,6 +7,9 @@ import {
   UPDATE_ROOM_TYPE,
   UPLOAD_ROOM_IMAGE,
   CREATE_ROOM,
+  DELETE_ROOMTYPE,
+  DELETE_ROOM_IMAGE,
+  DELETE_ROOM,
 } from "../../api";
 import apiAxios from "./../../../../apiAxios";
 import RoomTypeUpdateDetailsPage from "../../components/RoomTypeUpdateDetailsPage";
@@ -15,6 +18,7 @@ import createDialogActionHandlers from "./../../../utils/createDialogActionHandl
 import { parse as parseQs } from "qs";
 import { roomTypePathParamsUrl } from "./../../url";
 import CreateRoomDialog from "./../../components/CreateRoomDialog";
+import ConfirmDialog from "./../../../components/ConfirmationDialog/ConfirmationDialog";
 // const initialState = {
 //   name: "",
 // };
@@ -41,6 +45,12 @@ const RoomTypeDetails = () => {
     );
     setRoomType(result.data);
   };
+
+  React.useEffect(() => {
+    fetchRoomType();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const updateRoomType = async (data) => {
     try {
@@ -126,18 +136,83 @@ const RoomTypeDetails = () => {
     }
   };
 
+  const DeleteRoomType = async () => {
+    try {
+      await apiAxios({
+        url: DELETE_ROOMTYPE,
+        method: "POST",
+        data: {
+          id,
+        },
+        appStateDispatch,
+      });
+      navigate("/admin/room-management/");
+    } catch (error) {
+      enqueueSnackbar(error.data.message || "Something Went Wrong", {
+        variant: "error",
+        anchorOrigin: { vertical: "top", horizontal: "right" },
+      });
+    }
+  };
+
+  const onDeleteRoomImage = async () => {
+    try {
+      await apiAxios({
+        url: DELETE_ROOM_IMAGE,
+        method: "POST",
+        data: {
+          id,
+          image_id: params.image_id,
+        },
+        appStateDispatch,
+      });
+
+      enqueueSnackbar("Saved Changes!", {
+        variant: "success",
+        anchorOrigin: { vertical: "top", horizontal: "right" },
+      });
+      fetchRoomType();
+    } catch (error) {
+      enqueueSnackbar(error.data.message || "Something Went Wrong", {
+        variant: "error",
+        anchorOrigin: { vertical: "top", horizontal: "right" },
+      });
+    }
+  };
+
+  const onDeleteRoom = async () => {
+    try {
+      await apiAxios(
+        {
+          url: DELETE_ROOM,
+          method: "POST",
+          data: {
+            id,
+            room_id: params.room_id,
+          },
+        },
+        appStateDispatch
+      );
+
+      enqueueSnackbar("Saved Changes!", {
+        variant: "success",
+        anchorOrigin: { vertical: "top", horizontal: "right" },
+      });
+      fetchRoomType();
+    } catch (error) {
+      enqueueSnackbar(error.data.message || "Something Went Wrong", {
+        variant: "error",
+        anchorOrigin: { vertical: "top", horizontal: "right" },
+      });
+    }
+  };
+
   const [openModal, closeModal] = createDialogActionHandlers(
     navigate,
     id,
     roomTypePathParamsUrl,
     params
   );
-
-  React.useEffect(() => {
-    fetchRoomType();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
@@ -146,11 +221,34 @@ const RoomTypeDetails = () => {
         roomType={roomType}
         uploadRoomImage={uploadRoomImage}
         onCreateRoom={() => openModal("onCreateRoom")}
+        onDeleteRoomType={() => openModal("onDeleteRoomType")}
+        onDeleRoomImage={(image_id) =>
+          openModal("onDeleRoomImage", { image_id })
+        }
+        onDeleteRoom={(room_id) => openModal("onDeleteRoom", { room_id })}
       />
       <CreateRoomDialog
         open={params.action === "onCreateRoom"}
         onClose={closeModal}
         onSubmit={createRoom}
+      />
+      <ConfirmDialog
+        open={params.action === "onDeleteRoomType"}
+        message="Are you sure you want to delete this Room?"
+        onClose={closeModal}
+        onSubmit={DeleteRoomType}
+      />
+      <ConfirmDialog
+        open={params.action === "onDeleRoomImage"}
+        message="Are you sure you want to delete this Image?"
+        onClose={() => closeModal({ image_id: undefined })}
+        onSubmit={onDeleteRoomImage}
+      />
+      <ConfirmDialog
+        open={params.action === "onDeleteRoom"}
+        message="Are you sure you want to delete this Room?"
+        onClose={() => closeModal({ room_id: undefined })}
+        onSubmit={onDeleteRoom}
       />
     </>
   );

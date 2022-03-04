@@ -190,6 +190,7 @@ const BookingDetails = () => {
         }
         onAddAmenity={() => openModal("onAddAmenity")}
         onAddDiscount={() => openModal("onAddDiscount")}
+        onBack={() => navigate("/admin/bookings")}
       />
       <ConfirmBookingDialog
         open={params.action === "onConfirmBooking"}

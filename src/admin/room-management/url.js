@@ -1,7 +1,7 @@
 import { stringify as stringifyQs } from "qs";
 import urlJoin from "url-join";
 
-const roomManagementSection = "/admin/room-management/";
+export const roomManagementSection = "/admin/room-management/";
 
 export const roomManagementAddPath = urlJoin(roomManagementSection, "add");
 export const roomManagementAddUrl = roomManagementAddPath;

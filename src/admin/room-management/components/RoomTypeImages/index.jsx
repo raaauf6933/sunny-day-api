@@ -11,7 +11,7 @@ import { Card, CardHeader, CardContent, Divider, Button } from "@mui/material";
 import NoData from "../../../components/NoData/NoData";
 
 const RoomTypeImages = (props) => {
-  const { images, uploadRoomImage } = props;
+  const { images, uploadRoomImage, onDeleRoomImage } = props;
 
   const upload = React.useRef(null);
   const theme = useTheme();
@@ -105,6 +105,7 @@ const RoomTypeImages = (props) => {
                             margin: "5px",
                           }}
                           sx={{ color: "#ffffffc2" }}
+                          onClick={() => onDeleRoomImage(image._id)}
                         >
                           <Delete />
                         </IconButton>
@@ -158,6 +159,7 @@ const RoomTypeImages = (props) => {
                             margin: "5px",
                           }}
                           sx={{ color: "#ffffffc2" }}
+                          onClick={() => onDeleRoomImage(image._id)}
                         >
                           <Delete />
                         </IconButton>

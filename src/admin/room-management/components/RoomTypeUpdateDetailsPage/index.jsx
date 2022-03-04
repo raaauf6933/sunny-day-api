@@ -22,7 +22,15 @@ const useStyles = makeStyles(
 );
 
 const RoomTypeUpdateDetailsPage = (props) => {
-  const { roomType, updateRoomType, uploadRoomImage, onCreateRoom } = props;
+  const {
+    roomType,
+    updateRoomType,
+    uploadRoomImage,
+    onCreateRoom,
+    onDeleteRoomType,
+    onDeleRoomImage,
+    onDeleteRoom,
+  } = props;
   const classes = useStyles(props);
 
   const data = {
@@ -51,12 +59,14 @@ const RoomTypeUpdateDetailsPage = (props) => {
                       roomType={roomType}
                       data={data}
                       change={change}
+                      onDeleteRoomType={onDeleteRoomType}
                     />
                   </Grid>
                   <Grid xs={12} sm={12} md={12} item>
                     <RoomTypeImages
                       images={roomType?.images}
                       uploadRoomImage={uploadRoomImage}
+                      onDeleRoomImage={onDeleRoomImage}
                     />
                   </Grid>
                 </Grid>
@@ -64,6 +74,7 @@ const RoomTypeUpdateDetailsPage = (props) => {
                   <RoomTypeDetailsList
                     rooms={roomType?.rooms}
                     onCreateRoom={onCreateRoom}
+                    onDeleteRoom={onDeleteRoom}
                   />
                 </Grid>
               </Grid>
