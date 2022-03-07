@@ -10,7 +10,6 @@ import BookingAdditional from "../../components/BookingAdditional/BookingAdditio
 import BookingStatus from "../BookingStatus/BookingStatus";
 import SaveButtonBar from "../../../components/SaveButtonBar/SaveButtonBar";
 import DateAgo from "../../../components/DateAgo/DateAgo";
-import htmlToPdfmake from "html-to-pdfmake";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 

@@ -39,7 +39,12 @@ const BookingDetails = () => {
         appStateDispatch
       );
       setBooking(result.data);
-    } catch (error) {}
+      return result.data;
+    } catch (error) {
+      enqueueSnackbar(error.data?.message || "Something Went Wrong", {
+        variant: "error",
+      });
+    }
   };
 
   React.useEffect(() => {
@@ -203,6 +208,7 @@ const BookingDetails = () => {
             paymentAmount,
           })
         }
+        fetchBooking={fetchBooking}
       />
       <ConfirmationDialog
         open={params.action === "onUpdateStatus"}

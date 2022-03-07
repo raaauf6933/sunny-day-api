@@ -10,7 +10,13 @@ import { makeStyles } from "@mui/styles";
 import { renderCollection, escapeRegExp, paginate } from "../../../../misc";
 import PageHeader from "./../../../components/PageHeader/PageHeader";
 import moment from "moment";
-import { TextField, Box, TablePagination, Skeleton } from "@mui/material";
+import {
+  TextField,
+  Box,
+  TablePagination,
+  Skeleton,
+  Button,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 // import { bookingUrl } from "../../url";
 import BookingStatus from "../BookingStatus/BookingStatus";
@@ -78,7 +84,19 @@ const BookingListPage = (props) => {
 
   return (
     <>
-      <PageHeader title={"Bookings"}></PageHeader>
+      <PageHeader title={"Bookings"}>
+        {" "}
+        <Button
+          color="primary"
+          style={{
+            outline: "none",
+          }}
+          variant="contained"
+          onClick={() => navigate("create")}
+        >
+          <span>Create For Walk-In</span>
+        </Button>
+      </PageHeader>
 
       <Box className={classes.root}>
         <FilterBar

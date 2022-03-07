@@ -11,15 +11,31 @@ import {
   InputAdornment,
   // TextField,
 } from "@mui/material";
-import Select from "./../../../../client-side/components/Select";
 import numeral from "numeral";
 import Form from "./../../../components/Form/Form";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import { getInvoice } from "./../../invoiceTemplate";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import { LoadingButton } from "@mui/lab";
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const ConfirmBookingDialog = (props) => {
-  const { open, onClose, onSubmit, status } = props;
+  const { open, onClose, onSubmit, status, fetchBooking } = props;
+  const [loading, setLoading] = React.useState(false);
 
-  const handleSubmit = async ({ payment_amount }) => {
-    onSubmit(numeral(payment_amount)._value);
+  const handleSubmit = async ({ payment_amount, generate_invoice }) => {
+    setLoading(true);
+
+    await onSubmit(numeral(payment_amount)._value);
+
+    if (generate_invoice) {
+      const result = await fetchBooking();
+      pdfMake.createPdf(getInvoice(result)).open();
+    }
+    setLoading(false);
     onClose();
   };
 
@@ -30,6 +46,7 @@ const ConfirmBookingDialog = (props) => {
         <Form
           initial={{
             payment_amount: 0.0,
+            generate_invoice: true,
           }}
           onSubmit={handleSubmit}
         >
@@ -63,18 +80,38 @@ const ConfirmBookingDialog = (props) => {
                       }}
                     />
                   </FormControl>
+                  <FormGroup>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          name="generate_invoice"
+                          checked={data.generate_invoice}
+                          onChange={(e) =>
+                            change({
+                              target: {
+                                name: "generate_invoice",
+                                value: e.target.checked,
+                              },
+                            })
+                          }
+                        />
+                      }
+                      label="Generate Invoice"
+                    />
+                  </FormGroup>
                 </DialogContent>
                 <DialogActions>
                   <Button variant="outlined" onClick={() => onClose()}>
                     Cancel
                   </Button>
-                  <Button
-                    // disabled={!data.discount_type}
+                  <LoadingButton
                     variant="contained"
                     onClick={submit}
+                    loading={loading}
+                    loadingPosition="end"
                   >
                     Confirm
-                  </Button>
+                  </LoadingButton>
                 </DialogActions>
               </>
             );
