@@ -5,21 +5,20 @@ import DateRangePicker from "@mui/lab/DateRangePicker";
 import moment from "moment";
 import { TextField, Box } from "@mui/material";
 
-const DatePicker = ({ data, change }) => {
+const DatePicker = ({ data, dispatch, fetchRooms }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
         minDate={new Date(moment(new Date()).format())}
         startText="Check-in"
         endText="Check-out"
-        value={data.dates}
+        value={data}
         onChange={(newValue) => {
-          change({
-            target: {
-              name: "dates",
-              value: newValue,
-            },
+          dispatch({
+            type: "SET_DATES",
+            payload: newValue,
           });
+          fetchRooms(newValue);
         }}
         // InputProps={{
         //   name: "dates",

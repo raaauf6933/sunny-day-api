@@ -8,21 +8,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { currencyFormat } from "../../../../../misc";
+import { currencyFormat, renderCollection } from "../../../../../misc";
+import { Skeleton } from "@mui/material";
+import NoData from "./../../../../components/NoData/NoData";
+import RoomRow from "./RoomRow";
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
-const RoomSection = () => {
+const RoomSection = ({ rooms, dispatch, room_details }) => {
   return (
     <>
       <TableContainer component={Paper} sx={{ width: "100%" }}>
@@ -42,31 +33,42 @@ const RoomSection = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{
-                  "&:last-child td, &:last-child th": { border: 0 },
-                }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell>{currencyFormat(row.calories)}</TableCell>
-                <TableCell>{row.fat}</TableCell>
-                <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>
-                  <RemoveCircleOutlineIcon
-                    fontSize="small"
-                    sx={{ cursor: "pointer" }}
+            {renderCollection(
+              rooms,
+              (roomtype) => {
+                return (
+                  <RoomRow
+                    dispatch={dispatch}
+                    room_type={roomtype}
+                    rooms={roomtype.rooms}
+                    room_details={room_details}
                   />
-                  <span style={{ margin: "0px 10px 0px" }}>{5}</span>
-                  <AddCircleOutlineIcon
-                    fontSize="small"
-                    sx={{ cursor: "pointer" }}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
+                );
+              },
+              () => (
+                <TableRow>
+                  <TableCell colSpan={6} align="center">
+                    <NoData />
+                  </TableCell>
+                </TableRow>
+              ),
+              () => (
+                <TableRow>
+                  <TableCell>
+                    <Skeleton width="150px" height="40px" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton width="150px" height="40px" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton width="150px" height="40px" />
+                  </TableCell>
+                  <TableCell>
+                    <Skeleton width="150px" height="40px" />
+                  </TableCell>
+                </TableRow>
+              )
+            )}
           </TableBody>
         </Table>
       </TableContainer>

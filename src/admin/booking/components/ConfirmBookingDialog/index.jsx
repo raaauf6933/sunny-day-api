@@ -28,8 +28,11 @@ const ConfirmBookingDialog = (props) => {
 
   const handleSubmit = async ({ payment_amount, generate_invoice }) => {
     setLoading(true);
-
-    await onSubmit(numeral(payment_amount)._value);
+    const result = await onSubmit(numeral(payment_amount)._value);
+    if (result?.status === "failed") {
+      setLoading(false);
+      return false;
+    }
 
     if (generate_invoice) {
       const result = await fetchBooking();

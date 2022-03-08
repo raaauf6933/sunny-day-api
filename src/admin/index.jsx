@@ -14,6 +14,7 @@ import AppStateContext from "./context/AppState/context";
 import { useLocation } from "react-router-dom";
 import { SnackbarProvider } from "notistack";
 import { AuthContextProvider, useAuth } from "./context/auth/context";
+import { BookingProvider } from "./context/booking/bookingContext";
 import AuthRouter from "./authentication";
 
 const Admin = () => {
@@ -21,15 +22,17 @@ const Admin = () => {
     <>
       <AppStateProvider>
         <AuthContextProvider>
-          <SnackbarProvider
-            maxSnack={3}
-            anchorOrigin={{
-              horizontal: "right",
-              vertical: "top",
-            }}
-          >
-            <Routes />
-          </SnackbarProvider>
+          <BookingProvider>
+            <SnackbarProvider
+              maxSnack={3}
+              anchorOrigin={{
+                horizontal: "right",
+                vertical: "top",
+              }}
+            >
+              <Routes />
+            </SnackbarProvider>
+          </BookingProvider>
         </AuthContextProvider>
       </AppStateProvider>
     </>

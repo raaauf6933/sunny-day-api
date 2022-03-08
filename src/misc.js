@@ -77,3 +77,10 @@ export const getBookingStatusFormat = (status) => {
       break;
   }
 };
+
+export const hasNull = (target) => {
+  for (var member in target) {
+    if (target[member] == null) return true;
+  }
+  return false;
+};
