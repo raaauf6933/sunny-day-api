@@ -36,12 +36,12 @@ const ServiceSection = (props) => {
   const theme = useTheme();
   const media_xs = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // React.useEffect(() => {
-  //   if (videoElement.current.play) {
-  //     videoElement.current.play();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // });
+  React.useEffect(() => {
+    if (videoElement.current.play) {
+      videoElement.current.play();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
 
   return (
     <div>
@@ -119,12 +119,12 @@ const ServiceSection = (props) => {
         
             </Typography> */}
           </Fade>
-          {/* <video width="100%" height="50%" ref={videoElement} muted>
+          <video width="100%" height="50%" ref={videoElement} muted>
             <source
               src="https://res.cloudinary.com/dlqsqlkws/video/upload/v1645021426/resort_video_compressed_c4qhng.mp4"
               type="video/mp4"
             />
-          </video> */}
+          </video>
         </Grid>
       </Grid>
     </div>
