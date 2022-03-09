@@ -58,7 +58,10 @@ const BookingDetails = () => {
         {
           data: {
             id,
-            status: status || booking?.status,
+            status:
+              params.type === "CANCEL"
+                ? "CANCELLED"
+                : status || booking?.status,
             paymentAmount:
               paymentAmount !== null || paymentAmount !== undefined
                 ? paymentAmount
@@ -157,28 +160,36 @@ const BookingDetails = () => {
   );
 
   const getConfirmationMessage = () => {
-    switch (booking?.status) {
-      case "PENDING":
-        return (
-          <span>
-            Are you sure you want to mark this booking as <b>CONFIRMED</b>?
-          </span>
-        );
-      case "CONFIRMED":
-        return (
-          <span>
-            Are you sure you want to mark this booking as <b>CHECK-IN</b>?
-          </span>
-        );
-      case "CHECK_IN":
-        return (
-          <span>
-            Are you sure you want to mark this booking as <b>CHECK-OUT</b>?
-          </span>
-        );
+    if (params.type === "CANCEL") {
+      return (
+        <span>
+          Are you sure you want to mark this booking as <b>CANCELLED</b>?
+        </span>
+      );
+    } else {
+      switch (booking?.status) {
+        case "PENDING":
+          return (
+            <span>
+              Are you sure you want to mark this booking as <b>CONFIRMED</b>?
+            </span>
+          );
+        case "CONFIRMED":
+          return (
+            <span>
+              Are you sure you want to mark this booking as <b>CHECK-IN</b>?
+            </span>
+          );
+        case "CHECK_IN":
+          return (
+            <span>
+              Are you sure you want to mark this booking as <b>CHECK-OUT</b>?
+            </span>
+          );
 
-      default:
-        break;
+        default:
+          break;
+      }
     }
   };
 
@@ -186,7 +197,7 @@ const BookingDetails = () => {
     <>
       <BookingDetailsPage
         booking={booking}
-        onUpdateStatus={() => openModal("onUpdateStatus")}
+        onUpdateStatus={(type) => openModal("onUpdateStatus", { type })}
         onConfirmBooking={() => openModal("onConfirmBooking")}
         showReceipt={(src) =>
           openModal("showReceipt", {

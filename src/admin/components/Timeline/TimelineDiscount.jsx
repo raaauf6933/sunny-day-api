@@ -42,7 +42,7 @@ const TimelineDiscounts = (props) => {
         sx={{ py: "21px", px: 2 }}
       >
         <div>
-          <Typography fontWeight={600}>Juan Dela Cruz</Typography>
+          <Typography fontWeight={600}>{event?.user}</Typography>
           <div
             style={{
               marginLeft: "1em",

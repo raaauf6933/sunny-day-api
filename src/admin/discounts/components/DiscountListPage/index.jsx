@@ -19,6 +19,8 @@ import {
 import { currencyFormat } from "./../../../../misc";
 import NoData from "./../../../components/NoData/NoData";
 import Status from "./../../../components/Status";
+import { Delete } from "@mui/icons-material";
+import Switch from "@mui/material/Switch";
 
 const useStyles = makeStyles(
   () => ({
@@ -37,7 +39,7 @@ const useStyles = makeStyles(
 );
 
 const DiscountListPage = (props) => {
-  const { discounts, onCreateDiscount } = props;
+  const { discounts, onCreateDiscount, handleUpdateStatus } = props;
   const [state, setState] = React.useState({
     currentPage: 0,
     pageSize: 10,
@@ -116,6 +118,9 @@ const DiscountListPage = (props) => {
                 >
                   Status
                 </TableCell>
+                <TableCell className={classes.tableCellHeader} align="center">
+                  Action
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -126,7 +131,7 @@ const DiscountListPage = (props) => {
                     key={discount._id}
                     sx={{
                       "&:last-child td, &:last-child th": { border: 0 },
-                      cursor: "pointer",
+                      // cursor: "pointer",
                     }}
                     hover
                   >
@@ -146,17 +151,33 @@ const DiscountListPage = (props) => {
                     <TableCell>
                       <Status status={discount?.status} />
                     </TableCell>
+                    <TableCell align="center">
+                      <Switch
+                        checked={discount?.status === "ACT" ? true : false}
+                        onChange={(e) =>
+                          handleUpdateStatus({
+                            id: discount._id,
+                            type: "STATUS",
+                            value: e.target.checked,
+                          })
+                        }
+                      />{" "}
+                      {/* <Delete cursor="pointer" color="error" /> */}
+                    </TableCell>
                   </TableRow>
                 ),
                 () => (
                   <TableRow>
-                    <TableCell colSpan={4} align="center">
+                    <TableCell colSpan={5} align="center">
                       <NoData />
                     </TableCell>
                   </TableRow>
                 ),
                 () => (
                   <TableRow>
+                    <TableCell>
+                      <Skeleton width="150px" height="40px" />
+                    </TableCell>
                     <TableCell>
                       <Skeleton width="150px" height="40px" />
                     </TableCell>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "./admin/context/auth/utils";
 
 const baseApiUrl = process.env.REACT_APP_API_URL;
 
@@ -15,8 +16,8 @@ const apiAxios = (
     headers: {
       ...headers,
       Accept: "application/json",
-      //   Authorization: mobileCookie.access_token,
-      // "x-current-platform": mobileCookie["x-current-platform"],
+      "x-auth-token": getToken(),
+      // "x-current-platform": ,
       // This is for zero rating security
     },
     params,

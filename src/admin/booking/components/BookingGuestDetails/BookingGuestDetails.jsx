@@ -7,6 +7,8 @@ import {
   TableCell,
   // Grid,
   Skeleton,
+  Button,
+  Divider,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import moment from "moment";
@@ -14,9 +16,9 @@ import moment from "moment";
 const useStyles = makeStyles(
   () => ({
     CardHeader: {
-      background: "#17a2b8",
-      color: "white",
-      padding: "5px 2px 5px 1em",
+      // background: "#17a2b8",
+      // color: "white",
+      // padding: "5px 2px 5px 1em",
     },
     tableCellBold: {
       fontWeight: "600",
@@ -33,7 +35,7 @@ const useStyles = makeStyles(
 
 const BookingGuestDetails = (props) => {
   const classes = useStyles(props);
-  const { booking } = props;
+  const { booking, onUpdateStatus } = props;
   const { guest } = booking
     ? booking
     : {
@@ -43,7 +45,25 @@ const BookingGuestDetails = (props) => {
 
   return (
     <Card>
-      <CardHeader className={classes.CardHeader} title="Guest Details" />
+      <CardHeader
+        className={classes.CardHeader}
+        title="Guest Details"
+        action={
+          <>
+            {booking.status === "PENDING" ? (
+              <Button
+                variant="outlined"
+                color="error"
+                style={{ outline: "none" }}
+                onClick={onUpdateStatus}
+              >
+                CANCEL
+              </Button>
+            ) : null}
+          </>
+        }
+      />
+      <Divider />
       <div
         style={{
           padding: "5px",

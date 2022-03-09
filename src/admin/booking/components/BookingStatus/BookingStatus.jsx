@@ -7,7 +7,7 @@ import { getBookingStatusFormat } from "../../handlers";
 
 const useStyles = makeStyles(
   () => ({
-    cancelled: {
+    expired: {
       backgroundColor: "#ff7370",
       borderRadius: "25px",
       display: "flex",
@@ -17,6 +17,18 @@ const useStyles = makeStyles(
       padding: "6px",
       "& svg": {
         color: "#ef0000",
+      },
+    },
+    cancelled: {
+      backgroundColor: "#958a8ab5",
+      borderRadius: "25px",
+      display: "flex",
+      alignContent: "center",
+      alignItems: "center",
+      color: "white",
+      padding: "6px",
+      "& svg": {
+        color: "#8b7d7d",
       },
     },
     pendingStatus: {
@@ -89,7 +101,8 @@ const BookingStatus = (props) => {
           [classes.pendingStatus]: status === "PENDING",
           [classes.defaultStatus1]: ["CONFIRMED", "CHECK_IN"].includes(status),
           [classes.successStatus]: status === "CHECK_OUT",
-          [classes.cancelled]: ["EXPIRED", "NO_SHOW"].includes(status),
+          [classes.expired]: ["EXPIRED", "NO_SHOW"].includes(status),
+          [classes.cancelled]: status === "CANCELLED",
         })}
       >
         <FiberManualRecordIcon />

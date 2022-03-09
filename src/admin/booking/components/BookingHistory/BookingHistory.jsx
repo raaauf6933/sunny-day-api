@@ -10,6 +10,7 @@ import TimelineEventsMessage from "../../../components/Timeline/TimelineEventsMe
 import TimelinePayment from "../../../components/Timeline/TimelinePayment";
 import TimelineAdditionals from "../../../components/Timeline/TimelineAdditionals";
 import TimelineDiscount from "../../../components/Timeline/TimelineDiscount";
+import TimelineCancelled from "../../../components/Timeline/TimelineCanceled";
 
 const useStyles = makeStyles(
   () => ({
@@ -50,6 +51,8 @@ const BookingHistory = (props) => {
     switch (event.type) {
       case "BOOKING_CREATED":
         return <TimelineEvents title="Booking Created" date={event.created} />;
+      case "CANCELLED":
+        return <TimelineCancelled event={event} date={event.created} />;
       case "GUEST_IMAGE_UPLOAD":
         return (
           <TimelineImage

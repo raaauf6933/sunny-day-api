@@ -8,7 +8,7 @@ import { CheckCircle } from "@mui/icons-material/";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import DateAgo from "../../components/DateAgo/DateAgo";
-
+import CancelIcon from "@mui/icons-material/Cancel";
 const useStyles = makeStyles(
   () => ({
     timelineIcon: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles(
   }
 );
 
-const TimelineEventsMessage = (props) => {
+const TimelineCancelled = (props) => {
   const classes = useStyles(props);
   const { event, date } = props;
 
@@ -32,8 +32,8 @@ const TimelineEventsMessage = (props) => {
     <TimelineItem>
       <TimelineSeparator>
         <TimelineConnector />
-        <TimelineDot color="primary">
-          <CheckCircle className={classes.timelineIcon} />
+        <TimelineDot>
+          <CancelIcon className={classes.timelineIcon} />
         </TimelineDot>
         <TimelineConnector />
       </TimelineSeparator>
@@ -60,4 +60,4 @@ const TimelineEventsMessage = (props) => {
   );
 };
 
-export default TimelineEventsMessage;
+export default TimelineCancelled;

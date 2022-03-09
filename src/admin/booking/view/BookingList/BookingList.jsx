@@ -71,6 +71,12 @@ const BookingList = () => {
       },
       {
         data: {
+          bookingStatus: "CANCELLED",
+        },
+        name: "CANCELLED",
+      },
+      {
+        data: {
           bookingStatus: "EXPIRED",
         },
         name: "EXPIRED",

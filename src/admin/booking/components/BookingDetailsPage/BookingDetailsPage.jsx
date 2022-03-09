@@ -148,7 +148,10 @@ const BookingDetailsPage = (props) => {
           </Grid>
           <Grid item xs={12} sm={4} md={4}>
             <div className={classes.section}>
-              <BookingGuest booking={booking} />
+              <BookingGuest
+                booking={booking}
+                onUpdateStatus={() => onUpdateStatus("CANCEL")}
+              />
             </div>
             <div className={classes.section}>
               <BookingAdditional
@@ -164,7 +167,9 @@ const BookingDetailsPage = (props) => {
           save: saveButtonLabel(),
         }}
         onBack={onBack}
-        hideSaveButton={["CHECK_OUT", "EXPIRED"].includes(booking?.status)}
+        hideSaveButton={["CHECK_OUT", "EXPIRED", "CANCELLED"].includes(
+          booking?.status
+        )}
         onClickSave={() => submitHandlers()}
       />
     </>

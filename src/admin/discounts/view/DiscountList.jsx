@@ -2,7 +2,7 @@ import React from "react";
 import DiscountListPage from "./../components/DiscountListPage";
 import ApiAxios from "./../../../apiAxios";
 import AppStateContext from "../../context/AppState/context";
-import { GET_DISCOUNTS } from "./../api";
+import { GET_DISCOUNTS, CREATE_DISCOUNT, UPDATE_STATUS } from "./../api";
 import { useSnackbar } from "notistack";
 import CreateForm from "./../components/CreateForm";
 import createDialogActionHandlers from "./../../utils/createDialogActionHandlers";
@@ -38,6 +38,47 @@ const DiscountList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const createDiscount = async (formData) => {
+    try {
+      await ApiAxios(
+        {
+          method: "POST",
+          url: CREATE_DISCOUNT,
+          data: formData,
+        },
+        appStateDispatch
+      );
+      fetchDiscounts();
+      enqueueSnackbar("Saved Changes!", { variant: "success" });
+    } catch (error) {
+      enqueueSnackbar(error.data.message || "Something Went Wrong", {
+        variant: "error",
+      });
+    }
+  };
+
+  const handleUpdateStatus = async ({ id, type, value }) => {
+    try {
+      await ApiAxios(
+        {
+          method: "POST",
+          url: UPDATE_STATUS,
+          data: {
+            id,
+            status: type === "STATUS" ? (value ? "ACT" : "DEACT") : "DEL",
+          },
+        },
+        appStateDispatch
+      );
+      fetchDiscounts();
+      enqueueSnackbar("Saved Changes!", { variant: "success" });
+    } catch (error) {
+      enqueueSnackbar(error.data.message || "Something Went Wrong", {
+        variant: "error",
+      });
+    }
+  };
+
   const [openModal, closeModal] = createDialogActionHandlers(
     navigate,
     null,
@@ -50,9 +91,11 @@ const DiscountList = () => {
       <DiscountListPage
         discounts={discounts}
         onCreateDiscount={() => openModal("onCreateDiscount")}
+        handleUpdateStatus={handleUpdateStatus}
       />
       <CreateForm
         open={params.action === "onCreateDiscount"}
+        createDiscount={createDiscount}
         onClose={closeModal}
       />
     </>
