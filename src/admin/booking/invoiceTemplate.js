@@ -1,11 +1,20 @@
 import { image } from "./base64logo";
 import moment from "moment";
 import { currencyFormat, getNoNights } from "./../../misc";
+import { VAT_RATE } from "./../../config";
 
 export const getInvoice = (booking) => {
   // playground requires you to assign document definition to a variable called dd
-  const { guest, check_in, check_out, billing, rooms, status, events } =
-    booking;
+  const {
+    guest,
+    check_in,
+    check_out,
+    billing,
+    rooms,
+    status,
+    events,
+    additionals,
+  } = booking;
 
   const getNoQuantity = (roomtype_id) => {
     return rooms
@@ -54,6 +63,45 @@ export const getInvoice = (booking) => {
     ]);
 
     return format_data;
+  };
+
+  const handleGetAdditionalAmount = (rate, qty) => {
+    const additionalTotalAmount = parseFloat(rate * qty);
+    return additionalTotalAmount;
+  };
+  const handleGetAdditionals = () => {
+    const additionalsBody = additionals.map((e) => {
+      return [
+        {
+          text: e.name,
+          style: "tableBody",
+        },
+        {
+          text: currencyFormat(e.rate),
+          style: "tableBody",
+        },
+        {
+          text: e.qty,
+          style: "tableBody",
+        },
+        {
+          text: currencyFormat(handleGetAdditionalAmount(e.rate, e.qty)),
+          style: "tableBody",
+        },
+      ];
+    });
+
+    return additionalsBody;
+  };
+
+  const handleVat = () => {
+    const vatable_sales = billing.total_amount / VAT_RATE;
+    const vat = billing.total_amount - vatable_sales;
+
+    return {
+      vatable_sales,
+      vat,
+    };
   };
 
   return {
@@ -189,6 +237,7 @@ export const getInvoice = (booking) => {
               },
             ],
             ...handleGetRooms(),
+            ...handleGetAdditionals(),
           ],
         },
       },
@@ -321,7 +370,7 @@ export const getInvoice = (booking) => {
                   },
                   {
                     alignment: "right",
-                    text: "₱ 98,400.00",
+                    text: `${currencyFormat(handleVat().vatable_sales)}`,
                     style: "total_currency",
                   },
                 ],
@@ -348,7 +397,7 @@ export const getInvoice = (booking) => {
                   },
                   {
                     alignment: "right",
-                    text: "₱ 98,400.00",
+                    text: `${currencyFormat(handleVat().vat)}`,
                     style: "total_currency",
                   },
                 ],

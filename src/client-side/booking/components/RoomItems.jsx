@@ -107,6 +107,7 @@ const RoomItems = (props) => {
             room_amount: room_rate,
             roomtype_name: name,
             room_num: rooms[qty].room_number,
+            no_person: details.no_person,
           },
         });
       }

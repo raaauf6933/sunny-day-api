@@ -21,6 +21,7 @@ import { buttonMessage } from "../../utils/intl";
 import { bookingSelectRooms, bookingReview, bookingUrl } from "../url";
 import { Navigate } from "react-router-dom";
 import { City } from "../City";
+import { getMaxPerson } from "./../handlers";
 
 const initalFormValidation = {
   first_name: null,
@@ -56,16 +57,18 @@ const GuestDetailsView = ({ navigate, params }) => {
     return citys;
   };
 
+  const max_person = getMaxPerson(bookingState.room_details);
+
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     const validate = restrictInput(name, value);
 
     if (name === "no_guest") {
-      if (value) {
+      if (value <= max_person) {
         bookingDispatch({
           type: "SET_GUEST_DETAILS",
           payload: {
-            [name]: value,
+            [name]: parseInt(value.replace(/\D/g, "").replace(/^0+/, "")),
           },
         });
       }
@@ -220,7 +223,7 @@ const GuestDetailsView = ({ navigate, params }) => {
                             title="max guest was based in your selected rooms"
                             placement="bottom"
                           >
-                            <div>Max Guest (43)</div>
+                            <div>Max Guest ({max_person})</div>
                           </Tooltip>
                         }
                       />
