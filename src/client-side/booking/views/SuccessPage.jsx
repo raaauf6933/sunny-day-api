@@ -44,6 +44,10 @@ const SuccessPage = () => {
             <Typography variant="h4" textAlign="center" color="#008000a6">
               Booking Successfully Created!
             </Typography>
+            <div>
+              <h4>BOOKING REFERENCE:</h4>
+              <h4> {bookingState.bookingReference}</h4>
+            </div>
             <Table>
               <TableRow>
                 <TableCell style={{ fontSize: "16px" }} align="left">
@@ -53,7 +57,7 @@ const SuccessPage = () => {
                   {bookingState.bookingReference}
                 </TableCell>
               </TableRow>
-              <TableRow>
+              {/* <TableRow>
                 <TableCell style={{ fontSize: "16px" }}>Status :</TableCell>
                 <TableCell
                   style={{
@@ -64,30 +68,46 @@ const SuccessPage = () => {
                 >
                   Pending
                 </TableCell>
-              </TableRow>
+              </TableRow> */}
             </Table>
             <Box marginTop={2}>
-              <Typography variant="h6">HOW TO PAY?</Typography>
-              <Typography variant="subtitle1">
-                - Payment is available only for Bank Deposit
-              </Typography>
-              <Typography variant="subtitle1">
-                - After Confirming, You will receive an Email w/ Booking
-                Reference
-              </Typography>
-              <Typography variant="subtitle1">
-                - Deposit your 50% Downpayment to bank, and upload your bank
-                receipt
-              </Typography>
-              <Typography variant="subtitle1">
-                - Wait your booking status to be confirmed.
-              </Typography>
-              <Typography variant="h6">POLICY CONDITIONS</Typography>
-              <Typography variant="subtitle1">
-                - You need to pay your 50% downpayment before 24hours or the
-                reservation will be voided
-              </Typography>
-              <Typography variant="subtitle1">- No refund</Typography>
+              <div>
+                <h5>
+                  <b>How to Pay?</b>
+                </h5>
+                <ul>
+                  <li>
+                    Kindly deposit your payment to our selected bank account or
+                    Gcash
+                  </li>
+                  <li>
+                    Upload your Bank/Gcash Receipt and wait for Email
+                    confirmation
+                  </li>
+                </ul>
+                <h5>
+                  <b>Mode of Payment</b>
+                </h5>
+                <ul>
+                  <li>Gcash - 09352335202 | Villa Gregoria Resort</li>
+                  <li>BPI - 75544452 | Villa Gregoria Resort</li>
+                  <li>BDO - 23564343 43112 | Villa Gregoria Resort</li>
+                </ul>
+                <h5>
+                  <b>Cancellation & Rebooking</b>
+                </h5>
+                <ul>
+                  <li>
+                    Cancellation of booking is not allowed if the booking is
+                    confirmed
+                  </li>
+                  <li>
+                    Rebooking/Modifying of booking is not allowed if the booking
+                    is confirmed
+                  </li>
+                  <li>No Refund</li>
+                </ul>
+              </div>
             </Box>
           </CardContent>
           <CardActions>

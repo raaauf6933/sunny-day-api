@@ -23,7 +23,7 @@ import { LoadingButton } from "@mui/lab";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const ConfirmBookingDialog = (props) => {
-  const { open, onClose, onSubmit, status, fetchBooking } = props;
+  const { open, onClose, onSubmit, fetchBooking } = props;
   const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = async ({ payment_amount, generate_invoice }) => {

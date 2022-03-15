@@ -103,6 +103,7 @@ const BookingListPage = (props) => {
           currentTab={currentTab}
           onTabChange={onTabChange}
           tabs={tabs}
+          loading={getPageData().data === undefined}
         />
         <div className={classes.searchField}>
           <TextField

@@ -6,13 +6,13 @@ import { VAT_RATE } from "./../../config";
 export const getInvoice = (booking) => {
   // playground requires you to assign document definition to a variable called dd
   const {
-    guest,
+    // guest,
     check_in,
     check_out,
     billing,
     rooms,
-    status,
-    events,
+    // status,
+    // events,
     additionals,
   } = booking;
 

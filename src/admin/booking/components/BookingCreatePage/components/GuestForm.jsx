@@ -2,12 +2,7 @@ import React from "react";
 import { Grid, Box, TextField, Tooltip } from "@mui/material";
 import { City } from "../../../../../client-side/booking/City";
 import Select from "../../../../../client-side/components/Select";
-import {
-  formValidation,
-  restrictInput,
-  hasNoError,
-  hasNull,
-} from "./../../../../../client-side/utils/validators/guestForm";
+import { restrictInput } from "./../../../../../client-side/utils/validators/guestForm";
 
 const initalFormValidation = {
   first_name: null,
@@ -21,7 +16,7 @@ const initalFormValidation = {
 };
 
 const GuestForm = ({ guest, dispatch }) => {
-  const [formError, setErrorValdiation] = React.useState(initalFormValidation);
+  const [formError] = React.useState(initalFormValidation);
   const {
     first_name,
     last_name,

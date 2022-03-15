@@ -1,8 +1,3 @@
-const handleNextStep = (navigate, params, next) => {
-  //logic here
-  navigate();
-};
-
 export const getMaxPerson = (rooms) => {
   let max_person = 0;
 

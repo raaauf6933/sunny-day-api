@@ -37,6 +37,7 @@ const BookingAdditionalDialog = ({
 
   React.useEffect(() => {
     getAmenities();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // const discountChoices = [
   //   { value: "none", label: "none" },

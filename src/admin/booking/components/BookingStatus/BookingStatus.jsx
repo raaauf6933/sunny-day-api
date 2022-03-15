@@ -20,7 +20,7 @@ const useStyles = makeStyles(
       },
     },
     cancelled: {
-      backgroundColor: "#958a8ab5",
+      backgroundColor: "#a8a8a8",
       borderRadius: "25px",
       display: "flex",
       alignContent: "center",
@@ -28,7 +28,7 @@ const useStyles = makeStyles(
       color: "white",
       padding: "6px",
       "& svg": {
-        color: "#8b7d7d",
+        color: "#818181",
       },
     },
     pendingStatus: {

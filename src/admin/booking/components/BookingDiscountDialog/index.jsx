@@ -3,7 +3,7 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  TextField,
+  // TextField,
   DialogActions,
   Button,
 } from "@mui/material";
@@ -42,6 +42,7 @@ const BookingDiscountDialog = ({
 
   React.useEffect(() => {
     getDiscounts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

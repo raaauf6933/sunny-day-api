@@ -2,7 +2,7 @@ import React from "react";
 import FilterTabs from "./../TableFilter/FilterTabs";
 import FilterTab from "./../TableFilter/FilterTab";
 
-const FilterBar = ({ tabs, currentTab, onTabChange }) => {
+const FilterBar = ({ tabs, currentTab, onTabChange, loading }) => {
   return (
     <>
       <FilterTabs currentTab={currentTab}>
@@ -12,6 +12,7 @@ const FilterBar = ({ tabs, currentTab, onTabChange }) => {
               onClick={() => onTabChange(tabIndex)}
               label={tab}
               key={tabIndex}
+              disabled={loading}
             />
           );
         })}

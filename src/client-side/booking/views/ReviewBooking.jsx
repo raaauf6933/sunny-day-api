@@ -15,7 +15,7 @@ import SaveButton from "../components/SaveButton";
 import { buttonMessage } from "../../utils/intl";
 import bookingContext from "../../context/booking/bookingContext";
 import { createBooking } from "../api/booking";
-import { bookingUrl, bookingGuestDetails, bookingSuccess } from "../url";
+import { bookingUrl, bookingGuestDetails } from "../url";
 import moment from "moment";
 import { currencyFormat } from "../../utils/formatter";
 import { VAT_RATE } from "../../../config";
@@ -23,6 +23,8 @@ import { VAT_RATE } from "../../../config";
 import Alert from "./../../components/Alert";
 
 import BookingSummary from "../../components/BookingSummary/BookingSummary";
+import SuccessDialog from "../components/SuccessDialog";
+import { Navigate } from "react-router-dom";
 
 const useStyles = makeStyles(
   () => ({
@@ -130,7 +132,7 @@ const ReviewBooking = (props) => {
         payload: result?.data?.booking_reference,
       });
 
-      navigate(bookingUrl(params, bookingSuccess));
+      // navigate(bookingUrl(params, bookingSuccess));
       setOnFetch(false);
     } catch (error) {
       setOnFetch(false);
@@ -142,73 +144,85 @@ const ReviewBooking = (props) => {
     navigate(bookingUrl(params, bookingGuestDetails));
   };
 
-  return (
-    <>
-      <Box margin="2em">
-        <div>
-          <Card style={{ width: "100%" }}>
-            {/* <CardHeader title="Review Booking" />
-            <Divider variant="fullWidth" /> */}
-            <CardContent>
-              <BookingSummary
-                booking_details={{
-                  ...guest,
-                  check_in: bookingState.check_in,
-                  check_out: bookingState.check_out,
-                  no_nights: handleGetNoNights(),
-                  rooms: handleGetRooms(),
-                  sub_total: getSubTotal(),
-                  vat: handleVat(),
-                }}
-              />
-            </CardContent>
-            <div>
-              <Grid container textAlign="center">
-                <Grid item xs={12} sm={6} className={classes.totalSection}>
-                  <span>DOWNPAYMENT</span>
-                  <Typography variant="h4" noWrap>
-                    {currencyFormat(getTotalAmount() / 2)}
-                  </Typography>
+  if (
+    bookingState?.room_details.length !== 0 &&
+    bookingState.check_in &&
+    bookingState.check_out
+  ) {
+    return (
+      <>
+        <Box margin="2em">
+          <div>
+            <Card style={{ width: "100%" }}>
+              {/* <CardHeader title="Review Booking" />
+              <Divider variant="fullWidth" /> */}
+              <CardContent>
+                <BookingSummary
+                  booking_details={{
+                    ...guest,
+                    check_in: bookingState.check_in,
+                    check_out: bookingState.check_out,
+                    no_nights: handleGetNoNights(),
+                    rooms: handleGetRooms(),
+                    sub_total: getSubTotal(),
+                    vat: handleVat(),
+                  }}
+                />
+              </CardContent>
+              <div>
+                <Grid container textAlign="center">
+                  <Grid item xs={12} sm={6} className={classes.totalSection}>
+                    <span>DOWNPAYMENT</span>
+                    <Typography variant="h4" noWrap>
+                      {currencyFormat(getTotalAmount() / 2)}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={6} className={classes.totalSection}>
+                    <span>TOTAL AMOUNT</span>
+                    <Typography variant="h4" noWrap>
+                      {currencyFormat(getTotalAmount())}
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6} className={classes.totalSection}>
-                  <span>TOTAL AMOUNT</span>
-                  <Typography variant="h4" noWrap>
-                    {currencyFormat(getTotalAmount())}
-                  </Typography>
-                </Grid>
-              </Grid>
-            </div>
-          </Card>
-        </div>
-      </Box>
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={onFetch}
-        // onClick={handleClose}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-      <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        open={onFetchError}
-        onClose={() => setOnFetchError(false)}
-        autoHideDuration={4000}
-      >
-        <Alert
-          onClose={() => setOnFetchError(false)}
-          severity="error"
-          sx={{ width: "100%" }}
+              </div>
+            </Card>
+          </div>
+        </Box>
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={onFetch}
+          // onClick={handleClose}
         >
-          {onFetchError}
-        </Alert>
-      </Snackbar>
-      <SaveButton
-        onSubmit={handleSave}
-        onBack={handleBack}
-        saveLabel={buttonMessage.confirm}
-      />
-    </>
-  );
+          <CircularProgress color="inherit" />
+        </Backdrop>
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          open={onFetchError}
+          onClose={() => setOnFetchError(false)}
+          autoHideDuration={4000}
+        >
+          <Alert
+            onClose={() => setOnFetchError(false)}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            {onFetchError}
+          </Alert>
+        </Snackbar>
+        <SuccessDialog
+          bookingDispatch={bookingDispatch}
+          bookingState={bookingState}
+        />
+        <SaveButton
+          onSubmit={handleSave}
+          onBack={handleBack}
+          saveLabel={buttonMessage.confirm}
+        />
+      </>
+    );
+  } else {
+    return <Navigate to="/"></Navigate>;
+  }
 };
 
 export default ReviewBooking;

@@ -19,7 +19,6 @@ import {
 import { currencyFormat } from "./../../../../misc";
 import NoData from "./../../../components/NoData/NoData";
 import Status from "./../../../components/Status";
-import { Delete } from "@mui/icons-material";
 import Switch from "@mui/material/Switch";
 
 const useStyles = makeStyles(

@@ -4,7 +4,6 @@ import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
-import { CheckCircle } from "@mui/icons-material/";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import DateAgo from "../../components/DateAgo/DateAgo";

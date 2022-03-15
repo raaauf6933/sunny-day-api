@@ -36,7 +36,7 @@ const useStyles = makeStyles(
 );
 
 const Filtertab = (props) => {
-  const { onClick, label, selected, value } = props;
+  const { onClick, label, selected, value, disabled } = props;
   const classes = useStyles(props);
 
   return (
@@ -49,6 +49,7 @@ const Filtertab = (props) => {
           [classes.selectedTabLabel]: selected,
         }),
       }}
+      disabled={disabled}
       onClick={onClick}
       value={value}
     />
