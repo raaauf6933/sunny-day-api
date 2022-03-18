@@ -30,7 +30,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <WindowTitle title={"Discount"} />
+      <WindowTitle title={"Dashboard"} />
       <Typography variant="h3" gutterBottom>
         Hello there, {user.first_name}
       </Typography>

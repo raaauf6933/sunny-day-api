@@ -61,7 +61,7 @@ export const createSortChoices = () => {
 };
 
 const createDataRows = (data) => {
-  const rowBody = data.map((booking) => {
+  const rowBody = data.map((booking, index, array) => {
     let payment_amount = 0;
     if (booking?.payment?.length !== 0) {
       booking?.payment?.map((e) => (payment_amount += e.payment_amount));
@@ -107,11 +107,16 @@ const createDataRows = (data) => {
     ];
   });
 
-  return rowBody;
+  if (data.length === 0) {
+    return [[{ text: "NO DATA", colSpan: 9, alignment: "center" }]];
+  } else {
+    return rowBody;
+  }
 };
 
 // playground requires you to assign document definition to a variable called dd
 export const dd = (data, formData, user) => {
+  const { bookings, billing } = data;
   return {
     content: [
       {
@@ -186,19 +191,19 @@ export const dd = (data, formData, user) => {
                 style: "tableheader",
               },
             ],
-            ...createDataRows(data),
+            ...createDataRows(bookings),
           ],
         },
       },
 
       {
         margin: [0, 20, 0, 0],
-        text: "Number of Booking : 3",
+        text: `Number of Booking : ${billing.no_bookings}`,
         style: "title2",
       },
       {
         margin: [0, 10, 0, 0],
-        text: "Number of Guest : 3",
+        text: `Number of Guest : ${billing.no_guest}`,
         style: "title2",
       },
       {
@@ -210,7 +215,7 @@ export const dd = (data, formData, user) => {
             style: "total_currency",
           },
           {
-            text: "₱ 98,400.00",
+            text: `${currencyFormat(billing.vatable)}`,
             style: "date",
           },
         ],
@@ -224,7 +229,7 @@ export const dd = (data, formData, user) => {
             style: "total_currency",
           },
           {
-            text: "₱ 98,400.00",
+            text: `${currencyFormat(billing.vat)}`,
             style: "date",
           },
         ],
@@ -238,7 +243,7 @@ export const dd = (data, formData, user) => {
             style: "total_currency",
           },
           {
-            text: "₱ 98,400.00",
+            text: `${currencyFormat(billing.total_amount)}`,
             style: "date",
           },
         ],
@@ -252,7 +257,7 @@ export const dd = (data, formData, user) => {
             style: "total_currency",
           },
           {
-            text: "₱ 98,400.00",
+            text: `${currencyFormat(billing.total_sales)}`,
             style: "date",
           },
         ],
