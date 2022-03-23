@@ -14,11 +14,18 @@ const DatePicker = ({ data, dispatch, fetchRooms }) => {
         endText="Check-out"
         value={data}
         onChange={(newValue) => {
-          dispatch({
-            type: "SET_DATES",
-            payload: newValue,
-          });
-          fetchRooms(newValue);
+          // disable same date
+          if (
+            (newValue[0] !== null && newValue[0].toDateString()) !==
+            (newValue[1] !== null && newValue[1].toDateString())
+          ) {
+            console.log(newValue);
+            dispatch({
+              type: "SET_DATES",
+              payload: newValue,
+            });
+            fetchRooms(newValue);
+          }
         }}
         // InputProps={{
         //   name: "dates",
