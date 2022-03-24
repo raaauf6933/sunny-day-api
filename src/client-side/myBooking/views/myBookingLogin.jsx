@@ -12,15 +12,20 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { parse as parseQs } from "qs";
 import { MyBookingTypePath } from "../url";
 import { AUTH_CLIENT } from "../api";
+import { LoadingButton } from "@mui/lab";
 
 const MyBookingLogIn = () => {
   const [form, setForm] = useState({ booking_reference: "", email: "" });
+  const [formError, setFormError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const qs = parseQs(location.search.substr(1));
   const params = qs;
 
   const handleLogin = async () => {
+    setLoading(true);
+    setFormError(false);
     try {
       const result = await apiAxios({
         method: "POST",
@@ -30,9 +35,12 @@ const MyBookingLogIn = () => {
           email: form.email,
         },
       });
-
+      setLoading(false);
       navigate(MyBookingTypePath(result.data.token, params));
-    } catch (error) {}
+    } catch (error) {
+      setFormError(true);
+      setLoading(false);
+    }
   };
 
   return (
@@ -62,6 +70,10 @@ const MyBookingLogIn = () => {
                   onChange={(e) =>
                     setForm({ ...form, booking_reference: e.target.value })
                   }
+                  error={formError}
+                  helperText={
+                    formError ? "Invalid Booking Reference or Email" : ""
+                  }
                 />
               </div>
               <div class="form-group">
@@ -74,14 +86,15 @@ const MyBookingLogIn = () => {
                 />
               </div>
               <div class="form-group">
-                <Button
+                <LoadingButton
                   disabled={!form.booking_reference || !form.email}
                   variant="contained"
                   size="large"
                   onClick={handleLogin}
+                  loading={loading}
                 >
                   <b>Submit</b>
-                </Button>
+                </LoadingButton>
               </div>
             </form>
           </CardContent>

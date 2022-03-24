@@ -61,6 +61,7 @@ const ReviewBooking = (props) => {
   const [onFetchError, setOnFetchError] = React.useState(false);
   const { bookingState, bookingDispatch } = React.useContext(bookingContext);
   const { guest, room_details } = bookingState;
+  const [disabledSave, setDisabledSave] = React.useState(false);
 
   const getNoQuantity = (roomtype_id) => {
     return room_details.filter((obj) => obj.roomtype_id === roomtype_id).length;
@@ -131,12 +132,21 @@ const ReviewBooking = (props) => {
         type: "SET_BOOKING_SUCCESS",
         payload: result?.data?.booking_reference,
       });
-
+      setDisabledSave(true);
       // navigate(bookingUrl(params, bookingSuccess));
       setOnFetch(false);
     } catch (error) {
       setOnFetch(false);
-      setOnFetchError("Booking Error");
+      if (error?.data?.code === "ROOM_TAKEN") {
+        setDisabledSave(true);
+        setOnFetchError("Some of Selected Rooms Already Taken");
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
+      } else {
+        setDisabledSave(true);
+        setOnFetchError("Booking Error");
+      }
     }
   };
 
@@ -217,6 +227,7 @@ const ReviewBooking = (props) => {
           onSubmit={handleSave}
           onBack={handleBack}
           saveLabel={buttonMessage.confirm}
+          disabledSave={disabledSave}
         />
       </>
     );
