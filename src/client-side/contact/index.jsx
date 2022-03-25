@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/iframe-has-title */
 import React from "react";
 import { WindowTitle } from "../../admin/components/WindowTitle/WindowTitle";
 import { Grid, Button, CardContent, Card } from "@mui/material";
@@ -123,7 +125,7 @@ const Contact = (props) => {
                     Contact Number:
                   </Typography>
                   <Typography variant="h5" marginLeft="2em">
-                    - (63) 9066 000801
+                    - <a href="tel:09066000801">(63) 9066 000801</a>
                   </Typography>
                 </div>
                 <div className={classes.infoSection}>
@@ -141,7 +143,10 @@ const Contact = (props) => {
                     Email:
                   </Typography>
                   <Typography variant="h5" marginLeft="2em">
-                    - villagregoriaresortph@gmail.com
+                    -{" "}
+                    <a href="mailto:villagregoriaresortph@gmail.com">
+                      villagregoriaresortph@gmail.com
+                    </a>
                   </Typography>
                 </div>
                 <div
