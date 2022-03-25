@@ -16,6 +16,7 @@ import navbarContext from "../context/navBar/navBarContext";
 import { WindowTitle } from "../../admin/components/WindowTitle/WindowTitle";
 import { resortName } from "./../../config";
 import bookingContext from "../context/booking/bookingContext";
+import AppLayout from "../components/AppLayout";
 
 const Home = () => {
   const { navbarDispatch } = React.useContext(navbarContext);
@@ -30,15 +31,16 @@ const Home = () => {
 
   return (
     <>
-      <WindowTitle title={resortName("Home")} />
-      <Hero></Hero>
-      <AppContainer>
-        {/* <CheckAvailabilityCard /> */}
+      <AppLayout>
+        <WindowTitle title={resortName("Home")} />
+        <Hero></Hero>
+        <AppContainer>
+          {/* <CheckAvailabilityCard /> */}
 
-        <DatePickerSection />
-        <ServiceSection />
+          <DatePickerSection />
+          <ServiceSection />
 
-        {/* <SectionLabel title="Best of Our Rooms" />
+          {/* <SectionLabel title="Best of Our Rooms" />
 
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Link to="/rooms">
@@ -47,7 +49,8 @@ const Home = () => {
             </Typography>
           </Link>
         </div> */}
-      </AppContainer>
+        </AppContainer>
+      </AppLayout>
     </>
   );
 };

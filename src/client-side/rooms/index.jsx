@@ -5,20 +5,22 @@ import { Typography, Box } from "@mui/material";
 import RoomSection from "../components/RoomSection";
 import { WindowTitle } from "../../admin/components/WindowTitle/WindowTitle";
 import { resortName } from "./../../config";
+import AppLayout from "../components/AppLayout";
 
 const Rooms = () => {
   return (
     <>
-      <WindowTitle title={resortName("Gallery")} />
-      <Hero>
-        <Box textAlign="center">
-          <Typography variant="h1">Our Rooms</Typography>
-        </Box>
-      </Hero>
-      <AppContainer>
-        <div className="mt-5"></div>
-        <RoomSection showAll={true} />
-        {/* <Grid container spacing={3}>
+      <AppLayout>
+        <WindowTitle title={resortName("Gallery")} />
+        <Hero>
+          <Box textAlign="center">
+            <Typography variant="h1">Our Rooms</Typography>
+          </Box>
+        </Hero>
+        <AppContainer>
+          <div className="mt-5"></div>
+          <RoomSection showAll={true} />
+          {/* <Grid container spacing={3}>
           <Grid></Grid>
           <Grid></Grid>
           <Grid></Grid>
@@ -26,7 +28,8 @@ const Rooms = () => {
           <Grid></Grid>
           <Grid></Grid>
         </Grid> */}
-      </AppContainer>
+        </AppContainer>
+      </AppLayout>
     </>
   );
 };

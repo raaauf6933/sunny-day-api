@@ -44,6 +44,6 @@ export const navBarStructure = [
     name: "mybooking",
     label: "My Booking",
     icon: <BookOnline />,
-    url: "/my-booking?awakeNavBar=true",
+    url: "/my-booking",
   },
 ];

@@ -9,34 +9,6 @@ import { navBarStructure } from "../../utils/navBarStructure";
 import AppbarAwake from "./components/AppbarAwake";
 import AppbarDynamic from "./components/AppbarDynamic";
 
-import { parse as parseQs } from "qs";
-
-// import AppBar from "@mui/material/AppBar";
-// import Toolbar from "@mui/material/Toolbar";
-// import AppContainer from "../AppContainer";
-// import Hidden from "@mui/material/Hidden";
-// import IconButton from "@mui/material/IconButton";
-// import MenuIcon from "@mui/icons-material/Menu";
-// import Typography from "@mui/material/Typography";
-// import Button from "@mui/material/Button";
-// import { NavLink } from "react-router-dom";
-// import { makeStyles } from "@mui/styles";
-
-// const useStyles = makeStyles(
-//   () => {
-//     return {
-//       appBarSleep: {
-//         background: "transparent !important",
-//       },
-//       appBarAwake: {
-//         background: "#FFFFFF !important",
-//         color: "black !important",
-//       },
-//     };
-//   },
-//   { name: "AppbarDynamic" }
-// );
-
 const ElevationScroll = (props) => {
   const { children: childrenFunct, window } = props;
   const trigger = useScrollTrigger({
@@ -63,10 +35,9 @@ ElevationScroll.propTypes = {
 };
 
 const Navbar = (props) => {
+  const { awake } = props;
   const location = useLocation();
   const { navbarState, navbarDispatch } = React.useContext(navbarContext);
-  const qs = parseQs(location.search.substr(1));
-  const params = qs;
 
   const handleOpenDrawer = () => {
     navbarDispatch({ type: "SET_DRAWER", payload: !navbarState.showDrawer });
@@ -77,7 +48,7 @@ const Navbar = (props) => {
       <CssBaseline />
       <ElevationScroll {...props}>
         {({ trigger }) => {
-          return params.awakeNavBar ? (
+          return awake ? (
             <AppbarAwake
               navBarStructure={navBarStructure}
               handleOpenDrawer={handleOpenDrawer}

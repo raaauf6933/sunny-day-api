@@ -15,6 +15,7 @@ import createDialogActionHandlers from "../utils/dialogActionHandlers";
 import { bookingUrl } from "./url";
 import { WindowTitle } from "../../admin/components/WindowTitle/WindowTitle";
 import { resortName } from "./../../config";
+import AppLayout from "../components/AppLayout";
 
 const useStyles = makeStyles(
   () => ({
@@ -48,38 +49,40 @@ const Gallery = () => {
 
   return (
     <>
-      <WindowTitle title={resortName("Gallery")} />
-      <Hero>
-        <Box textAlign="center">
-          <Typography variant="h1">Gallery</Typography>
-        </Box>
-      </Hero>
-      <AppContainer>
-        <div className="mt-5"></div>
-        <Box>
-          <ImageList variant="masonry" cols={media_xs ? 2 : 4} gap={8}>
-            {galleryImages.map((item) => (
-              <ImageListItem key={item.img}>
-                <img
-                  src={`${item.img}?w=348&fit=crop&auto=format`}
-                  srcSet={`${item.img}?w=348&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.title}
-                  loading="lazy"
-                  onClick={() =>
-                    openModal("showRoomImage", { roomImage: item.img })
-                  }
-                  className={classes.img}
-                />
-              </ImageListItem>
-            ))}
-          </ImageList>
-        </Box>
-        <ImagePreviewDialog
-          imageSrc={params.roomImage}
-          isOpenModal={params.action === "showRoomImage"}
-          closeModal={closeModal}
-        />
-      </AppContainer>
+      <AppLayout>
+        <WindowTitle title={resortName("Gallery")} />
+        <Hero>
+          <Box textAlign="center">
+            <Typography variant="h1">Gallery</Typography>
+          </Box>
+        </Hero>
+        <AppContainer>
+          <div className="mt-5"></div>
+          <Box>
+            <ImageList variant="masonry" cols={media_xs ? 2 : 4} gap={8}>
+              {galleryImages.map((item) => (
+                <ImageListItem key={item.img}>
+                  <img
+                    src={`${item.img}?w=348&fit=crop&auto=format`}
+                    srcSet={`${item.img}?w=348&fit=crop&auto=format&dpr=2 2x`}
+                    alt={item.title}
+                    loading="lazy"
+                    onClick={() =>
+                      openModal("showRoomImage", { roomImage: item.img })
+                    }
+                    className={classes.img}
+                  />
+                </ImageListItem>
+              ))}
+            </ImageList>
+          </Box>
+          <ImagePreviewDialog
+            imageSrc={params.roomImage}
+            isOpenModal={params.action === "showRoomImage"}
+            closeModal={closeModal}
+          />
+        </AppContainer>
+      </AppLayout>
     </>
   );
 };

@@ -3,10 +3,10 @@ import NavigationBar from "./../NavigationBar";
 import DrawerComponent from "./../Drawer";
 import Footer from "./../Footer";
 
-const AppLayout = ({ children }) => {
+const AppLayout = ({ children, awake }) => {
   return (
     <>
-      <NavigationBar />
+      <NavigationBar awake={awake} />
       <DrawerComponent />
       <main>{children}</main>
       <Footer />

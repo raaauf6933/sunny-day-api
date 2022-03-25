@@ -11,7 +11,7 @@ import SuccessPage from "./views/SuccessPage";
 import BreadcrumbsComponent from "./components/Breadcrumbs";
 import bookingContext from "../context/booking/bookingContext";
 import { useLocation, useNavigate, Navigate } from "react-router-dom";
-
+import AppLayout from "../components/AppLayout";
 import { Routes as Switch, Route } from "react-router-dom";
 
 import {
@@ -35,45 +35,45 @@ const Booking = () => {
     };
   });
 
-  console.log(bookingState);
-
   return (
-    <AppContainer>
-      <Box marginTop="7em" marginBottom="3em">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <BreadcrumbsComponent activeStep={location.pathname} />
-        </div>
-      </Box>
-      <Switch>
-        <Route
-          caseSensitive
-          path={bookingSelectRooms}
-          element={<SelectRooms params={params} navigate={navigate} />}
-        ></Route>
-        <Route
-          caseSensitive
-          path={bookingGuestDetails}
-          element={<GuestDetailsView navigate={navigate} params={params} />}
-        ></Route>
-        <Route
-          caseSensitive
-          path={bookingReview}
-          element={<ReviewBooking navigate={navigate} params={params} />}
-        ></Route>
-        <Route
-          caseSensitive
-          path={bookingSuccess}
-          element={<SuccessPage />}
-        ></Route>
-        <Route path="*" element={<Navigate from="*" to="/" />} />
-      </Switch>
-    </AppContainer>
+    <AppLayout awake={true}>
+      <AppContainer>
+        <Box marginTop="7em" marginBottom="3em">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <BreadcrumbsComponent activeStep={location.pathname} />
+          </div>
+        </Box>
+        <Switch>
+          <Route
+            caseSensitive
+            path={bookingSelectRooms}
+            element={<SelectRooms params={params} navigate={navigate} />}
+          ></Route>
+          <Route
+            caseSensitive
+            path={bookingGuestDetails}
+            element={<GuestDetailsView navigate={navigate} params={params} />}
+          ></Route>
+          <Route
+            caseSensitive
+            path={bookingReview}
+            element={<ReviewBooking navigate={navigate} params={params} />}
+          ></Route>
+          <Route
+            caseSensitive
+            path={bookingSuccess}
+            element={<SuccessPage />}
+          ></Route>
+          <Route path="*" element={<Navigate from="*" to="/" />} />
+        </Switch>
+      </AppContainer>
+    </AppLayout>
   );
 };
 

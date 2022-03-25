@@ -89,7 +89,7 @@ const DatePickerSection = (props) => {
         type: "SET_DATES",
         payload: dates,
       });
-      navigate(bookingSectionUrl + bookingSelectRooms + "?awakeNavBar=true");
+      navigate(bookingSectionUrl + bookingSelectRooms);
     }
   };
 
