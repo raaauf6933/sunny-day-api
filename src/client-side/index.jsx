@@ -47,11 +47,11 @@ const Routes = () => {
         <Route exact path="/rooms" element={<Rooms />} />
         <Route exact path="/gallery" element={<Gallery />} />
         <Route exact path="/about-us" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route exact path="/my-booking/*" element={<MyBooking />} />
         <Route exact path={bookingUrl} element={<Booking />} />
         <Route exact path="/404" element={<NotFound />} />
         <Route exact path="*" element={<Navigate from="*" to="/404" />} />
-        <Route path="/contact" element={<Contact />} />
       </Switch>
     </>
   );

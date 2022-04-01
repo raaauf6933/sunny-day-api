@@ -10,16 +10,16 @@ import {
   CardActions,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import BookingStatus from "./../../components/BookingStatus/BookingStatus";
+import BookingStatus from "../../components/BookingStatus/BookingStatus";
 import { makeStyles } from "@mui/styles";
 import jwt_decode from "jwt-decode";
 import { useParams } from "react-router-dom";
 import BookingSummary from "../../components/BookingSummary/BookingSummary";
 import { VAT_RATE } from "../../../config";
-import { getNoNights } from "./../../../misc";
-import { GET_BOOKING, UPLOAD_RECEIPT } from "./../api";
-import ApiAxios from "./../../../apiAxios";
-import Timeline from "./../components/Timeline";
+import { getNoNights } from "../../../misc";
+import { GET_BOOKING, UPLOAD_RECEIPT } from "../api";
+import ApiAxios from "../../../apiAxios";
+import Timeline from "../components/Timeline";
 import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles(
@@ -36,6 +36,7 @@ const useStyles = makeStyles(
 );
 
 const MyBookingDetails = (props) => {
+  const { onModifyBooking } = props;
   const { id } = useParams();
   const classes = useStyles(props);
   const jwtId = jwt_decode(id);
@@ -249,7 +250,12 @@ const MyBookingDetails = (props) => {
                   ref={upload}
                   accept="image/*"
                 />
-                <Button fullWidth variant="contained" color="info">
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="info"
+                  onClick={onModifyBooking}
+                >
                   <b>Modify Booking</b>
                 </Button>
               </>
