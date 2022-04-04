@@ -11,6 +11,7 @@ import TimelinePayment from "../../../components/Timeline/TimelinePayment";
 import TimelineAdditionals from "../../../components/Timeline/TimelineAdditionals";
 import TimelineDiscount from "../../../components/Timeline/TimelineDiscount";
 import TimelineCancelled from "../../../components/Timeline/TimelineCanceled";
+import TimelineModify from "../../../components/Timeline/TimelineModify";
 
 const useStyles = makeStyles(
   () => ({
@@ -70,6 +71,8 @@ const BookingHistory = (props) => {
         return <TimelineAdditionals event={event} date={event.created} />;
       case "ADD_DISCOUNT":
         return <TimelineDiscount event={event} date={event.created} />;
+      case "GUEST_MODIFY_BOOKING":
+        return <TimelineModify event={event} date={event.created} />;
       default:
         break;
     }

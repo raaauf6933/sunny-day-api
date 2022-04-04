@@ -5,7 +5,7 @@ import DateRangePicker from "@mui/lab/DateRangePicker";
 import moment from "moment";
 import { TextField, Box } from "@mui/material";
 
-const DatePicker = ({ data, change }) => {
+const DatePicker = ({ data, change, getRooms }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
@@ -30,13 +30,19 @@ const DatePicker = ({ data, change }) => {
             (newValue[0] !== null && newValue[0].toDateString()) !==
             (newValue[1] !== null && newValue[1].toDateString())
           ) {
-            console.log(newValue);
             change({
               target: {
                 name: "date",
                 value: newValue,
               },
             });
+
+            if (newValue[0] !== null && newValue[1]) {
+              getRooms({
+                checkIn: newValue[0],
+                checkOut: newValue[1],
+              });
+            }
             // dispatch({
             //   type: "SET_DATES",
             //   payload: newValue,

@@ -20,6 +20,7 @@ import { GET_AVAILABLE_ROOMTYPE } from "./../../../booking/api";
 import apiAxios from "./../../../../apiAxios";
 import { VAT_RATE } from "./../../../../config";
 import { currencyFormat } from "../../../utils/formatter";
+import CardLoadingSpinner from "../../../components/CardLoadingSpinner";
 
 const useStyles = makeStyles(
   () => ({
@@ -47,11 +48,18 @@ const useStyles = makeStyles(
 );
 
 const ModifyBookingModal = (props) => {
-  const { open, onClose, formData, change, hasChanged } = props;
+  const { open, onClose, formData, change, hasChanged, onSubmit } = props;
   const classes = useStyles(props);
-  const [rooms, setRooms] = React.useState([]);
+  const [rooms, setRooms] = React.useState();
 
   const getRooms = async (dates) => {
+    setRooms(undefined);
+    change({
+      target: {
+        name: "room_details",
+        value: [],
+      },
+    });
     try {
       const result = await apiAxios({
         url: GET_AVAILABLE_ROOMTYPE,
@@ -60,8 +68,6 @@ const ModifyBookingModal = (props) => {
       });
 
       setRooms(result.data);
-
-      console.log(result.data);
     } catch (error) {
       console.log(error);
     }
@@ -75,6 +81,8 @@ const ModifyBookingModal = (props) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData.date[0], formData.date[1]]);
+
+  console.log(formData);
 
   const getNoQuantity = (roomtype_id) => {
     return formData.room_details.filter(
@@ -150,6 +158,7 @@ const ModifyBookingModal = (props) => {
                   <DatePicker
                     data={formData.date}
                     change={change}
+                    getRooms={getRooms}
                     // dispatch={bookingDispatch}
                     // fetchRooms={fetchRooms}
                   />
@@ -157,15 +166,19 @@ const ModifyBookingModal = (props) => {
                 <div className={classes.section}>
                   <h3>2. Choose Rooms</h3>
                   <Grid container item xs={12} sm={12} spacing={2}>
-                    {rooms.map((room, index) => (
-                      <RoomSection
-                        key={index}
-                        room={room}
-                        change={change}
-                        room_data={formData.room_details}
-                        // openModal={openModal}
-                      />
-                    ))}
+                    {rooms !== undefined ? (
+                      rooms.map((room, index) => (
+                        <RoomSection
+                          key={index}
+                          room={room}
+                          change={change}
+                          room_data={formData.room_details}
+                          // openModal={openModal}
+                        />
+                      ))
+                    ) : (
+                      <CardLoadingSpinner />
+                    )}
                   </Grid>
                 </div>
               </Box>
@@ -214,7 +227,17 @@ const ModifyBookingModal = (props) => {
           <Button variant="outlined" fullWidth>
             Cancel
           </Button>
-          <Button variant="contained" fullWidth disabled={!hasChanged}>
+          <Button
+            variant="contained"
+            fullWidth
+            onClick={onSubmit}
+            disabled={
+              !hasChanged ||
+              formData.date[0] === null ||
+              formData.date[1] === null ||
+              formData.room_details.length === 0
+            }
+          >
             Save
           </Button>
         </DialogActions>

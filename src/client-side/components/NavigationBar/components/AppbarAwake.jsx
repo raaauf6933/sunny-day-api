@@ -27,8 +27,6 @@ const AppbarAwake = (props) => {
   const { navBarStructure, handleOpenDrawer, location } = props;
   const classes = useStyles(props);
 
-  console.log(location);
-
   return (
     <AppBar className={classes.appBarAllwaysAwake}>
       <AppContainer>

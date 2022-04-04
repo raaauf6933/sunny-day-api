@@ -38,6 +38,8 @@ export default function ColorsTimeline(props) {
         return "Booking Confirmed";
       case "PAYMENT_CAPTURED":
         return "Your Payment has been Acknowledged";
+      case "GUEST_MODIFY_BOOKING":
+        return "Booking has been Changed";
       default:
         break;
     }
