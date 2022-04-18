@@ -31,6 +31,7 @@ const UserDetailsDialog = (props) => {
   const initialData = {
     first_name: params?.type === "create" ? "" : user?.first_name,
     last_name: params?.type === "create" ? "" : user?.last_name,
+    email: params?.type === "create" ? "" : user?.email,
     username: params?.type === "create" ? "" : user?.username,
     password: "",
   };
@@ -94,6 +95,17 @@ const UserDetailsDialog = (props) => {
                     onChange={change}
                     error={!!error.last_name}
                     helperText={error.last_name}
+                  />
+                </Grid>
+                <Grid item md={12}>
+                  <TextField
+                    fullWidth
+                    label="Email"
+                    name="email"
+                    value={data.email}
+                    onChange={change}
+                    error={!!error.email}
+                    helperText={error.email}
                   />
                 </Grid>
                 <Grid item md={12}>

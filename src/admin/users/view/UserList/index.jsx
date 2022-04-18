@@ -65,7 +65,7 @@ const UserList = () => {
       });
       fetchUsers();
     } catch (error) {
-      enqueueSnackbar("Something Went Wrong!", {
+      enqueueSnackbar(error.data.message || "Something Went Wrong!", {
         variant: "error",
       });
     }

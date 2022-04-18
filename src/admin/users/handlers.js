@@ -1,5 +1,5 @@
 export const userValidation = (initialForm) => {
-  const { first_name, last_name, username, password } = initialForm;
+  const { first_name, last_name, username, password, email } = initialForm;
 
   const firstNameMessage = () => {
     if (first_name === "") {
@@ -10,6 +10,13 @@ export const userValidation = (initialForm) => {
 
   const lastNameMessage = () => {
     if (last_name === "") {
+      return "This field is required.";
+    }
+    return null;
+  };
+
+  const emailMessage = () => {
+    if (email === "") {
       return "This field is required.";
     }
     return null;
@@ -38,5 +45,6 @@ export const userValidation = (initialForm) => {
     last_name: lastNameMessage(),
     username: usernameMessage(),
     password: passwordMessage(),
+    email: emailMessage(),
   };
 };

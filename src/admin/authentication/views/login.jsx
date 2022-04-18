@@ -12,6 +12,7 @@ import { makeStyles } from "@mui/styles";
 import { useAuth } from "./../../context/auth/context";
 // import logo from "./../../../assets/images/admin_logo.png";
 import { LoadingButton } from "@mui/lab";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles(
   () => ({
@@ -28,6 +29,7 @@ const useStyles = makeStyles(
 
 const LoginView = (props) => {
   const classes = useStyles(props);
+  const navigate = useNavigate();
   const { login } = useAuth();
   const [error, setError] = useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -130,6 +132,19 @@ const LoginView = (props) => {
                   >
                     SIGN IN
                   </Button> */}
+                  <Box marginTop="10px" marginBottom="10px">
+                    <Typography
+                      sx={{
+                        color: "#1F4EF4",
+                        cursor: "pointer",
+                      }}
+                      variant="body2"
+                      onClick={() => navigate("/admin/reset-password")}
+                    >
+                      Forgot Password?
+                    </Typography>
+                  </Box>
+
                   <LoadingButton
                     fullWidth
                     onClick={submit}
