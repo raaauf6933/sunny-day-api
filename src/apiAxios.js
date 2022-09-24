@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getToken } from "./admin/context/auth/utils";
 
-const baseApiUrl = process.env.REACT_APP_API_URL;
+const baseApiUrl = process.env.REACT_APP_API_BASE_URL;
 
 const apiAxios = (
   { url, method, headers = null, params, data = null },

@@ -5,6 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.3.0",
+    "@middy/core": "^3.3.4",
+    "@middy/http-json-body-parser": "^3.3.4",
     "@mui/icons-material": "^5.1.0",
     "@mui/lab": "^5.0.0-alpha.54",
     "@mui/material": "^5.0.6",
@@ -14,12 +16,21 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
     "classnames": "^2.3.1",
+    "crypto": "^1.0.1",
     "date-fns": "^2.25.0",
+    "googleapis": "^108.0.0",
     "html-to-pdfmake": "^2.3.10",
+    "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
+    "middy": "^0.36.0",
     "moment": "^2.29.1",
+    "moment-timezone": "^0.5.37",
+    "mongoose": "^6.6.1",
+    "netlify": "^12.0.1",
+    "nodemailer": "^6.7.8",
     "notistack": "^2.0.3",
     "numeral": "^2.0.6",
     "pdfmake": "^0.2.4",
@@ -42,7 +53,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "netlify dev"
   },
   "eslintConfig": {
     "extends": [
