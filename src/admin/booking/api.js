@@ -1,11 +1,11 @@
-export const GET_BOOKINGS = "api/admin/booking/bookings";
+export const GET_BOOKINGS = "get_bookings";
 
-export const GET_BOOKING = "api/admin/booking/booking";
+export const GET_BOOKING = "get_booking";
 
-export const UPDATE_BOOKING_STATUS = "api/admin/booking/update_booking_status";
+export const UPDATE_BOOKING_STATUS = "update_booking_status";
 
-export const ADD_AMENITY = "api/admin/booking/add_amenity";
+export const ADD_AMENITY = "add_amenity";
 
-export const ADD_DISCOUNT = "api/admin/booking/add_discount";
+export const ADD_DISCOUNT = "add_discount";
 
-export const CREATE_BOOKING_WALKIN = "api/admin/booking/create_booking_walkin";
+export const CREATE_BOOKING_WALKIN = "create_booking_walkin";

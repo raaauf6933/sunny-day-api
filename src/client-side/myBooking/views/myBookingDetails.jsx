@@ -292,9 +292,9 @@ const MyBookingDetails = (props) => {
                   <b>Mode of Payment</b>
                 </h5>
                 <ul>
-                  <li>Gcash - 09352335202 | Villa Gregoria Resort</li>
-                  <li>BPI - 75544452 | Villa Gregoria Resort</li>
-                  <li>BDO - 23564343 43112 | Villa Gregoria Resort</li>
+                  <li>Gcash - 09352335202 | Sunny Day Residences</li>
+                  <li>BPI - 75544452 | Sunny Day Residences</li>
+                  <li>BDO - 23564343 43112 | Sunny Day Residences</li>
                 </ul>
                 <h5>
                   <b>Cancellation & Rebooking</b>

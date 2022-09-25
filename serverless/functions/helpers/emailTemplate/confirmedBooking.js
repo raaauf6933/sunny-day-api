@@ -222,7 +222,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:16px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align v-line-height" style="color: #ecf7ff; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%; text-align: left;"><span style="font-size: 20px; line-height: 28px;">Villa Gregoria Resort</span></p>
+    <p style="font-size: 14px; line-height: 140%; text-align: left;"><span style="font-size: 20px; line-height: 28px;">Sunny Day Residences</span></p>
   </div>
 
       </td>
@@ -1839,7 +1839,7 @@ ${itemBody
       <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 10px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align v-line-height" style="color: #615e5e; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;">Email : <strong>villagregoriaresort@gmail.com</strong></p>
+    <p style="font-size: 14px; line-height: 140%;">Email : <strong>sunnydayresidencesofficial@gmail.com</strong></p>
   </div>
 
       </td>
@@ -1909,7 +1909,7 @@ ${itemBody
       <td style="overflow-wrap:break-word;word-break:break-word;padding:16px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align v-line-height" style="color: #ecf7ff; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;">&copy; Villa Gregoria Resort. All Rights Reserved</p>
+    <p style="font-size: 14px; line-height: 140%;">&copy; Sunny Day Residences. All Rights Reserved</p>
   </div>
 
       </td>
@@ -2206,7 +2206,7 @@ ${itemBody
 //                                   >
 //                                     <span
 //                                       style="font-size: 20px; line-height: 28px"
-//                                       >Villa Gregoria Resort</span
+//                                       >Sunny Day Residences</span
 //                                     >
 //                                   </p>
 //                                 </div>
@@ -7026,7 +7026,7 @@ ${itemBody
 //                                   <p style="font-size: 14px; line-height: 140%">
 //                                     Email :
 //                                     <strong
-//                                       >villagregoriaresort@gmail.com</strong
+//                                       >sunnydayresidencesofficial@gmail.com</strong
 //                                     >
 //                                   </p>
 //                                 </div>
@@ -7228,7 +7228,7 @@ ${itemBody
 //                                   "
 //                                 >
 //                                   <p style="font-size: 14px; line-height: 140%">
-//                                     &copy; Villa Gregoria Resort. All Rights
+//                                     &copy; Sunny Day Residences. All Rights
 //                                     Reserved
 //                                   </p>
 //                                 </div>

@@ -1,5 +1,5 @@
-export const AUTH_ADMIN = "api/auth/admin";
+export const AUTH_ADMIN = "auth_admin";
 
-export const REQUEST_RESET_PASSWORD = "api/auth/admin/request-reset-password";
+export const REQUEST_RESET_PASSWORD = "admin_request_reset_password";
 
-export const RESET_PASSWORD = "api/auth/admin/reset-password";
+export const RESET_PASSWORD = "admin_reset_password";

@@ -1,1 +1,1 @@
-export const EXTRACT_REPORT = "api/admin/reports/extract_report";
+export const EXTRACT_REPORT = "extract_report";

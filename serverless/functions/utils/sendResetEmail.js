@@ -27,7 +27,7 @@ const sendEmail = async (type, params) => {
     switch (type) {
       case "RESET_PASSWORD":
         return {
-          from: "VILLA GREGORIA RESORT <villagregoriaresort@gmail.com>",
+          from: "Sunny Day Residences <sunnydayresidencesofficial@gmail.com>",
           to: params.user.email,
           subject: `RESET PASSWORD | ${params.user.username}`,
           html: `<html>

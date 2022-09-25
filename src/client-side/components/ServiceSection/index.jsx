@@ -109,7 +109,7 @@ const ServiceSection = (props) => {
             <span className={classes.welcomeGreen}> </span>
             <br />
             <Typography className={classes.welcomeTitle}>
-              Welcome to <br /> Villa Gregoria Resort
+              Welcome to <br /> Sunny Day Residences
             </Typography>
 
             {/* <Typography
@@ -120,10 +120,10 @@ const ServiceSection = (props) => {
             </Typography> */}
           </Fade>
           <video width="100%" height="50%" ref={videoElement}>
-            <source
+            {/* <source
               src="https://res.cloudinary.com/dlqsqlkws/video/upload/v1645021426/resort_video_compressed_c4qhng.mp4"
               type="video/mp4"
-            />
+            /> */}
           </video>
         </Grid>
       </Grid>

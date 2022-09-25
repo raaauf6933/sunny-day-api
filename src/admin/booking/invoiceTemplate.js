@@ -119,13 +119,13 @@ export const getInvoice = (booking) => {
                   },
                   {
                     margin: [10, 10, 10, 10],
-                    text: "Villa Gregoria Resort",
+                    text: "Sunny Day Residences",
                     width: "auto",
                   },
                 ],
               },
             ],
-            // text: 'Villa Gregoria Resort',
+            // text: 'Sunny Day Residences',
             style: "header",
           },
           {

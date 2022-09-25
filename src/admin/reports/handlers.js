@@ -123,7 +123,7 @@ export const dd = (data, formData, user) => {
         alignment: "justify",
         columns: [
           {
-            text: "Villa Gregoria Resort",
+            text: "Sunny Day Residences",
             style: "header",
           },
           {

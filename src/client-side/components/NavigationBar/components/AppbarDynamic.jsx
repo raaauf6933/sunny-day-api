@@ -71,7 +71,7 @@ const AppbarDynamic = (props) => {
             component="div"
             sx={{ flexGrow: 1 }}
           >
-            {/* {trigger ? "Villa Gregoria Resort" : ""} */}
+            {/* {trigger ? "Sunny Day Residences" : ""} */}
           </Typography>
 
           <Hidden smDown>

@@ -1,7 +1,7 @@
-export const GET_AMENITIES = "api/admin/amenity";
+export const GET_AMENITIES = "get_amenities";
 
-export const GET_AMENITY = "api/admin/amenity";
+export const GET_AMENITY = "get_amenity";
 
-export const CREATE_AMENITY = "api/admin/amenity/create_amenity";
+export const CREATE_AMENITY = "create_amenity";
 
-export const EDIT_AMENITY = "api/admin/amenity/edit_amenity";
+export const EDIT_AMENITY = "edit_amenity";

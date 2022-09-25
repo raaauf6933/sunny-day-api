@@ -66,7 +66,7 @@ const ResetPassword = (props) => {
         <Card>
           <CardContent>
             <Typography component="h1" variant="h4" gutterBottom>
-              Villa Gregoria Resort | Admin
+              Sunny Day Residences | Admin
             </Typography>
             <Typography component="h1" variant="h5" gutterBottom>
               Reset Your Password

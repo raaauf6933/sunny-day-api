@@ -133,7 +133,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:16px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align v-line-height" style="color: #ecf7ff; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%; text-align: left;"><span style="font-size: 20px; line-height: 28px;">Villa Gregoria Resort</span></p>
+    <p style="font-size: 14px; line-height: 140%; text-align: left;"><span style="font-size: 20px; line-height: 28px;">Sunny Day Residences</span></p>
   </div>
 
       </td>
@@ -1168,9 +1168,9 @@ a[x-apple-data-detectors='true'] {
   <div class="v-text-align v-line-height" style="color: #5c5757; line-height: 140%; text-align: left; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 14px; line-height: 19.6px;">Mode of Payment</span></strong></p>
 <ul>
-<li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">Gcash | Villa Gregoria Resort</span></li>
-<li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">BPI - 75544452 | Villa Gregoria Resort</span></li>
-<li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">BDO - 23564343 43112 | Villa Gregoria Resort</span></li>
+<li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">Gcash | Sunny Day Residences</span></li>
+<li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">BPI - 75544452 | Sunny Day Residences</span></li>
+<li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">BDO - 23564343 43112 | Sunny Day Residences</span></li>
 </ul>
   </div>
 
@@ -1401,7 +1401,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align v-line-height" style="color: #5c5757; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%; text-align: left;">Email : <strong>villagregoriaresort@gmail.com</strong></p>
+    <p style="font-size: 14px; line-height: 140%; text-align: left;">Email : <strong>sunnydayresidencesofficial@gmail.com</strong></p>
   </div>
 
       </td>
@@ -1471,7 +1471,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:16px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align v-line-height" style="color: #ecf7ff; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;">&copy; Villa Gregoria Resort. All Rights Reserved</p>
+    <p style="font-size: 14px; line-height: 140%;">&copy; Sunny Day Residences. All Rights Reserved</p>
   </div>
 
       </td>

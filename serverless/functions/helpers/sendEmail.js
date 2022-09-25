@@ -53,8 +53,8 @@ const sendEmail = async (booking, { type }) => {
     switch (type) {
       case "PENDING":
         return {
-          from: "VILLA GREGORIA RESORT <villagregoriaresort@gmail.com>",
-          to: "villagregoriaresortph@gmail.com, " + email,
+          from: "Sunny Day Residences <sunnydayresidencesofficial@gmail.com>",
+          to: "sunnydayresidencesofficial@gmail.com, " + email,
           subject: `BOOKING PENDING | ${booking_reference}`,
           html: createBookingEmail(booking),
           attachments: [
@@ -68,8 +68,8 @@ const sendEmail = async (booking, { type }) => {
         break;
       case "CONFIRMED":
         return {
-          from: "VILLA GREGORIA RESORT <villagregoriaresort@gmail.com>",
-          to: "villagregoriaresortph@gmail.com, " + email,
+          from: "Sunny Day Residences <sunnydayresidencesofficial@gmail.com>",
+          to: "sunnydayresidencesofficial@gmail.com, " + email,
           subject: `BOOKING CONFIRMED | ${booking_reference}`,
           html: confirmedBooking(booking),
           attachments: [

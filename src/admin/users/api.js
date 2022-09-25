@@ -1,4 +1,4 @@
-export const GET_USERS = "api/admin/user/";
-export const GET_USER = "api/admin/user/";
+export const GET_USERS = "get_users";
+export const GET_USER = "get_user";
 
-export const CREATE_USER = "api/admin/user/create_user";
+export const CREATE_USER = "create_user";

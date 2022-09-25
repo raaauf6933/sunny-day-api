@@ -76,7 +76,7 @@ const LoginView = (props) => {
               textAlign="center"
               padding="30px"
             >
-              Villa Gregoria Resort | Admin Dashboard
+              Sunny Day Residences | Admin Dashboard
             </Typography>
             <Form
               initial={{ username: "", password: "" }}

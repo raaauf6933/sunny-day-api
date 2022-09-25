@@ -46,18 +46,18 @@ const UpdateBookingStatus = async (event, context, callback) => {
     };
   } catch (error) {
     if (IsJsonString(error.message)) {
-      return callback(null, {
+      return {
         statusCode: 400,
         body: JSON.stringify({
           status: "failed",
           ...JSON.parse(error.message),
         }),
-      });
+      };
     } else {
-      return callback(null, {
+      return {
         statusCode: 400,
         body: JSON.stringify({ status: "failed", message: error.message }),
-      });
+      };
     }
   }
 };

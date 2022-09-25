@@ -144,8 +144,8 @@ const Contact = (props) => {
                   </Typography>
                   <Typography variant="h5" marginLeft="2em">
                     -{" "}
-                    <a href="mailto:villagregoriaresortph@gmail.com">
-                      villagregoriaresortph@gmail.com
+                    <a href="mailto:sunnydayresidencesofficial@gmail.com">
+                      sunnydayresidencesofficial@gmail.com
                     </a>
                   </Typography>
                 </div>

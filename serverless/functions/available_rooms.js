@@ -2,7 +2,7 @@ const moment = require("moment-timezone");
 const Booking = require("../models/bookings/bookings");
 const RoomTypes = require("../models/rooms");
 
-exports.handler = async (event) => {
+exports.handler = async (event, context, callback) => {
   const { checkIn, checkOut } = JSON.parse(event.body);
 
   try {
@@ -81,10 +81,9 @@ exports.handler = async (event) => {
       body: JSON.stringify(filter_rooms),
     };
   } catch (error) {
-    console.log(error);
-    return {
+    return callback(null, {
       statusCode: 400,
       body: JSON.stringify({ message: error.message }),
-    };
+    });
   }
 };

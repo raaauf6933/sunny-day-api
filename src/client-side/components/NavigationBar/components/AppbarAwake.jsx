@@ -44,7 +44,7 @@ const AppbarAwake = (props) => {
             </IconButton>
           </Hidden>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {/* Villa Gregoria Resort */}
+            {/* Sunny Day Residences */}
           </Typography>
           <Hidden smDown>
             {navBarStructure.map((e, index) => {

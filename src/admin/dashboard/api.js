@@ -1,1 +1,1 @@
-export const GET_DASHBOARD_REPORT = "api/admin/reports/dashboard";
+export const GET_DASHBOARD_REPORT = "reports_dashboard";

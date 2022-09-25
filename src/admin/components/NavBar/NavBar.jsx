@@ -45,7 +45,7 @@ export default function NavBar({ children }) {
           </Hidden>
 
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            Villa Gregoria Resort
+            Sunny Day Residences
           </Typography>
           <Button color="inherit" style={{ outline: "none" }} onClick={logout}>
             Log-Out

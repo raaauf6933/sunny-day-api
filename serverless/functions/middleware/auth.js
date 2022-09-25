@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = function (handler) {
-  const token = handler.event.header("x-auth-token");
+  const token = handler.event.headers["x-auth-token"];
   if (!token)
     return {
       statusCode: 401,

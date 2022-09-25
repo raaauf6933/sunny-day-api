@@ -1,5 +1,5 @@
-export const GET_DISCOUNTS = "api/admin/discount";
+export const GET_DISCOUNTS = "get_discounts";
 
-export const CREATE_DISCOUNT = "api/admin/discount/create_discount";
+export const CREATE_DISCOUNT = "create_discount";
 
-export const UPDATE_STATUS = "api/admin/discount/update_status";
+export const UPDATE_STATUS = "update_discount_status";

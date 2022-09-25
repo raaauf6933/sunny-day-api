@@ -98,7 +98,7 @@ const ResetPasswordForm = (props) => {
         <Card>
           <CardContent>
             <Typography component="h1" variant="h4" gutterBottom>
-              Villa Gregoria Resort | Admin
+              Sunny Day Residences | Admin
             </Typography>
             {success ? (
               <>
