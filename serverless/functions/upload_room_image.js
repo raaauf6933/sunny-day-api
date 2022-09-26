@@ -6,9 +6,9 @@ const cloudinary = require("cloudinary");
 const fs = require("fs");
 
 cloudinary.config({
-  cloud_name: "dlqsqlkws",
-  api_key: "239388395191111",
-  api_secret: "wqCIpcNaxEpkpsotymonGpCFZJk",
+  cloud_name: "dodsdgdxc",
+  api_key: "919292289561665",
+  api_secret: "nimi9ZkTzQUnPA7AwcJPZcQG0Fg",
 });
 
 const UploadRoomImage = async (event, ct, callback) => {
