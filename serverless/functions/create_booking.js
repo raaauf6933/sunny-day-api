@@ -61,8 +61,8 @@ const CreateBooking = async (event, context, callback) => {
   });
 
   try {
-    await newBookings.save();
-    // sendEmail(result, { type: bookingStatus.PENDING });
+    const result = await newBookings.save();
+    sendEmail(result, { type: bookingStatus.PENDING });
 
     return {
       statusCode: 200,

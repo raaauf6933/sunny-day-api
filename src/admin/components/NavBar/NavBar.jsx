@@ -30,7 +30,10 @@ export default function NavBar({ children }) {
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          background: "#f7b12f",
+        }}
       >
         <Toolbar>
           <Hidden smUp>
@@ -44,7 +47,13 @@ export default function NavBar({ children }) {
             </IconButton>
           </Hidden>
 
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1 }}
+            fontWeight={600}
+          >
             Sunny Day Residences
           </Typography>
           <Button color="inherit" style={{ outline: "none" }} onClick={logout}>

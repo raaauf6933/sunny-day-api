@@ -71,10 +71,11 @@ const AppbarAwake = (props) => {
                   style={{
                     color:
                       location.pathname + location.search === e.url
-                        ? "#f15d30"
+                        ? "#f7b12f"
                         : "#000000a6",
                     fontWeight: 600,
                     marginRight: "2em",
+                    fontSize: "1.5em",
                   }}
                 >
                   {e.label}

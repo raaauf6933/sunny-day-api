@@ -10,17 +10,44 @@ import AppLayout from "../components/AppLayout";
 const Rooms = () => {
   return (
     <>
-      <AppLayout>
+      <AppLayout awake={true}>
         <WindowTitle title={resortName("Gallery")} />
-        <Hero>
+        {/* <Hero>
           <Box textAlign="center">
             <Typography variant="h1">Our Rooms</Typography>
           </Box>
-        </Hero>
+        </Hero> */}
         <AppContainer>
-          <div className="mt-5"></div>
-          <RoomSection showAll={true} />
-          {/* <Grid container spacing={3}>
+          <Box paddingBottom={5}>
+            <div className="mt-5"></div>
+            <Box
+              display="flex"
+              justifyContent="center"
+              flexDirection="column"
+              width="100%"
+              padding="3em"
+            >
+              <Typography
+                variant="h5"
+                textAlign="center"
+                fontWeight={600}
+                sx={{
+                  color: "rgb(247, 177, 47)",
+                }}
+              >
+                Our Rooms
+              </Typography>
+              <Typography
+                sx={{
+                  textAlign: "center",
+                }}
+                variant="h2"
+              >
+                Discover Our Place
+              </Typography>
+            </Box>
+            <RoomSection showAll={true} />
+            {/* <Grid container spacing={3}>
           <Grid></Grid>
           <Grid></Grid>
           <Grid></Grid>
@@ -28,6 +55,7 @@ const Rooms = () => {
           <Grid></Grid>
           <Grid></Grid>
         </Grid> */}
+          </Box>
         </AppContainer>
       </AppLayout>
     </>

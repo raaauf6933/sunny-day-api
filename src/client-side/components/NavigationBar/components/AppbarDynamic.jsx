@@ -99,12 +99,13 @@ const AppbarDynamic = (props) => {
                   style={{
                     color:
                       location.pathname === e.url
-                        ? "#f15d30"
+                        ? "#f7b12f"
                         : trigger
                         ? "#000000a6"
                         : "white",
                     fontWeight: 600,
                     marginRight: "2em",
+                    fontSize: "1.5em",
                   }}
                 >
                   {e.label}

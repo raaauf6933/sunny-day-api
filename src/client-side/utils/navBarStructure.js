@@ -40,10 +40,10 @@ export const navBarStructure = [
     icon: <ContactPage />,
     url: "/contact",
   },
-  {
-    name: "mybooking",
-    label: "My Booking",
-    icon: <BookOnline />,
-    url: "/my-booking",
-  },
+  // {
+  //   name: "mybooking",
+  //   label: "My Booking",
+  //   icon: <BookOnline />,
+  //   url: "/my-booking",
+  // },
 ];

@@ -5,66 +5,127 @@ import { resortName } from "./../../config";
 import AppContainer from "../components/AppContainer";
 import AppLayout from "../components/AppLayout";
 import Hero from "../components/Hero";
+import bg_1 from "./../../assets/images/bg_1.jpeg";
 import { Typography, Box } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
 
 const About = () => {
   return (
     <>
-      <AppLayout>
+      <AppLayout awake={true}>
         {" "}
         <WindowTitle title={resortName("About Us")} />
-        <Hero>
+        {/* <Hero>
           <Box textAlign="center">
             <Typography variant="h1">About Us</Typography>
           </Box>
-        </Hero>
+        </Hero> */}
         <AppContainer>
           <div className="mt-5 mb-5">
-            {" "}
-            <Card>
-              <CardContent>
-                <Grid container alignItems="center" spacing={3}>
-                  <Grid item md={6} sm={12} xs={12} textAlign="center">
-                    <img
-                      src={`https://res.cloudinary.com/dlqsqlkws/image/upload/v1645010234/GALLERY/17_jfqbss.jpg?w=600&h=700&fit=crop&auto=format`}
-                      srcSet={`https://res.cloudinary.com/dlqsqlkws/image/upload/v1645010234/GALLERY/17_jfqbss.jpg?w=600&h=700&fit=crop&auto=format&dpr=2 2x`}
-                      alt="Sunny Day Residences"
-                      loading="lazy"
-                      style={{
-                        boxShadow: "1em",
-                        width: " 100%",
-                        height: "auto",
-                        borderRadius: "5%",
+            <Box
+              display="flex"
+              justifyContent="center"
+              width="100%"
+              padding="3em"
+            >
+              <Typography variant="h2" textAlign="center" fontWeight={600}>
+                About Us
+              </Typography>
+            </Box>{" "}
+            {/* <Card>
+              <CardContent> */}
+            <Grid container alignItems="center" spacing={3}>
+              <Grid item md={6} sm={12} xs={12}>
+                <Typography
+                  variant="h4"
+                  fontWeight={600}
+                  gutterBottom
+                  textAlign="center"
+                >
+                  Welcome to Sunny Day Residences
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    opacity: 0.8,
+                  }}
+                  lineHeight={1.5}
+                >
+                  Built in 2011, this hotel is located in Antipolo, Phillipines
+                  with easy access to the city’s tourist attractions. It offers
+                  tastefully decorated rooms.
+                </Typography>
+              </Grid>
+              <Grid item md={6} sm={12} xs={12}>
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  lineHeight="1.5em"
+                  sx={{
+                    "& > *": {
+                      padding: "5px",
+                    },
+                  }}
+                >
+                  <span>
+                    <CheckIcon
+                      sx={{
+                        color: "rgb(247, 177, 47)",
                       }}
-                    />
-                  </Grid>
-                  <Grid item md={6} sm={12} xs={12}>
-                    <Typography
-                      variant="h4"
-                      fontWeight={600}
-                      gutterBottom
-                      textAlign="center"
-                    >
-                      Make Your Tour Memorable and Safe With Us
-                    </Typography>
-                    <Typography variant="h6" lineHeight={1.5}>
-                      <b>Sunny Day Residences</b> is an accredited resort by the
-                      Department of Tourism, located at Brgy. Buboy Nagcarlan,
-                      Laguna (a two to three-hour drive from Metro Manila). It
-                      provides cool, relaxing and refreshing environment for
-                      everyone who wants to escape the hustle and bustle of the
-                      modern city. Day swimming and overnight stay are offered
-                      for guests who want to have relaxing moments as they
-                      experience the resort's cool water, and enjoy the resort's
-                      sophisticated and architectural cottages, rooms, pools and
-                      pavilion. Private pool, mini-Olympic pool, water slides,
-                      cold spring / batis, are some of the facilities that every
-                      member of the family can surely enjoy.
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
+                    />{" "}
+                    20% Off On Accommodation.{" "}
+                  </span>
+                  <span>
+                    <CheckIcon
+                      sx={{
+                        color: "rgb(247, 177, 47)",
+                      }}
+                    />{" "}
+                    Complimentary Daily Breakfast
+                  </span>
+                  <span>
+                    <CheckIcon
+                      sx={{
+                        color: "rgb(247, 177, 47)",
+                      }}
+                    />{" "}
+                    3 Pcs Laundry Per Day{" "}
+                  </span>
+                  <span>
+                    <CheckIcon
+                      sx={{
+                        color: "rgb(247, 177, 47)",
+                      }}
+                    />{" "}
+                    Free Wifi.{" "}
+                  </span>
+                  <span>
+                    <CheckIcon
+                      sx={{
+                        color: "rgb(247, 177, 47)",
+                      }}
+                    />{" "}
+                    Discount 20% On F&B
+                  </span>
+                </Box>
+              </Grid>
+              <Grid item md={12} sm={12} xs={12} textAlign="center">
+                <img
+                  src={bg_1}
+                  srcSet={`https://res.cloudinary.com/dlqsqlkws/image/upload/v1645010234/GALLERY/17_jfqbss.jpg?w=600&h=700&fit=crop&auto=format&dpr=2 2x`}
+                  alt="Sunny Day Residences"
+                  loading="lazy"
+                  style={{
+                    boxShadow: "1em",
+                    width: " 100%",
+                    height: "auto",
+                    borderRadius: "5%",
+                  }}
+                />
+              </Grid>
+            </Grid>
+            {/* </CardContent>
+            </Card> */}
           </div>
         </AppContainer>
       </AppLayout>

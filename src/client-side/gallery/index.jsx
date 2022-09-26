@@ -49,15 +49,41 @@ const Gallery = () => {
 
   return (
     <>
-      <AppLayout>
+      <AppLayout awake={true}>
         <WindowTitle title={resortName("Gallery")} />
-        <Hero>
+        {/* <Hero>
           <Box textAlign="center">
             <Typography variant="h1">Gallery</Typography>
           </Box>
-        </Hero>
+        </Hero> */}
         <AppContainer>
           <div className="mt-5"></div>
+          <Box
+            display="flex"
+            justifyContent="center"
+            flexDirection="column"
+            width="100%"
+            padding="3em"
+          >
+            <Typography
+              variant="h5"
+              textAlign="center"
+              fontWeight={600}
+              sx={{
+                color: "rgb(247, 177, 47)",
+              }}
+            >
+              Our Gallery
+            </Typography>
+            <Typography
+              sx={{
+                textAlign: "center",
+              }}
+              variant="h2"
+            >
+              Discover Our Place
+            </Typography>
+          </Box>
           <Box>
             <ImageList variant="masonry" cols={media_xs ? 2 : 4} gap={8}>
               {galleryImages.map((item) => (

@@ -4,7 +4,7 @@ import React from "react";
 // import service2 from "../assets/images/services-2.jpg";
 // import service3 from "../assets/images/services-3.jpg";
 // import service4 from "../assets/images/services-4.jpg";
-import DatePickerSection from "../components/DatePickerSection";
+import DatePickerSectionV2 from "../components/DatePickerSection2";
 import ServiceSection from "../components/ServiceSection";
 // import RoomSection from "../components/RoomSection";
 import AppContainer from "../components/AppContainer";
@@ -37,7 +37,7 @@ const Home = () => {
         <AppContainer>
           {/* <CheckAvailabilityCard /> */}
 
-          <DatePickerSection />
+          {/* <DatePickerSectionV2 /> */}
           <ServiceSection />
 
           {/* <SectionLabel title="Best of Our Rooms" />

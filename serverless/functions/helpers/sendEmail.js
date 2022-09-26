@@ -11,11 +11,13 @@ const confirmedBooking = require("./emailTemplate/confirmedBooking");
 //   "1//04OD03jJUv2rlCgYIARAAGAQSNwF-L9Irqgfx8OWwQi4a2q8Alq08lhwmzpU7-zmiM39bJjtopudZ8qgsfZsZlIpLA1quMGVRi8A";
 
 const oAuth2Client = new google.auth.OAuth2(
-  process.env.CLIENT_ID,
-  process.env.CLIENT_SECRET,
-  process.env.REDIRECT_URI
+  process.env.REACT_APP_CLIENT_ID,
+  process.env.REACT_APP_CLIENT_SECRET,
+  process.env.REACT_APP_REDIRECT_URI
 );
-oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
+oAuth2Client.setCredentials({
+  refresh_token: process.env.REACT_APP_REFRESH_TOKEN,
+});
 
 const sendEmail = async (booking, { type }) => {
   const { guest, booking_reference } = booking;
@@ -27,10 +29,10 @@ const sendEmail = async (booking, { type }) => {
     service: "gmail",
     auth: {
       type: "OAuth2",
-      user: process.env.EMAIL_USER,
-      clientId: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      refreshToken: process.env.REFRESH_TOKEN,
+      user: process.env.REACT_APP_EMAIL,
+      clientId: process.env.REACT_APP_CLIENT_ID,
+      clientSecret: process.env.REACT_APP_CLIENT_SECRET,
+      refreshToken: process.env.REACT_APP_REFRESH_TOKEN,
       accessToken,
     },
   });

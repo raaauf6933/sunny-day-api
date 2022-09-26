@@ -1,15 +1,16 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Paper, Button, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import ServicesMedia from "../ServicesMedia";
-import funImage from "../../assets/images/activity_1.jpg";
-import activityImage from "../../assets/images/activity_2.jpg";
-import eventsImage from "../../assets/images/events_1.jpg";
-import accommodationImage from "../../assets/images/accommodation_1.jpg";
+import image_1 from "../../../assets/images/image_1.jpeg";
+import image_2 from "../../../assets/images/image_2.jpeg";
+import image_3 from "../../../assets/images/image_3.jpeg";
 import { Typography } from "@mui/material";
 import Fade from "react-reveal/Fade";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Carousel from "react-material-ui-carousel";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 
 const useStyles = makeStyles(
   () => {
@@ -17,6 +18,10 @@ const useStyles = makeStyles(
       // contentBackground: {
       //   backgroundImage: `url(${Services1}) !important`,
       // },
+      icons: {
+        marginRight: "1em",
+        color: "#f7b12f",
+      },
       welcomeTitle: {
         fontSize: "3em",
         fontFamily: "Volkhov",
@@ -30,101 +35,156 @@ const useStyles = makeStyles(
   }
 );
 
+function Item({ item }) {
+  return (
+    <Paper
+      style={{
+        borderRadius: "5%",
+      }}
+    >
+      <img src={item?.img} style={{ width: "100%", borderRadius: "5%" }}></img>
+    </Paper>
+  );
+}
+
 const ServiceSection = (props) => {
   const classes = useStyles(props);
   const videoElement = React.useRef(null);
-  const theme = useTheme();
-  const media_xs = useMediaQuery(theme.breakpoints.down("sm"));
 
-  React.useEffect(() => {
-    if (videoElement.current.play) {
-      videoElement.current.play();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  });
+  let items = [
+    {
+      img: image_1,
+      description: "Probably the most random thing you have ever seen!",
+    },
+    {
+      img: image_2,
+      description: "Hello World!",
+    },
+    {
+      img: image_3,
+      description: "Probably the most random thing you have ever seen!",
+    },
+  ];
 
   return (
-    <div>
-      <Grid
-        container
-        spacing={6}
-        style={{
-          flexDirection: media_xs ? "column-reverse" : "unset",
-        }}
-      >
-        <Grid container item xs={12} sm={6} spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <Fade clear delay={100}>
-              <ServicesMedia
-                image={activityImage}
-                title="Activities"
-                content="A small river named Duden flows by their place and supplies it with the necessary"
-                color="color-1"
-                icon="flaticon-sun-umbrella"
-              />
-            </Fade>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Fade clear delay={200}>
-              <ServicesMedia
-                image={accommodationImage}
-                title="Accommodation"
-                content="A small river named Duden flows by their place and supplies it with the necessary"
-                color="color-2"
-                icon="flaticon-king-size"
-              />
-            </Fade>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Fade clear delay={300}>
-              <ServicesMedia
-                image={eventsImage}
-                title="Gatherings & Events"
-                content="A small river named Duden flows by their place and supplies it with the necessary"
-                color="color-3"
-                icon="flaticon-tour-guide"
-              />
-            </Fade>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Fade clear delay={400}>
-              <ServicesMedia
-                image={funImage}
-                title="Fun"
-                content="A small river named Duden flows by their place and supplies it with the necessary"
-                color="color-4"
-                icon="flaticon-paragliding"
-              />
-            </Fade>
-          </Grid>
-          {/* <Card>
-            <CardContent>
-              <h1>Content 2</h1>
-            </CardContent>
-          </Card> */}
+    <div
+      style={{
+        paddingTop: "4em",
+      }}
+    >
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={12} md={6}>
+          <Carousel>
+            {items.map((item, i) => (
+              <Item key={i} item={item} />
+            ))}
+          </Carousel>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Grid item xs={12} sm={6}></Grid>
-          <Fade clear delay={100}>
-            <span className={classes.welcomeGreen}> </span>
-            <br />
-            <Typography className={classes.welcomeTitle}>
-              Welcome to <br /> Sunny Day Residences
-            </Typography>
-
-            {/* <Typography
-              variant="h4"
-              style={{ marginBottom: "10px", fontFamily: "Arizonia" }}
+        <Grid item xs={12} sm={12} md={6}>
+          <Box
+            padding="60px"
+            display="flex"
+            justifyContent="center"
+            flexDirection="column"
+            height="100%"
+          >
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
             >
-        
-            </Typography> */}
-          </Fade>
-          <video width="100%" height="50%" ref={videoElement}>
-            {/* <source
-              src="https://res.cloudinary.com/dlqsqlkws/video/upload/v1645021426/resort_video_compressed_c4qhng.mp4"
-              type="video/mp4"
-            /> */}
-          </video>
+              <WbSunnyIcon className={classes.icons} />
+              Sunrise Cafe
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              Sunset Bar
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              KTV Rooms
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              24 Hour Room Service
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              Wireless Interne Access
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              24/7 Kitchen
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              24 Hrs. Security
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              Car Parking
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              Laundry Service
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              Room Service
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              Disable rooms
+            </Typography>
+            <Typography
+              variant="h5"
+              fontWeight={600}
+              sx={{ marginBottom: "7px" }}
+            >
+              <WbSunnyIcon className={classes.icons} />
+              40 seating capacity Overlooking Events Place
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
     </div>

@@ -20,6 +20,14 @@ const useStyles = makeStyles(
       flexDirection: "column",
       marginBottom: "1em",
     },
+    table: {
+      "& td": {
+        padding: "5px",
+      },
+    },
+    co: {
+      fontWeight: 600,
+    },
   }),
   {
     name: "Contact",
@@ -29,164 +37,109 @@ const useStyles = makeStyles(
 const Contact = (props) => {
   const classes = useStyles(props);
   return (
-    <AppLayout>
+    <AppLayout awake={true}>
       {" "}
       <WindowTitle title={resortName("Contact")} />
-      <Hero>
+      {/* <Hero>
         <Box textAlign="center">
           <Typography variant="h1">Contact Us</Typography>
         </Box>
-      </Hero>
+      </Hero> */}
       <AppContainer>
-        <div className="mt-5 mb-5">
+        <div
+          className="mt-5 mb-5"
+          style={{
+            paddingTop: "5em",
+          }}
+        >
           <Grid container spacing={2}>
-            <Grid item container md={6} sm={12} xs={12} direction="column">
-              <Card
-                sx={{
-                  borderRadius: "3%",
+            <Grid item xs={12} sm={12} md={6}>
+              <div>
+                <Typography variant="h2">Contact Info</Typography>
+                <table className={classes.table}>
+                  <tbody>
+                    <tr>
+                      <td className={classes.co}>Address:</td>
+                      <td>Blue Mountains Commercial and Residential Estate</td>
+                    </tr>
+                    <tr>
+                      <td className={classes.co}>Phone:</td>
+                      <td>(63) 977 034 0569</td>
+                    </tr>
+                    <tr>
+                      <td className={classes.co}>Email:</td>
+                      <td>sunnydayresidencesofficial@gmail.com</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6}>
+              <Grid container spacing={3}>
+                <Grid item md={6}>
+                  <TextField label="Name" fullWidth variant="standard" />
+                </Grid>{" "}
+                <Grid item md={6}>
+                  <TextField label="Email" fullWidth variant="standard" />
+                </Grid>
+                <Grid item md={12}>
+                  <TextField
+                    label="Your Message"
+                    fullWidth
+                    variant="standard"
+                    size="medium"
+                  />
+                </Grid>
+              </Grid>
+              <Box padding={2}>
+                <Button variant="contained">
+                  <span
+                    style={{
+                      fontSize: "1.2em",
+                    }}
+                  >
+                    Submit
+                  </span>{" "}
+                </Button>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12}>
+              <div
+                class="mapouter"
+                style={{
+                  position: "relative",
+                  // textAlign: "right",
+                  height: "389px",
+                  width: "100%",
                 }}
               >
-                <CardContent sx={{ display: "flex", flexDirection: "column" }}>
-                  <Typography
-                    variant="h4"
-                    fontWeight={600}
-                    color="#f15d30"
-                    gutterBottom
-                  >
-                    Get in Touch
-                  </Typography>
-                  <TextField label="Name" margin="dense" />
-                  <TextField label="Email" margin="dense" />
-                  <TextField label="Subject" margin="dense" />
-                  <TextField
-                    label="Message"
-                    margin="dense"
-                    multiline
-                    rows={4}
-                  />
-                  <Box textAlign="center" marginTop="1em">
-                    <Button
-                      variant="contained"
-                      sx={{
-                        background: "#f15d30",
-                        ":hover": {
-                          background: "#f15d30b3",
-                        },
-                        ":focus": {
-                          outlineColor: "#f15d30b3",
-                        },
-                      }}
-                    >
-                      Send Message
-                    </Button>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid
-              item
-              md={6}
-              sm={12}
-              xs={12}
-              //   alignContent="center"
-              //   alignSelf="center"
-            >
-              <Box marginTop="3em">
-                <div className={classes.infoSection}>
-                  <Typography
-                    variant="h5"
-                    marginRight="1em"
-                    whiteSpace="nowrap"
-                  >
-                    <LocationOnIcon
-                      fontSize="large"
-                      sx={{
-                        color: "#f15d30b3",
-                      }}
-                    />{" "}
-                    Address:
-                  </Typography>
-                  <Typography variant="h5" marginLeft="2em">
-                    - Brgy. Buboy 4002 Nagcarlan, Philippines
-                  </Typography>
-                </div>
-                <div className={classes.infoSection}>
-                  <Typography
-                    variant="h5"
-                    marginRight="1em"
-                    whiteSpace="nowrap"
-                  >
-                    <LocalPhoneIcon
-                      fontSize="large"
-                      sx={{
-                        color: "#f15d30b3",
-                      }}
-                    />{" "}
-                    Contact Number:
-                  </Typography>
-                  <Typography variant="h5" marginLeft="2em">
-                    - <a href="tel:09066000801">(63) 9066 000801</a>
-                  </Typography>
-                </div>
-                <div className={classes.infoSection}>
-                  <Typography
-                    variant="h5"
-                    marginRight="1em"
-                    whiteSpace="nowrap"
-                  >
-                    <EmailIcon
-                      fontSize="large"
-                      sx={{
-                        color: "#f15d30b3",
-                      }}
-                    />{" "}
-                    Email:
-                  </Typography>
-                  <Typography variant="h5" marginLeft="2em">
-                    -{" "}
-                    <a href="mailto:sunnydayresidencesofficial@gmail.com">
-                      sunnydayresidencesofficial@gmail.com
-                    </a>
-                  </Typography>
-                </div>
                 <div
+                  class="gmap_canvas"
                   style={{
-                    position: "relative",
-                    textAlign: "right",
-                    height: "299px",
+                    overflow: "hidden",
+                    background: "none!important",
+                    height: "389px",
                     width: "100%",
                   }}
                 >
-                  <div
-                    style={{
-                      overflow: "hidden",
-                      background: "none!important",
-                      height: "299px",
-                      width: "100%",
-                    }}
-                  >
-                    <iframe
-                      width="100%"
-                      height="299"
-                      id="gmap_canvas"
-                      src="https://maps.google.com/maps?q=villa%20gregorira%20resort&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                      frameborder="0"
-                      scrolling="no"
-                      marginheight="0"
-                      marginwidth="0"
-                    ></iframe>
-                    <a href="https://fmovies-online.net"></a>
-                    <br />
-                    <a href="https://www.embedgooglemap.net">
-                      embed code for google map
-                    </a>
-                  </div>
+                  <iframe
+                    width="100%"
+                    height="389"
+                    id="gmap_canvas"
+                    src="https://maps.google.com/maps?q=sunny%20day%20residences%20antipolo&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                  ></iframe>
+                  <a href="https://fmovies-online.net"></a>
+                  <br />
+                  <a href="https://www.embedgooglemap.net">
+                    embed code google map
+                  </a>
                 </div>
-              </Box>
+              </div>
             </Grid>
-            {/* <Grid item md={12} sm={12} xs={12}>
-              
-            </Grid> */}
           </Grid>
         </div>
       </AppContainer>
