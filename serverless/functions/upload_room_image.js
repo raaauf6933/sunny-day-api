@@ -24,7 +24,9 @@ const UploadRoomImage = async (event, ct, callback) => {
             let upload_result = await cloudinary.v2.uploader.upload(
               image.filepath,
               {
-                public_id: image.filename,
+                public_id: `${image.filename}-${Math.floor(
+                  Math.random() * 100 + 1
+                )}`,
                 folder: "ROOM_IMAGES",
               }
             );
