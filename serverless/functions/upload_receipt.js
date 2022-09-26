@@ -4,6 +4,7 @@ const parseMultipartForm = require("./helpers/parseMultiform");
 const { createEvent, eventType } = require("./helpers/events");
 const Bookings = require("./../models/bookings/bookings");
 const cloudinary = require("cloudinary");
+const fs = require("fs");
 
 cloudinary.config({
   cloud_name: "dodsdgdxc",
@@ -31,7 +32,7 @@ const UploadReceipt = async (handler, context, callback) => {
                 // resource_type: "",
               }
             );
-            // fs.unlinkSync(image.path);
+            fs.unlinkSync(image.filepath);
             uploaded_images.push({ src: upload_result.secure_url });
           } catch (error) {
             reject(error);
