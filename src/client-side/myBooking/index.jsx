@@ -1,5 +1,11 @@
 import React from "react";
-import { Routes as Switch, Route, useNavigate } from "react-router-dom";
+import {
+  Routes as Switch,
+  Route,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
+import NotFound from "./../components/NotFound";
 import MyBookingLogIn from "./views/myBookingLogin";
 import MyBookingDetails from "./views/myBookingDetails";
 import AppLayout from "../components/AppLayout";
@@ -21,7 +27,7 @@ const MyBooking = () => {
     <>
       <AppLayout awake={true}>
         <Switch>
-          <Route path="/" element={<MyBookingLogIn />} />
+          {/* <Route path="/" element={<MyBookingLogIn />} /> */}
           <Route
             path=":id"
             element={
@@ -31,6 +37,8 @@ const MyBooking = () => {
               />
             }
           />
+          <Route exact path="/404" element={<NotFound />} />
+          <Route exact path="*" element={<Navigate from="*" to="/404" />} />
         </Switch>
       </AppLayout>
     </>

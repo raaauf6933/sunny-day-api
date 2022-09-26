@@ -119,7 +119,7 @@ const SuccessPage = () => {
             >
               Go to Home Page
             </Button>
-            <Button
+            {/* <Button
               variant="contained"
               color="success"
               fullWidth
@@ -128,7 +128,7 @@ const SuccessPage = () => {
               }}
             >
               Go to My Booking
-            </Button>
+            </Button> */}
           </CardActions>
         </Card>
       </Box>

@@ -62,14 +62,14 @@ const SuccessDialog = (props) => {
           >
             Back to Home
           </Button>
-          <Button
+          {/* <Button
             fullWidth
             color="info"
             variant="contained"
             onClick={() => navigate("/my-booking?awakeNavBar=true")}
           >
             My Booking
-          </Button>
+          </Button> */}
         </DialogActions>
       </Dialog>
     </>
