@@ -25,9 +25,10 @@ module.exports = function parseMultipartForm(event) {
         const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
         const filetype = file_details.mimeType.split("/")[1];
         const saveTo = path.join(
-          process.env.NODE_ENV === "production"
-            ? os.tmpdir()
-            : __dirname + "/upload",
+          // process.env.NODE_ENV === "production"
+          // ?
+          os.tmpdir(),
+          // : __dirname + "/upload"
           path.basename(
             file_details.filename.split(".")[0] +
               "-" +

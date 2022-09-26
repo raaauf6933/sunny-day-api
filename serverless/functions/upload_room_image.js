@@ -3,6 +3,7 @@ const httpJsonBodyParser = require("@middy/http-json-body-parser");
 const parseMultipartForm = require("./helpers/parseMultiform");
 const RoomTypes = require("./../models/rooms");
 const cloudinary = require("cloudinary");
+const fs = require("fs");
 
 cloudinary.config({
   cloud_name: "dlqsqlkws",
@@ -27,6 +28,7 @@ const UploadRoomImage = async (event, ct, callback) => {
                 folder: "ROOM_IMAGES",
               }
             );
+            fs.unlinkSync(image.filepath);
             // fs.unlinkSync(image.path);
             uploaded_images.push({ src: upload_result.secure_url });
           } catch (error) {
