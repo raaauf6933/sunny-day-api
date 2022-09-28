@@ -62,7 +62,7 @@ const sendEmail = async (booking, { type }) => {
           attachments: [
             {
               filename: "check_image.png",
-              path: __dirname + "/emailTemplate/pending_image.png",
+              path: "https://res.cloudinary.com/dodsdgdxc/image/upload/v1664373008/pending_image_kkzau3.png",
               cid: "logo", //same cid value as in the html img src
             },
           ],
@@ -77,7 +77,7 @@ const sendEmail = async (booking, { type }) => {
           attachments: [
             {
               filename: "check_image.png",
-              path: __dirname + "/emailTemplate/check_image.png",
+              path: "https://res.cloudinary.com/dodsdgdxc/image/upload/v1664373327/check_image_hneayv.png",
               cid: "logo", //same cid value as in the html img src
             },
           ],

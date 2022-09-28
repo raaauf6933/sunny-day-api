@@ -1,9 +1,6 @@
 [build]
 functions = "serverless/functions"
 
-[functions]
-  included_files = ["languages/helpers/emailTemplate"]
-
 
 [[redirects]]
   from = "/*"
