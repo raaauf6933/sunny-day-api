@@ -92,6 +92,7 @@ const sendEmail = async (booking, { type }) => {
     smtpTransport.sendMail(handleHeaders(), function (error, info) {
       if (error) {
         reject(error);
+        console.log(error);
       } else {
         console.log("Email sent: " + info.response);
         resolve(info.response);
