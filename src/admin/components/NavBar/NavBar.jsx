@@ -54,7 +54,7 @@ export default function NavBar({ children }) {
             sx={{ flexGrow: 1 }}
             fontWeight={600}
           >
-            Sunny Day Residences
+            Sunny Day Residencess
           </Typography>
           <Button color="inherit" style={{ outline: "none" }} onClick={logout}>
             Log-Out
