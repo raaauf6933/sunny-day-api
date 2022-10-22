@@ -62,7 +62,7 @@ module.exports = function parseMultipartForm(event) {
 
     // whenever busboy comes across a normal field ...
     busboy.on("field", (fieldName, value) => {
-      console.log("64 fields", fields);
+      // console.log("64 fields", fields);
       // ... we write its value into `fields`.
       fields[fieldName] = value;
 

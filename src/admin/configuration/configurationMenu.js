@@ -8,5 +8,11 @@ export const createConfigurationMenu = () => {
       title: "Discounts",
       url: "/admin/discounts",
     },
+    {
+      description: "Set client-side contents",
+      icon: <LocalOfferIcon fontSize="inherit" viewBox="0 0 44 44" />,
+      title: "Content Settings",
+      url: "/admin/content-settings",
+    },
   ];
 };

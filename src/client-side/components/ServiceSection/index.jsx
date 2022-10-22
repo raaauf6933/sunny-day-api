@@ -48,6 +48,7 @@ function Item({ item }) {
 }
 
 const ServiceSection = (props) => {
+  const { contentSettings } = props;
   const classes = useStyles(props);
   const videoElement = React.useRef(null);
 
@@ -75,9 +76,12 @@ const ServiceSection = (props) => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={6}>
           <Carousel>
-            {items.map((item, i) => (
-              <Item key={i} item={item} />
+            {contentSettings?.promo_pictures?.map((e) => (
+              <Item key={e.src} item={{ img: e.src }} />
             ))}
+            {/* {items.map((item, i) => (
+             
+            ))} */}
           </Carousel>
         </Grid>
         <Grid item xs={12} sm={12} md={6}>
@@ -88,7 +92,12 @@ const ServiceSection = (props) => {
             flexDirection="column"
             height="100%"
           >
-            <Typography
+            <div
+              dangerouslySetInnerHTML={{
+                __html: contentSettings?.home_description2,
+              }}
+            ></div>
+            {/* <Typography
               variant="h5"
               fontWeight={600}
               sx={{ marginBottom: "7px" }}
@@ -183,7 +192,7 @@ const ServiceSection = (props) => {
             >
               <WbSunnyIcon className={classes.icons} />
               40 seating capacity Overlooking Events Place
-            </Typography>
+            </Typography> */}
           </Box>
         </Grid>
       </Grid>

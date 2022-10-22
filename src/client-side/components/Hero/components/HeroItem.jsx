@@ -8,6 +8,7 @@ import { useTheme } from "@mui/material/styles";
 import MyBookingCard from "../../MyBookingCard";
 
 const HeroItem = (props) => {
+  const { contentSettings } = props;
   // const {
   //   item: { component, image },
   //   children,
@@ -21,7 +22,7 @@ const HeroItem = (props) => {
     <div
       className="hero-wrap hero-wrap-2 js-fullheight"
       style={{
-        backgroundImage: `url(${image})`,
+        backgroundImage: `url(${contentSettings?.home_background[0]?.src})`,
         height: "70em",
         // height:
         //   location.pathname === "/404" || location.pathname === "/my-booking"
@@ -75,9 +76,10 @@ const HeroItem = (props) => {
                     marginBottom: "16px",
                   }}
                 >
-                  Sunny Day Residences
+                  {contentSettings?.home_heading}
+                  {/* Sunny Day Residences */}
                 </h1>
-                <p
+                {/* <p
                   style={{
                     fontSize: "18px",
                     color: "#ffffff",
@@ -86,19 +88,22 @@ const HeroItem = (props) => {
                   }}
                 >
                   Experience the Greatest for your Holidays.
-                </p>
-                <p
+                </p> */}
+                <div
                   style={{
-                    fontSize: "18px",
+                    // fontSize: "18px",
                     color: "#ffffff",
-                    lineHeight: "28px",
+                    // lineHeight: "28px",
                     marginBottom: "35px",
                   }}
+                  dangerouslySetInnerHTML={{
+                    __html: contentSettings?.home_description,
+                  }}
                 >
-                  Once a year go someplace you've never been before, Here are
+                  {/* Once a year go someplace you've never been before, Here are
                   the best hotel booking sites, including recommendations for
-                  finding low-priced hotel rooms.
-                </p>
+                  finding low-priced hotel rooms. */}
+                </div>
                 {/* <a href="#" class="primary-btn">Discover Now</a> */}
               </div>
             </div>
