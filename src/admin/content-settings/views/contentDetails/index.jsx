@@ -5,14 +5,19 @@ import {
   GET_CONTENT_SETTINGS,
   UPDATE_CONTENT_SETTINGS_HOMEPAGE,
   UPDATE_CONTENT_SETTINGS_HOMEPAGE_PROMO,
+  UPDATE_GALLERY_IMAGES,
 } from "../../api";
 import AppStateContext from "../../../context/AppState/context";
 import apiAxios from "./../../../../apiAxios";
 import HomePromoContentCard from "../../components/HomePromoContentCard";
 import useFetch from "../../../../hooks/useFetch";
+import HomeGalleryContent from "../../components/HomeGalleryContent";
+import { useSnackbar } from "notistack";
 
 const ContentDetails = () => {
   const { appStateDispatch } = React.useContext(AppStateContext);
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const { response } = useFetch({
     url: GET_CONTENT_SETTINGS,
@@ -31,6 +36,10 @@ const ContentDetails = () => {
     promo_pictures: [],
     description:
       homeContentDataDb?.home_description2 || "<p>Initial Content</p>",
+  };
+
+  const galleryData = {
+    gallery_images: [],
   };
 
   const handleSaveHomePageDetails = async (e) => {
@@ -57,6 +66,10 @@ const ContentDetails = () => {
         appStateDispatch
       );
     } catch (error) {}
+
+    enqueueSnackbar("Update on process, will take few minutes to apply.", {
+      variant: "success",
+    });
   };
 
   const handleSaveHomePagePromoDetails = async (e) => {
@@ -82,6 +95,40 @@ const ContentDetails = () => {
         appStateDispatch
       );
     } catch (error) {}
+
+    enqueueSnackbar("Update on process, will take few minutes to apply.", {
+      variant: "success",
+    });
+  };
+
+  const handleSaveGalleryImage = async (e) => {
+    const form_data = new FormData();
+
+    e.gallery_images.map((e) => form_data.append("files", e));
+
+    form_data.append(
+      "data",
+      JSON.stringify({
+        id: "test_place_holder",
+      })
+    );
+
+    await apiAxios(
+      {
+        url: UPDATE_GALLERY_IMAGES,
+        method: "POST",
+        data: form_data,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          data: "application/json",
+        },
+      },
+      appStateDispatch
+    );
+
+    enqueueSnackbar("Update on process, will take few minutes to apply.", {
+      variant: "success",
+    });
   };
 
   return (
@@ -108,6 +155,18 @@ const ContentDetails = () => {
         {({ change, data, hasChanged, submit }) => (
           <>
             <HomePromoContentCard
+              change={change}
+              data={data}
+              submit={submit}
+              disabled={!hasChanged}
+            />
+          </>
+        )}
+      </FormComponent>
+      <FormComponent initial={galleryData} onSubmit={handleSaveGalleryImage}>
+        {({ change, data, hasChanged, submit }) => (
+          <>
+            <HomeGalleryContent
               change={change}
               data={data}
               submit={submit}

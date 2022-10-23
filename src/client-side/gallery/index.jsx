@@ -1,4 +1,5 @@
 import React from "react";
+import useFetch from "./../../hooks/useFetch";
 import AppContainer from "../components/AppContainer";
 import Hero from "../components/Hero";
 import { Typography, Box } from "@mui/material";
@@ -36,6 +37,15 @@ const Gallery = () => {
   const classes = useStyles({});
   const qs = parseQs(location.search.substr(1));
   const params = qs;
+
+  const { response } = useFetch({
+    url: "get_content_settings",
+  });
+
+  const galleryImages = response?.data?.gallery_images
+    ? response?.data?.gallery_images
+    : [];
+  console.log(response);
 
   const theme = useTheme();
   const media_xs = useMediaQuery(theme.breakpoints.down("sm"));
@@ -87,14 +97,14 @@ const Gallery = () => {
           <Box>
             <ImageList variant="masonry" cols={media_xs ? 2 : 4} gap={8}>
               {galleryImages.map((item) => (
-                <ImageListItem key={item.img}>
+                <ImageListItem key={item.src}>
                   <img
-                    src={`${item.img}?w=348&fit=crop&auto=format`}
-                    srcSet={`${item.img}?w=348&fit=crop&auto=format&dpr=2 2x`}
-                    alt={item.title}
+                    src={`${item.src}?w=348&fit=crop&auto=format`}
+                    srcSet={`${item.src}?w=348&fit=crop&auto=format&dpr=2 2x`}
+                    alt={item.src}
                     loading="lazy"
                     onClick={() =>
-                      openModal("showRoomImage", { roomImage: item.img })
+                      openModal("showRoomImage", { roomImage: item.src })
                     }
                     className={classes.img}
                   />

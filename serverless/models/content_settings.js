@@ -25,6 +25,9 @@ const ContentSettingSchema = new mongoose.Schema(
       type: String,
       // required: true,
     },
+    gallery_images: {
+      type: Array,
+    },
   },
   {
     timestamps: true,

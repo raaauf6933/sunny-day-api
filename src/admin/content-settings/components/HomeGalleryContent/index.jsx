@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import PageHeader from "../../../components/PageHeader/PageHeader";
 import {
   Button,
   Card,
@@ -9,7 +8,6 @@ import {
   CardHeader,
   Divider,
   Grid,
-  TextField,
   Typography,
 } from "@mui/material";
 import FileUpload from "react-material-file-upload";
@@ -46,9 +44,10 @@ const useStyles = makeStyles(
   }
 );
 
-const HomePromoContentCard = (props) => {
+const HomeGalleryContent = (props) => {
   const { change, data, submit, disabled } = props;
   const classes = useStyles(props);
+
   return (
     <div
       className={classes.root}
@@ -57,40 +56,25 @@ const HomePromoContentCard = (props) => {
       }}
     >
       <Card>
-        <CardHeader title={"Home Page Promo Details"} />
+        <CardHeader title={"Gallery Images"} />
         <Divider variant="fullWidth" />
         <CardContent>
           <Grid container spacing={2}>
             <Grid xs={12} sm={12} md={12} item>
-              <Typography variant="h6">Promo Images</Typography>
+              <Typography variant="h6">Galler Images</Typography>
               <FileUpload
                 onChange={(e) =>
                   change({
                     target: {
-                      name: "promo_pictures",
+                      name: "gallery_images",
                       value: e,
                     },
                   })
                 }
-                value={data.promo_pictures}
-                maxFiles={4}
+                value={data.gallery_images}
                 accept="image/png, image/jpeg"
               />
             </Grid>
-            <Grid xs={12} sm={12} md={12} item>
-              <Typography variant="h6">Description</Typography>
-              <RichTextEditor
-                initialValue={data.description}
-                onEditorChange={(value) =>
-                  change({
-                    target: {
-                      name: "description",
-                      value,
-                    },
-                  })
-                }
-              />
-            </Grid>{" "}
           </Grid>
         </CardContent>
         <CardActions>
@@ -103,4 +87,4 @@ const HomePromoContentCard = (props) => {
   );
 };
 
-export default HomePromoContentCard;
+export default HomeGalleryContent;

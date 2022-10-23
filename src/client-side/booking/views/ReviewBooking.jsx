@@ -8,6 +8,7 @@ import {
   Backdrop,
   CircularProgress,
   Snackbar,
+  Checkbox,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 // import AvailedRoomTable from "../components/AvailedRoomTable";
@@ -62,6 +63,11 @@ const ReviewBooking = (props) => {
   const { bookingState, bookingDispatch } = React.useContext(bookingContext);
   const { guest, room_details } = bookingState;
   const [disabledSave, setDisabledSave] = React.useState(false);
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   const getNoQuantity = (roomtype_id) => {
     return room_details.filter((obj) => obj.roomtype_id === roomtype_id).length;
@@ -194,6 +200,38 @@ const ReviewBooking = (props) => {
                     </Typography>
                   </Grid>
                 </Grid>
+                <div
+                  style={{
+                    padding: "2em",
+                  }}
+                >
+                  <span
+                    style={{
+                      textAlign: "justify",
+                    }}
+                  >
+                    <Checkbox
+                      checked={checked}
+                      onChange={handleChange}
+                      inputProps={{ "aria-label": "controlled" }}
+                    />{" "}
+                    By ticking this this box, I/we (as “Data Subject”) grant
+                    my/our free, voluntary and unconditional consent to the
+                    collection and processing of all Personal Data (as defined
+                    below), and account or transaction information or records
+                    (collectively, the "Information") relating to me/us
+                    disclosed/transmitted by me/us in person or by my/our
+                    authorized agent/representative/s to the information
+                    database system of the Sunny Day Residences and/or any of
+                    its authorized agent/s or representative/s as Information
+                    controller, by whatever means in accordance with Republic
+                    Act (R.A.) 10173, otherwise known as the “Data Privacy Act
+                    of 2012” of the Republic of the Philippines, including its
+                    Implementing Rules and Regulations (IRR) as well as all
+                    other guidelines and issuances by the National Privacy
+                    Commission (NPC).{" "}
+                  </span>
+                </div>
               </div>
             </Card>
           </div>
@@ -227,7 +265,7 @@ const ReviewBooking = (props) => {
           onSubmit={handleSave}
           onBack={handleBack}
           saveLabel={buttonMessage.confirm}
-          disabledSave={disabledSave}
+          disabledSave={disabledSave || !checked}
         />
       </>
     );

@@ -1,0 +1,1 @@
+export const GET_ROOMTYPES = "get_roomtypes"
