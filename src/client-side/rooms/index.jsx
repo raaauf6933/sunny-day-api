@@ -6,8 +6,30 @@ import RoomSection from "../components/RoomSection";
 import { WindowTitle } from "../../admin/components/WindowTitle/WindowTitle";
 import { resortName } from "./../../config";
 import AppLayout from "../components/AppLayout";
+import useFetch from "../../hooks/useFetch";
+import { GET_ROOMTYPES } from "./api";
+import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import createDialogActionHandlers from "../utils/dialogActionHandlers";
+import { roomsHomeUrl } from "./url";
 
 const Rooms = () => {
+  const { response } = useFetch({
+    url: GET_ROOMTYPES,
+  });
+
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const [openModal, closeModal] = createDialogActionHandlers(
+    navigate,
+    null,
+    roomsHomeUrl,
+    {}
+  );
+
+  const rooms = response?.data ? response?.data : [];
+
   return (
     <>
       <AppLayout awake={true}>
@@ -46,7 +68,13 @@ const Rooms = () => {
                 Discover Our Place
               </Typography>
             </Box>
-            <RoomSection showAll={true} />
+            <RoomSection
+              showAll={true}
+              rooms={rooms}
+              openModal={openModal}
+              closeModal={closeModal}
+              searchParams={searchParams}
+            />
             {/* <Grid container spacing={3}>
           <Grid></Grid>
           <Grid></Grid>

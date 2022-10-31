@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import React from "react";
+import Carousel from "react-material-ui-carousel";
 import { currencyFormat } from "../../utils/formatter";
+import ImagePreviewDialog from "../ImagePreviewDialog";
 
-const Room = (room) => {
+const Room = ({ openModal, searchParams, closeModal, ...room }) => {
   return (
     <div>
       <Card>
@@ -20,23 +22,48 @@ const Room = (room) => {
                   overflow: "hidden",
                 }}
               >
-                <img
-                  src={room.image}
-                  style={{
-                    width: "300px",
-                    height: "200px",
-                  }}
-                />
+                <Carousel>
+                  {room.image.map((e) => (
+                    <div
+                      onClick={() => {
+                        openModal("showRoomImage", { roomImage: e.src });
+                      }}
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    >
+                      <img
+                        src={e.src}
+                        style={{
+                          width: "300px",
+                          height: "200px",
+                        }}
+                      />
+                    </div>
+                  ))}
+                </Carousel>
               </div>
             </Grid>
             <Grid item md={6}>
               <Typography variant="h6">{room.roomName}</Typography>
               <Box padding="5px">
-                <Typography variant="caption">
-                  {" "}
-                  <span class="days">- {room.maxPerson} Max Person</span>
-                </Typography>
+                {room.maxPerson && (
+                  <Typography variant="caption">
+                    <span class="days">- Good for {room.maxPerson}</span>
+                  </Typography>
+                )}
                 <br />
+                {room.noBeds && (
+                  <Typography variant="caption">
+                    <span class="days">- {room.noBeds} no. of beds</span>
+                  </Typography>
+                )}
+                <br />
+                {room.noShower && (
+                  <Typography variant="caption">
+                    <span class="days">- {room.noShower} bathroom</span>
+                  </Typography>
+                )}
                 {room?.description &&
                   room.description.map((e) => {
                     return (
@@ -56,6 +83,13 @@ const Room = (room) => {
           </Grid>
         </CardContent>
       </Card>
+      <ImagePreviewDialog
+        imageSrc={searchParams && searchParams.get("roomImage")}
+        isOpenModal={
+          searchParams && searchParams.get("action") === "showRoomImage"
+        }
+        closeModal={closeModal}
+      />
     </div>
     // <div class=" ftco-animate fadeInUp ftco-animated">
     //   <div class="project-wrap">

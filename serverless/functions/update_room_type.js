@@ -7,7 +7,7 @@ exports.handler = async (event, ct, callback) => {
     const result = await RoomTypes.findByIdAndUpdate(id, {
       name: data.name,
       details: {
-        no_person: data.no_bed,
+        no_person: parseInt(data.no_person),
         no_bed: data.no_bed,
         no_bath: data.no_bath,
         isAircon: data.isAircon,
@@ -16,6 +16,7 @@ exports.handler = async (event, ct, callback) => {
       room_rate: data.room_rate,
       status: data.status,
     });
+
     return {
       statusCode: 200,
       body: JSON.stringify(result),

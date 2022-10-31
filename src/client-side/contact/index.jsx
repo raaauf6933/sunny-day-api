@@ -55,7 +55,9 @@ const Contact = (props) => {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6}>
               <div>
-                <Typography variant="h2">Contact Info</Typography>
+                <Typography variant="h4" style={{ marginBottom: "1em" }}>
+                  Contact Us Using the Information Provided Below
+                </Typography>
                 <table className={classes.table}>
                   <tbody>
                     <tr>
@@ -75,35 +77,6 @@ const Contact = (props) => {
               </div>
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
-              <Grid container spacing={3}>
-                <Grid item md={6}>
-                  <TextField label="Name" fullWidth variant="standard" />
-                </Grid>{" "}
-                <Grid item md={6}>
-                  <TextField label="Email" fullWidth variant="standard" />
-                </Grid>
-                <Grid item md={12}>
-                  <TextField
-                    label="Your Message"
-                    fullWidth
-                    variant="standard"
-                    size="medium"
-                  />
-                </Grid>
-              </Grid>
-              <Box padding={2}>
-                <Button variant="contained">
-                  <span
-                    style={{
-                      fontSize: "1.2em",
-                    }}
-                  >
-                    Submit
-                  </span>{" "}
-                </Button>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12}>
               <div
                 class="mapouter"
                 style={{

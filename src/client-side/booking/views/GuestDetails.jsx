@@ -237,7 +237,7 @@ const GuestDetailsView = ({ navigate, params }) => {
                   alignItems="center"
                 >
                   <Grid item sm={12}>
-                    <h4>Guest Address</h4>
+                    <h4>Guest Information</h4>
                   </Grid>
                   <Grid item xs={12} sm={4}>
                     <Box>

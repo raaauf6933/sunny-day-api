@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import mainLogo from "../components/Navbar/bg_5.jpg";
 // import service1 from "../assets/images/services-1.jpg";
 // import service2 from "../assets/images/services-2.jpg";
@@ -17,10 +17,14 @@ import { WindowTitle } from "../../admin/components/WindowTitle/WindowTitle";
 import { resortName } from "./../../config";
 import bookingContext from "../context/booking/bookingContext";
 import AppLayout from "../components/AppLayout";
+import { GET_CONTENT_SETTINGS } from "./api";
+import apiAxios from "../../apiAxios";
 
 const Home = () => {
   const { navbarDispatch } = React.useContext(navbarContext);
   const { bookingDispatch } = React.useContext(bookingContext);
+
+  const [contentSettings, setContentSettings] = useState();
   React.useEffect(() => {
     navbarDispatch({ type: "SET_ALLWAYS_AWAKE", payload: false });
     bookingDispatch({
@@ -29,16 +33,33 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const fetchContentSettings = async () => {
+    setContentSettings();
+    try {
+      const result = await apiAxios({
+        url: GET_CONTENT_SETTINGS,
+        // method: "GET",
+      });
+      setContentSettings(result.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchContentSettings();
+  }, []);
+
+  console.log(contentSettings);
+
   return (
     <>
       <AppLayout>
         <WindowTitle title={resortName("Home")} />
-        <Hero></Hero>
+        <Hero contentSettings={contentSettings}></Hero>
         <AppContainer>
           {/* <CheckAvailabilityCard /> */}
 
           {/* <DatePickerSectionV2 /> */}
-          <ServiceSection />
+          <ServiceSection contentSettings={contentSettings} />
 
           {/* <SectionLabel title="Best of Our Rooms" />
 

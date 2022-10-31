@@ -4,7 +4,7 @@ import HeroItem from "./components/HeroItem";
 import { heroItems } from "../../utils/heroItems";
 // import { useLocation } from "react-router-dom";
 
-const Hero = ({ children }) => {
+const Hero = ({ children, contentSettings }) => {
   // const location = useLocation();
 
   return (
@@ -14,8 +14,9 @@ const Hero = ({ children }) => {
     // >
     // {heroItems.map((item, i) => (
     <HeroItem
-    // key={i}
-    // item={item}
+      // key={i}
+      // item={item}
+      contentSettings={contentSettings}
     >
       {children}
     </HeroItem>
