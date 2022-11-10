@@ -112,7 +112,6 @@ const About = () => {
               <Grid item md={12} sm={12} xs={12} textAlign="center">
                 <img
                   src={bg_1}
-                  srcSet={`https://res.cloudinary.com/dlqsqlkws/image/upload/v1645010234/GALLERY/17_jfqbss.jpg?w=600&h=700&fit=crop&auto=format&dpr=2 2x`}
                   alt="Sunny Day Residences"
                   loading="lazy"
                   style={{
