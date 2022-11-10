@@ -1277,8 +1277,8 @@ module.exports = (body) => {
     <div class="v-text-align v-line-height" style="color: #5c5757; line-height: 140%; text-align: left; word-wrap: break-word;">
       <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 14px; line-height: 19.6px;">Mode of Payment</span></strong></p>
   <ul>
-  <li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">Gcash | Sunny Day Residences</span></li>
-  <li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">BPI - 75544452 | Sunny Day Residences</span></li>
+  <li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">Gcash - 0927-3252964 | Maria Theresa Cacanindin Lazaro</span></li>
+  <li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">MetroBank - 013-3-013319147 | Maria Theresa Cacanindin Lazaro</span></li>
   <li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">BDO - 23564343 43112 | Sunny Day Residences</span></li>
   </ul>
     </div>
