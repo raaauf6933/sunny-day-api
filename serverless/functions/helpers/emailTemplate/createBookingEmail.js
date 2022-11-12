@@ -1279,7 +1279,7 @@ module.exports = (body) => {
   <ul>
   <li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">Gcash - 0927-3252964 | Maria Theresa Cacanindin Lazaro</span></li>
   <li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">MetroBank - 013-3-013319147 | Maria Theresa Cacanindin Lazaro</span></li>
-  <li style="font-size: 14px; line-height: 19.6px;"><span style="font-size: 14px; line-height: 19.6px;">BDO - 23564343 43112 | Sunny Day Residences</span></li>
+ 
   </ul>
     </div>
   
