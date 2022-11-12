@@ -35,7 +35,7 @@ const About = () => {
             {/* <Card>
               <CardContent> */}
             <Grid container alignItems="center" spacing={3}>
-              <Grid item md={6} sm={12} xs={12}>
+              <Grid item md={12} sm={12} xs={12}>
                 <Typography
                   variant="h4"
                   fontWeight={600}
@@ -44,19 +44,28 @@ const About = () => {
                 >
                   Welcome to Sunny Day Residences
                 </Typography>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    opacity: 0.8,
+                <div
+                  style={{
+                    margin: "auto",
+                    width: "50%",
                   }}
-                  lineHeight={1.5}
                 >
-                  Built in 2011, this hotel is located in Antipolo, Phillipines
-                  with easy access to the city’s tourist attractions. It offers
-                  tastefully decorated rooms.
-                </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      opacity: 0.8,
+                    }}
+                    lineHeight={1.5}
+                    width={120}
+                    textAlign="center"
+                  >
+                    Built in 2011, this hotel is located in Antipolo,
+                    Phillipines with easy access to the city’s tourist
+                    attractions. It offers tastefully decorated rooms.
+                  </Typography>
+                </div>
               </Grid>
-              <Grid item md={6} sm={12} xs={12}>
+              {/* <Grid item md={6} sm={12} xs={12}>
                 <Box
                   display="flex"
                   flexDirection="column"
@@ -108,7 +117,7 @@ const About = () => {
                     Discount 20% On F&B
                   </span>
                 </Box>
-              </Grid>
+              </Grid> */}
               <Grid item md={12} sm={12} xs={12} textAlign="center">
                 <img
                   src={bg_1}
