@@ -81,7 +81,7 @@ const RoomTypeListPage = (props) => {
 
   return (
     <>
-      <PageHeader title={"Bookings"}>
+      <PageHeader title={"Room Management"}>
         {" "}
         <Button color="primary" variant="contained" onClick={onAdd}>
           <span>Create Room Type</span>

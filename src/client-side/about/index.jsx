@@ -56,7 +56,6 @@ const About = () => {
                       opacity: 0.8,
                     }}
                     lineHeight={1.5}
-                    width={120}
                     textAlign="center"
                   >
                     Built in 2011, this hotel is located in Antipolo,

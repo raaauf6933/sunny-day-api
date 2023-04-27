@@ -69,6 +69,7 @@ const CreateBooking = async (event, context, callback) => {
       body: JSON.stringify(newBookings),
     };
   } catch (error) {
+    console.log(error.message);
     return {
       statusCode: 400,
       body: JSON.stringify({ status: "failed", message: error.message }),
