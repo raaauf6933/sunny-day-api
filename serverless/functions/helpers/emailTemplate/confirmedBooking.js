@@ -708,7 +708,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 10px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align v-line-height" style="color: #615e5e; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 12px; line-height: 16.8px;">- Extra guest is PHP300.00/pax, min of 1 pax per room. (To be added upon check-in)</span></p>
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 12px; line-height: 16.8px;">- Extra guest is PHP500.00/pax, min of 1 pax per room. (To be added upon check-in)</span></p>
   </div>
 
       </td>
