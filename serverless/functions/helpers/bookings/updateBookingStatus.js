@@ -49,7 +49,7 @@ exports.updatePending = ({ id, status, paymentAmount, user_name }) => {
         },
       });
 
-      sendEmail(result, { type: bookingStatus.CONFIRMED });
+      await sendEmail(result, { type: bookingStatus.CONFIRMED });
       resolve(result);
     } catch (error) {
       reject(error);
