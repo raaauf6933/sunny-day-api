@@ -223,7 +223,7 @@ const GuestDetailsView = ({ navigate, params }) => {
                             title="max guest was based in your selected rooms"
                             placement="bottom"
                           >
-                            <div>Max Guest ({max_person})</div>
+                            <div>Good For ({max_person})</div>
                           </Tooltip>
                         }
                       />

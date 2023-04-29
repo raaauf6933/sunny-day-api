@@ -31,6 +31,7 @@ const BookingDetails = () => {
   const params = qs;
   const { appStateDispatch } = React.useContext(AppStateContext);
   const { enqueueSnackbar } = useSnackbar();
+  const [maxBed, setMaxBed] = React.useState(0);
 
   const fetchBooking = async () => {
     try {
@@ -39,6 +40,14 @@ const BookingDetails = () => {
         appStateDispatch
       );
       setBooking(result.data);
+
+      let maxBedAmenity = 0;
+      result.data.rooms.forEach((e) => {
+        maxBedAmenity += e.no_person;
+      });
+
+      setMaxBed(maxBedAmenity);
+
       return result.data;
     } catch (error) {
       enqueueSnackbar(error.data?.message || "Something Went Wrong", {
@@ -239,6 +248,7 @@ const BookingDetails = () => {
         onClose={closeModal}
         fetchAmenities={fetchAmenities}
         addAmenity={addAmenity}
+        maxBed={maxBed}
       />
       <BookingDiscountDialog
         open={params.action === "onAddDiscount"}

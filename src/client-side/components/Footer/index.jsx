@@ -14,7 +14,8 @@ const useStyles = makeStyles(
       padding: "2em",
       fontSize: "16px",
       borderTop: "1px solid rgba(0, 0, 0, 0.05)",
-      background: "#FFF",
+      background: "#000000d4",
+      color: "white",
     },
   }),
   {

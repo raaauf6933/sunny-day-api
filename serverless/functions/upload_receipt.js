@@ -76,6 +76,7 @@ const myMiddleware = (config) => {
         const result = await parseMultipartForm(handler.event);
         handler.event.files = result;
       } catch (error) {
+        console.log("errrr", error.message);
         return {
           statusCode: 400,
           body: JSON.stringify({ message: error.message }),

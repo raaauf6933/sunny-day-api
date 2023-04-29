@@ -147,13 +147,12 @@ const MyBookingDetails = (props) => {
 
   const checkFiles = async (files) => {
     const toUpload = [];
-
+    var formData = new FormData();
     Array.from(files).map((file) => toUpload.push(file));
 
     if (toUpload.length === 0) {
       alert("error");
     } else {
-      var formData = new FormData();
       Array.from(files).forEach((file) => formData.append("files", file));
       uploadReceipt(formData);
     }

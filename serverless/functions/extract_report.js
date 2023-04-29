@@ -65,6 +65,14 @@ exports.handler = async (event, context, callback) => {
             $lt: startTo,
           },
         };
+      case "CANCELLED":
+        return {
+          status: "CANCELLED",
+          createdAt: {
+            $gte: startFrom,
+            $lt: startTo,
+          },
+        };
       default:
         return {
           createdAt: {

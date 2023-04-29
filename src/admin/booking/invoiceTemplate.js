@@ -195,7 +195,7 @@ export const getInvoice = (booking) => {
                 margin: [0, 3, 0, 0],
                 text: `CheckOut:  ${moment(booking.check_out).format(
                   "LL"
-                )} (2 nights)`,
+                )} (${getNoNights(check_in, check_out)} nights)`,
                 fontSize: 14,
               },
               {

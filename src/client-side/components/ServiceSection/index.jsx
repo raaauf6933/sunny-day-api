@@ -93,8 +93,27 @@ const ServiceSection = (props) => {
             height="100%"
           >
             <div
+              style={{
+                fontFamily: 'Georgia, Times, "Times New Roman", serif',
+                fontSize: "1.5em",
+
+                textAlign: "center",
+                paddingBottom: "2.6em",
+              }}
+            >
+              <span>
+                Ready to escape the hustle and bustle of everyday life? Our
+                place has everything you need to plan your next getaway. From
+                cozy rooms to deluxe suites, we have something for everyone.
+                Book your stay today and start planning your perfect vacation
+              </span>
+            </div>
+            <div
               dangerouslySetInnerHTML={{
                 __html: contentSettings?.home_description2,
+              }}
+              style={{
+                fontWeight: "100",
               }}
             ></div>
             {/* <Typography

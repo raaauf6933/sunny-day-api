@@ -15,6 +15,7 @@ const BookingAdditionalDialog = ({
   onClose,
   fetchAmenities,
   addAmenity,
+  maxBed,
 }) => {
   const [choices, setChoices] = React.useState([]);
 
@@ -55,6 +56,18 @@ const BookingAdditionalDialog = ({
         onSubmit={handleSubmit}
       >
         {({ data, change, submit }) => {
+          const maxQty = data?.amenity_id
+            ? JSON.parse(data?.amenity_id).name === "Extra Bed"
+              ? maxBed
+              : 10
+            : 10;
+          // ? JSON.parse(data?.amenity_id)?.name === "Extra Bed"
+          //   ? 5
+          //   : undefined
+          // : undefined;
+
+          // console.log(JSON.parse(data.amenity_id));
+
           return (
             <>
               <DialogContent dividers>
@@ -63,7 +76,21 @@ const BookingAdditionalDialog = ({
                   value={data.amenity_id}
                   name="amenity_id"
                   choices={choices}
-                  onChange={change}
+                  onChange={(e) => {
+                    change({
+                      target: {
+                        name: "amenity_id",
+                        value: e.target.value,
+                      },
+                    });
+
+                    change({
+                      target: {
+                        name: "qty",
+                        value: 1,
+                      },
+                    });
+                  }}
                 />
 
                 <TextField
@@ -71,16 +98,27 @@ const BookingAdditionalDialog = ({
                   type="number"
                   inputProps={{
                     min: 1,
+                    max: maxQty,
                   }}
                   name="qty"
                   value={data.qty}
+                  helperText={
+                    maxQty ? `${maxQty} (maximum)` : `${maxQty} (maximum)`
+                  }
                   onChange={(e) =>
                     change({
                       target: {
                         name: "qty",
-                        value: parseInt(
-                          e.target.value.replace(/\D/g, "").replace(/^0+/, "")
-                        ),
+                        value:
+                          parseInt(
+                            e.target.value.replace(/\D/g, "").replace(/^0+/, "")
+                          ) > maxQty
+                            ? maxQty
+                            : parseInt(
+                                e.target.value
+                                  .replace(/\D/g, "")
+                                  .replace(/^0+/, "")
+                              ),
                       },
                     })
                   }

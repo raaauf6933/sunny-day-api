@@ -17,16 +17,19 @@ const useStyles = makeStyles(
       appBarSleep: {
         background: "transparent !important",
         boxShadow: "none !important",
-        transition: ".3s all ease-out !important",
-        WebkitTransition: ".3s all ease-out !important",
+        transition: ".1s all ease-out !important",
+        WebkitTransition: ".1s all ease-out !important",
+        fontSize: "12px",
       },
       appBarAwake: {
-        background: "#FFFFFF !important",
-        color: "black !important",
+        background: "#000000d4 !important",
+        color: "white !important",
         boxShadow:
           "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%) !important",
-        transition: ".3s all ease-out !important",
-        WebkitTransition: ".3s all ease-out !important",
+        transition: ".1s all ease-out !important",
+        WebkitTransition: ".1s all ease-out !important",
+        padding: "1.6em",
+        fontSize: "12px",
       },
       welcomeTitle: {
         fontSize: "1em",
@@ -46,8 +49,8 @@ const AppbarDynamic = (props) => {
     <AppBar
       className={trigger ? classes.appBarAwake : classes.appBarSleep}
       style={{
-        transition: ".3s all ease-out !important",
-        WebkitTransition: ".3s all ease-out !important",
+        transition: ".1s all ease-out !important",
+        WebkitTransition: ".1s all ease-out !important",
       }}
     >
       <AppContainer>
@@ -101,7 +104,7 @@ const AppbarDynamic = (props) => {
                       location.pathname === e.url
                         ? "#f7b12f"
                         : trigger
-                        ? "#000000a6"
+                        ? "white"
                         : "white",
                     fontWeight: 600,
                     marginRight: "2em",

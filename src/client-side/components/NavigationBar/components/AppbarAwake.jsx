@@ -14,9 +14,11 @@ const useStyles = makeStyles(
   () => {
     return {
       appBarAllwaysAwake: {
-        background: "#FFFFFF !important",
-        color: "black !important",
+        background: "#000000d4 !important",
+        color: "white !important",
         borderBottom: "2px #00000026 solid",
+        fontSize: "12px",
+        padding: "1.6em",
       },
     };
   },
@@ -30,7 +32,7 @@ const AppbarAwake = (props) => {
   return (
     <AppBar className={classes.appBarAllwaysAwake}>
       <AppContainer>
-        <Toolbar>
+        <Toolbar variant="dense">
           <Hidden smUp>
             <IconButton
               size="large"
@@ -72,7 +74,7 @@ const AppbarAwake = (props) => {
                     color:
                       location.pathname + location.search === e.url
                         ? "#f7b12f"
-                        : "#000000a6",
+                        : "white",
                     fontWeight: 600,
                     marginRight: "2em",
                     fontSize: "1.5em",

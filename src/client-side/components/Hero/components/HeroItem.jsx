@@ -62,7 +62,7 @@ const HeroItem = (props) => {
           }}
           spacing={5}
         >
-          <Grid item xs={12} sm={12} md={8} lg={8} alignSelf="center">
+          <Grid item xs={12} sm={12} md={12} lg={12} alignSelf="center">
             <div>
               {/* <Typography variant="h4" color="white" textAlign="center" >
                 Sunny Day Residences
@@ -108,7 +108,7 @@ const HeroItem = (props) => {
               </div>
             </div>
           </Grid>
-          <Grid item xs={12} sm={12} md={4} lg={4} alignSelf="center">
+          <Grid item xs={12} sm={12} md={12} lg={12} alignSelf="center">
             {isBooking ? (
               <DatePickerSectionV2 toggleCard={() => setIsBooking(false)} />
             ) : (

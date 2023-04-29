@@ -59,6 +59,24 @@ const Home = () => {
           {/* <CheckAvailabilityCard /> */}
 
           {/* <DatePickerSectionV2 /> */}
+          <div
+            style={{
+              fontSize: "2em",
+              padding: "2em",
+              textAlign: "center",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: 'Georgia, Times, "Times New Roman", serif',
+              }}
+            >
+              Welcome to our page! With just a few clicks, you can easily book
+              your dream vacation. We offer a wide variety of rooms and suites
+              to fit any budget or preference. Start planning your next getaway
+              with us today!
+            </span>
+          </div>
           <ServiceSection contentSettings={contentSettings} />
 
           {/* <SectionLabel title="Best of Our Rooms" />
