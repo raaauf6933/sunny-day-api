@@ -18,7 +18,7 @@ exports.handler = async (event, context, callback) => {
       status: bookingStatus.PENDING,
     });
     const confirmed_booking = await Bookings.find({
-      status: bookingStatus.CONFIRMED,
+      status: bookingStatus.RESERVED,
     });
 
     const all_bookings = await Bookings.find();

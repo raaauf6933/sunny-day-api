@@ -156,7 +156,7 @@ const Dashboard = () => {
                   />
                 </div>
                 <Box marginLeft="1em">
-                  <Typography variant="h6">Confirmed Bookings</Typography>
+                  <Typography variant="h6">Reserved Bookings</Typography>
                   <Typography variant="h4">
                     {reports?.confirmed_booking !== undefined ? (
                       reports?.confirmed_booking

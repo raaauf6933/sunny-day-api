@@ -1,5 +1,5 @@
 export const ButtonMessage = {
-  confirmed: "Confirmed",
+  confirmed: "Reserved",
   checkIn: "Check-In",
   checkOut: "Check-Out",
 };

@@ -53,9 +53,9 @@ const BookingList = () => {
       },
       {
         data: {
-          bookingStatus: "CONFIRMED",
+          bookingStatus: "RESERVED",
         },
-        name: "CONFIRMED",
+        name: "RESERVED",
       },
       {
         data: {

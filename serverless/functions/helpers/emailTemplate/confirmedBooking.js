@@ -277,7 +277,7 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 30px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align v-line-height" style="color: #47484b; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 30px; line-height: 42px;">Your Booking is Confirmed!</span></strong></p>
+    <p style="font-size: 14px; line-height: 140%;"><strong><span style="font-size: 30px; line-height: 42px;">Your Booking is Reserved!</span></strong></p>
   </div>
 
       </td>
@@ -902,8 +902,8 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 10px;font-family:'Open Sans',sans-serif;" align="left">
         
   <div class="v-text-align v-line-height" style="color: #615e5e; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;">- Cancellation of booking is not allowed if the booking is confirmed</p>
-<p style="font-size: 14px; line-height: 140%;">- Rebooking/Modifying of booking is not allowed if the booking is confirmed</p>
+    <p style="font-size: 14px; line-height: 140%;">- Cancellation of booking is not allowed if the booking is resereved</p>
+<p style="font-size: 14px; line-height: 140%;">- Rebooking/Modifying of booking is not allowed if the booking is reserved</p>
 <p style="font-size: 14px; line-height: 140%;">- No Refund</p>
   </div>
 

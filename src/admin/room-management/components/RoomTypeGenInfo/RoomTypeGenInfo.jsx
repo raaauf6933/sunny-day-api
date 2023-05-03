@@ -55,7 +55,7 @@ const RoomTypeGenInfo = (props) => {
             </Grid>
             <Grid xs={12} sm={3} md={3} item>
               <TextField
-                label="Number of Person"
+                label="Good for No. Person"
                 variant="outlined"
                 type="number"
                 name="no_person"
@@ -69,7 +69,7 @@ const RoomTypeGenInfo = (props) => {
             </Grid>
             <Grid xs={6} sm={3} md={3} item>
               <TextField
-                label="Number of Bed"
+                label="Bed"
                 variant="outlined"
                 type="number"
                 name="no_bed"
@@ -83,7 +83,7 @@ const RoomTypeGenInfo = (props) => {
             </Grid>
             <Grid xs={6} sm={3} md={3} item>
               <TextField
-                label="Number of Bathroom"
+                label="Bathroom"
                 variant="outlined"
                 type="number"
                 inputProps={{

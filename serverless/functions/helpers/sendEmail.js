@@ -68,11 +68,11 @@ const sendEmail = async (booking, { type }) => {
           ],
         };
         break;
-      case "CONFIRMED":
+      case "RESERVED":
         return {
           from: "Sunny Day Residences <sunnydayresidencesofficial@gmail.com>",
           to: "sunnydayresidencesofficial@gmail.com, " + email,
-          subject: `BOOKING CONFIRMED | ${booking_reference}`,
+          subject: `BOOKING RESERVED | ${booking_reference}`,
           html: confirmedBooking(booking),
           attachments: [
             {

@@ -38,7 +38,7 @@ exports.handler = async (event, context, callback) => {
     ...body,
     booking_reference,
     expiration_date: createExpirationDate(),
-    status: bookingStatus.CONFIRMED,
+    status: bookingStatus.RESERVED,
     booking_type: bookingType.WALK_IN,
     billing: {
       discount: {

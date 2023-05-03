@@ -13,8 +13,8 @@ export const createBookingTypeChoices = () => {
       value: "PENDING",
     },
     {
-      label: "Confirmed",
-      value: "CONFIRMED",
+      label: "Reserved",
+      value: "RESERVED",
     },
     {
       label: "Check-In",

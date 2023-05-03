@@ -21,7 +21,7 @@ module.exports = async (handler) => {
     var endDate = moment(e.check_out);
 
     if (
-      ["PENDING", "CONFIRMED", "CHECK_IN"].includes(e.status) &&
+      ["PENDING", "RESERVED", "CHECK_IN"].includes(e.status) &&
       (new_check_in.isBetween(startDate, endDate) ||
         new_check_out.isBetween(startDate, endDate) ||
         (new_check_in.isSameOrBefore(startDate) &&

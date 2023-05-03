@@ -22,7 +22,7 @@ const UpdateBookingStatus = async (event, context, callback) => {
       case bookingStatus.PENDING:
         result = await updatePending({ id, status, paymentAmount, user_name });
         break;
-      case bookingStatus.CONFIRMED:
+      case bookingStatus.RESERVED:
         result = await updateConfirmed({
           id,
           status,

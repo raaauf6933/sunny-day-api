@@ -21,7 +21,7 @@ module.exports = async (req, res, next) => {
     var endDate = moment(e.check_out);
 
     if (
-      ["PENDING", "CONFIRMED", "CHECK_IN"].includes(e.status) &&
+      ["PENDING", "RESERVED", "CHECK_IN"].includes(e.status) &&
       (new_check_in.isBetween(startDate, endDate) ||
         new_check_out.isBetween(startDate, endDate) ||
         (new_check_in.isSameOrBefore(startDate) &&
@@ -60,13 +60,11 @@ module.exports = async (req, res, next) => {
   }
 
   if (getDifference(rooms, room_booking_holder).length === 0) {
-    res
-      .status(400)
-      .send({
-        status: "failed",
-        code: "ROOM_TAKEN",
-        messagge: "Selected Rooms has been already taken",
-      });
+    res.status(400).send({
+      status: "failed",
+      code: "ROOM_TAKEN",
+      messagge: "Selected Rooms has been already taken",
+    });
   } else {
     next();
   }

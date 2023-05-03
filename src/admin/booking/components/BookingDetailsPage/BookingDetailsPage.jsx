@@ -61,8 +61,8 @@ const BookingDetailsPage = (props) => {
   const saveButtonLabel = () => {
     switch (booking?.status) {
       case "PENDING":
-        return "CONFIRMED";
-      case "CONFIRMED":
+        return "RESERVED";
+      case "RESERVED":
         return "CHECK-IN";
       case "CHECK_IN":
         return "CHECK-OUT";
@@ -76,7 +76,7 @@ const BookingDetailsPage = (props) => {
       case "PENDING":
         onConfirmBooking();
         break;
-      case "CONFIRMED":
+      case "RESERVED":
         onConfirmBooking();
         break;
       case "CHECK_IN":

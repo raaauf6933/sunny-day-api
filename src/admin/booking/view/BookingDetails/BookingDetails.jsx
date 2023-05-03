@@ -188,10 +188,10 @@ const BookingDetails = () => {
         case "PENDING":
           return (
             <span>
-              Are you sure you want to mark this booking as <b>CONFIRMED</b>?
+              Are you sure you want to mark this booking as <b>RESERVED</b>?
             </span>
           );
-        case "CONFIRMED":
+        case "RESERVED":
           return (
             <span>
               Are you sure you want to mark this booking as <b>CHECK-IN</b>?

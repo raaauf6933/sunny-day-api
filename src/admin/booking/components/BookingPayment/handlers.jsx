@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 
 export const createAddDiscountBtn = (status, discount, onAddDiscount) => {
-  if (status === "CONFIRMED" && !discount) {
+  if (status === "RESERVED" && !discount) {
     return (
       <>
         <Button
