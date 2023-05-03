@@ -61,7 +61,13 @@ const BookingDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const UpdateStatus = async ({ id, status, paymentAmount }) => {
+  const UpdateStatus = async ({
+    id,
+    status,
+    paymentAmount,
+    check_in,
+    check_out,
+  }) => {
     try {
       await ApiAxios(
         {
@@ -75,6 +81,8 @@ const BookingDetails = () => {
               paymentAmount !== null || paymentAmount !== undefined
                 ? paymentAmount
                 : null,
+            check_in,
+            check_out,
           },
           url: UPDATE_BOOKING_STATUS,
           method: "POST",
@@ -218,6 +226,7 @@ const BookingDetails = () => {
         onBack={() => navigate("/admin/bookings")}
       />
       <ConfirmBookingDialog
+        booking={booking}
         open={params.action === "onConfirmBooking"}
         onClose={closeModal}
         status={booking?.status}
@@ -226,6 +235,8 @@ const BookingDetails = () => {
             id: booking?._id,
             status: booking?.status,
             paymentAmount,
+            check_in: booking.check_in,
+            check_out: booking.check_out,
           })
         }
         fetchBooking={fetchBooking}

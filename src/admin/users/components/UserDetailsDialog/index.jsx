@@ -5,8 +5,13 @@ import {
   DialogContent,
   DialogActions,
   Button,
+  Select,
   TextField,
   Grid,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  FormHelperText,
 } from "@mui/material";
 import Form from "./../../../components/Form/Form";
 import { hasNoError } from "./../../../utils/hasNoError";
@@ -33,6 +38,7 @@ const UserDetailsDialog = (props) => {
     last_name: params?.type === "create" ? "" : user?.last_name,
     email: params?.type === "create" ? "" : user?.email,
     username: params?.type === "create" ? "" : user?.username,
+    user_type: params?.type === "create" ? "FRONT_DESK" : user?.user_type,
     password: "",
   };
 
@@ -42,6 +48,7 @@ const UserDetailsDialog = (props) => {
       if (params?.type === "create") {
         if (hasNoError(validate)) {
           setErrorValdiation(validate);
+
           createUser(formData);
           onClose();
         } else {
@@ -142,6 +149,31 @@ const UserDetailsDialog = (props) => {
                       },
                     }}
                   />
+                </Grid>
+                <Grid item md={12} sm={12} xs={12} lg={12}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      User Type
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      fullWidth
+                      label="User Type"
+                      name="user_type"
+                      value={data.user_type}
+                      onChange={change}
+                      error={!!error.user_type}
+                      helperText={error.user_type}
+                    >
+                      <MenuItem value="FRONT_DESK">FRONT DESK</MenuItem>
+                      <MenuItem value="ADMIN">ADMIN</MenuItem>
+                    </Select>
+                    {error.user_type && (
+                      <FormHelperText error={!!error.user_type}>
+                        {error.user_type}
+                      </FormHelperText>
+                    )}
+                  </FormControl>
                 </Grid>
               </Grid>
             </DialogContent>

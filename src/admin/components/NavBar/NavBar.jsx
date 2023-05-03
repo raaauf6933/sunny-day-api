@@ -8,7 +8,7 @@ import { Hidden, Button } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 // import Box from "@mui/material/Box";
-import { navbarStructure } from "./navBarStructure";
+import { navbarStructure as createNavBarStructure } from "./navBarStructure";
 import MobileDrawer from "./MobileDrawer";
 import DesktopDrawer from "./DesktopDrawer";
 import { useLocation } from "react-router-dom";
@@ -23,7 +23,12 @@ export default function NavBar({ children }) {
   const drawerWidth = open ? 240 : 80;
   const location = useLocation();
   const { appState } = React.useContext(AppStateContext);
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
+
+  const navbarStructure = () =>
+    createNavBarStructure().filter((e) =>
+      e.role.some((r) => r === user.user_type)
+    );
 
   return (
     <Box sx={{ display: "flex" }}>

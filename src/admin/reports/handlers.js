@@ -1,5 +1,6 @@
 import moment from "moment";
 import { currencyFormat } from "./../../misc";
+import { image } from "./base64logo";
 
 export const createBookingTypeChoices = () => {
   return [
@@ -124,8 +125,22 @@ export const dd = (data, formData, user) => {
   return {
     content: [
       {
-        alignment: "justify",
+        alignment: "",
         columns: [
+          {
+            stack: [
+              {
+                columns: [
+                  {
+                    image: image,
+                    width: 50,
+                  },
+                ],
+              },
+            ],
+            // text: 'Sunny Day Residences',
+            style: "header",
+          },
           {
             text: "Sunny Day Residences",
             style: "header",
@@ -187,7 +202,7 @@ export const dd = (data, formData, user) => {
                 style: "tableheader",
               },
               {
-                text: "Payed Amount",
+                text: "Paid Amount",
                 style: "tableheader",
               },
               {

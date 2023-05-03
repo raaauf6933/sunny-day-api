@@ -18,6 +18,14 @@ exports.updatePending = ({ id, status, paymentAmount, user_name }) => {
             message: "Payment Amount Should be less than Outstanding Balance",
           })
         );
+      } else if (parseFloat(paymentAmount) < parseFloat(total_balance) / 2) {
+        throw Error(
+          JSON.stringify({
+            code: "PAYMENT_INSUFFICIENT",
+            message:
+              "Payment Amount Should be greater than or equal to 50% of the total amount",
+          })
+        );
       }
 
       const result = await Bookings.findByIdAndUpdate(
@@ -57,7 +65,13 @@ exports.updatePending = ({ id, status, paymentAmount, user_name }) => {
   });
 };
 
-exports.updateConfirmed = ({ id, status, paymentAmount, user_name }) => {
+exports.updateConfirmed = ({
+  id,
+  status,
+  paymentAmount,
+  user_name,
+  check_in,
+}) => {
   return new Promise(async (resolve, reject) => {
     try {
       // validate payment amount
@@ -77,6 +91,13 @@ exports.updateConfirmed = ({ id, status, paymentAmount, user_name }) => {
           JSON.stringify({
             code: "PAYMENT_INSUFFICIENT",
             message: "Outstanding balance must be equal to PHP 0.00",
+          })
+        );
+      } else if (moment(moment(check_in).format("YYYY-MM-DD")).isAfter()) {
+        throw Error(
+          JSON.stringify({
+            code: "PAYMENT_INSUFFICIENT",
+            message: "Check-in date must be same with the current date",
           })
         );
       }
@@ -111,7 +132,13 @@ exports.updateConfirmed = ({ id, status, paymentAmount, user_name }) => {
   });
 };
 
-exports.updateCheckIn = ({ id, status, paymentAmount, user_name }) => {
+exports.updateCheckIn = ({
+  id,
+  status,
+  paymentAmount,
+  user_name,
+  check_out,
+}) => {
   return new Promise(async (resolve, reject) => {
     try {
       // validate payment amount
@@ -131,6 +158,14 @@ exports.updateCheckIn = ({ id, status, paymentAmount, user_name }) => {
           JSON.stringify({
             code: "PAYMENT_INSUFFICIENT",
             message: "Outstanding balance must be equal to PHP 0.00",
+          })
+        );
+      } else if (moment(check_out, "YYYY-MM-DD").isAfter(moment(), "day")) {
+        throw Error(
+          JSON.stringify({
+            code: "PAYMENT_INSUFFICIENT",
+            message:
+              "Check-out date must be same with the corresponding check-out date",
           })
         );
       }

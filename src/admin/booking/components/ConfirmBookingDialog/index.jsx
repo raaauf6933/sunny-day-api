@@ -23,9 +23,9 @@ import { LoadingButton } from "@mui/lab";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const ConfirmBookingDialog = (props) => {
-  const { open, onClose, onSubmit, fetchBooking } = props;
+  const { open, onClose, onSubmit, fetchBooking, booking } = props;
   const [loading, setLoading] = React.useState(false);
-
+  // console.log(booking);
   const handleSubmit = async ({ payment_amount, generate_invoice }) => {
     setLoading(true);
     const result = await onSubmit(numeral(payment_amount)._value);
@@ -48,7 +48,10 @@ const ConfirmBookingDialog = (props) => {
         <DialogTitle>Confirm Booking</DialogTitle>
         <Form
           initial={{
-            payment_amount: 0.0,
+            payment_amount:
+              booking.status === "PENDING"
+                ? booking.billing.total_amount / 2
+                : booking.total_balance,
             generate_invoice: true,
           }}
           onSubmit={handleSubmit}

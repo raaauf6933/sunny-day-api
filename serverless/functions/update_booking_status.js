@@ -12,7 +12,7 @@ const {
 
 const UpdateBookingStatus = async (event, context, callback) => {
   const { body, user } = event;
-  const { id, status, paymentAmount } = body;
+  const { id, status, paymentAmount, check_in, check_out } = body;
 
   const user_name = `${user.first_name} ${user.last_name}`;
 
@@ -28,10 +28,19 @@ const UpdateBookingStatus = async (event, context, callback) => {
           status,
           paymentAmount,
           user_name,
+          check_in,
+          check_out,
         });
         break;
       case bookingStatus.CHECK_IN:
-        result = await updateCheckIn({ id, status, paymentAmount, user_name });
+        result = await updateCheckIn({
+          id,
+          status,
+          paymentAmount,
+          user_name,
+          check_in,
+          check_out,
+        });
         break;
       case bookingStatus.CANCELLED:
         result = await cancelBooking({ id, status, user_name });
