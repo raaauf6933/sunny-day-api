@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Box, TextField, Tooltip } from "@mui/material";
 import { City } from "../../../../../client-side/booking/City";
 import Select from "../../../../../client-side/components/Select";
 import { restrictInput } from "./../../../../../client-side/utils/validators/guestForm";
+import { getMaxPerson } from "../../../../../client-side/booking/handlers";
 
 const initalFormValidation = {
   first_name: null,
@@ -15,7 +16,7 @@ const initalFormValidation = {
   city: null,
 };
 
-const GuestForm = ({ guest, dispatch }) => {
+const GuestForm = ({ guest, dispatch, bookingState }) => {
   const [formError] = React.useState(initalFormValidation);
   const {
     first_name,
@@ -37,16 +38,35 @@ const GuestForm = ({ guest, dispatch }) => {
     return citys;
   };
 
+  const max_person = getMaxPerson(bookingState.room_details);
+
+  useEffect(() => {
+    if (!!max_person) {
+      dispatch({
+        type: "RESET_GUEST_PERSON",
+      });
+    }
+  }, [bookingState.room_details]);
+
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     const validate = restrictInput(name, value);
 
     if (name === "no_guest") {
-      if (value) {
+      // if (value) {
+      //   dispatch({
+      //     type: "SET_GUEST_DETAILS",
+      //     payload: {
+      //       [name]: parseInt(value.replace(/\D/g, "").replace(/^0+/, "")),
+      //     },
+      //   });
+      // }
+
+      if (value <= max_person) {
         dispatch({
           type: "SET_GUEST_DETAILS",
           payload: {
-            [name]: value,
+            [name]: parseInt(value.replace(/\D/g, "").replace(/^0+/, "")),
           },
         });
       }
@@ -176,13 +196,20 @@ const GuestForm = ({ guest, dispatch }) => {
               }}
               fullWidth
               required
+              disabled={!max_person}
               helperText={
-                <Tooltip
-                  title="max guest was based in your selected rooms"
-                  placement="bottom"
-                >
-                  <div>Max Guest (43)</div>
-                </Tooltip>
+                <div>
+                  <Tooltip
+                    title="max guest was based in your selected rooms"
+                    placement="bottom"
+                  >
+                    {max_person ? (
+                      <div>Good For ({max_person})</div>
+                    ) : (
+                      <span></span>
+                    )}
+                  </Tooltip>
+                </div>
               }
             />
           </Box>

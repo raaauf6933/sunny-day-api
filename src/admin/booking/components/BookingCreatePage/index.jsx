@@ -94,6 +94,7 @@ const BookingCreatePage = (props) => {
               <GuestForm
                 guest={bookingState.guest}
                 dispatch={bookingDispatch}
+                bookingState={bookingState}
               />
             </div>
 
