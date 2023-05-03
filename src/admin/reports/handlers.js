@@ -102,6 +102,10 @@ const createDataRows = (data) => {
         style: "tableBody",
       },
       {
+        text: `${booking.guest.first_name} ${booking.guest.last_name}`,
+        style: "tableBody",
+      },
+      {
         text: `${currencyFormat(payment_amount)}`,
         style: "tableBody",
       },
@@ -167,6 +171,7 @@ export const dd = (data, formData, user) => {
       },
       {
         style: "tableExample",
+        width: "*",
         margin: [0, 10, 10, 10],
         table: {
           //   widths: [100,100,100],
@@ -199,6 +204,10 @@ export const dd = (data, formData, user) => {
               },
               {
                 text: "Status",
+                style: "tableheader",
+              },
+              {
+                text: "Reserved By",
                 style: "tableheader",
               },
               {
@@ -291,9 +300,11 @@ export const dd = (data, formData, user) => {
         bold: true,
         fontWeight: 600,
         margin: [5, 5, 5, 5],
+        fontSize: 12,
       },
       tableBody: {
         margin: [5, 5, 5, 5],
+        fontSize: 8,
       },
       date: {
         fontSize: 16,
