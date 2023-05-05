@@ -27,6 +27,16 @@ export const getInvoice = (booking) => {
     return roomTotalAmount;
   };
 
+  const getTotalDiscounts = () => {
+    let total_discounts = 0;
+
+    for (let r of rooms) {
+      total_discounts = total_discounts + r.discount_amount;
+    }
+
+    return total_discounts;
+  };
+
   const handleGetRooms = () => {
     const removeDuplicates = rooms
       ? rooms.filter(
@@ -40,6 +50,7 @@ export const getInvoice = (booking) => {
         rate: e.room_amount,
         qty: getNoQuantity(e.roomtype_id),
         amount: getRoomAmount(e.roomtype_id, e.room_amount),
+        discount: e.discount_amount ? e.discount_amount : 0,
       };
     });
 
@@ -58,6 +69,14 @@ export const getInvoice = (booking) => {
       },
       {
         text: currencyFormat(e.amount),
+        style: "tableBody",
+      },
+      {
+        text: `- ${currencyFormat(e.discount)}`,
+        style: "tableBody",
+      },
+      {
+        text: currencyFormat(e.amount - e.discount),
         style: "tableBody",
       },
     ]);
@@ -215,7 +234,7 @@ export const getInvoice = (booking) => {
         margin: [0, 20, 0, 0],
 
         table: {
-          widths: ["*", "*", "*", "*"],
+          widths: ["*", "*", "*", "*", "*", "*"],
           body: [
             [
               {
@@ -229,6 +248,14 @@ export const getInvoice = (booking) => {
               },
               {
                 text: "QTY",
+                style: "tableheader",
+              },
+              {
+                text: "SUB TOTAL",
+                style: "tableheader",
+              },
+              {
+                text: "DISCOUNT",
                 style: "tableheader",
               },
               {
@@ -343,7 +370,7 @@ export const getInvoice = (booking) => {
                   },
                   {
                     alignment: "right",
-                    text: `( ${currencyFormat(billing?.discount?.amount)} )`,
+                    text: `( ${currencyFormat(getTotalDiscounts())} )`,
                     style: "total_currency",
                   },
                 ],

@@ -130,7 +130,11 @@ const BookingDetailsPage = (props) => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={8} md={8}>
             <div className={classes.section}>
-              <BookingRoomDetails rooms={booking?.rooms} />
+              <BookingRoomDetails
+                rooms={booking?.rooms}
+                onAddDiscount={onAddDiscount}
+                booking={booking}
+              />
             </div>
             <div className={classes.section}>
               <BookingPayment

@@ -150,10 +150,33 @@ const BookingDetails = () => {
     }
   };
 
-  const addDiscount = async (formData) => {
+  // const addDiscount = async (formData) => {
+  //   try {
+  //     const result = await ApiAxios(
+  //       { url: ADD_DISCOUNT, method: "POST", data: { id, ...formData } },
+  //       appStateDispatch
+  //     );
+  //     enqueueSnackbar("Discount Added!", {
+  //       variant: "success",
+  //     });
+
+  //     fetchBooking();
+  //     return result.data;
+  //   } catch (error) {
+  //     enqueueSnackbar(error.data.message, {
+  //       variant: "error",
+  //     });
+  //   }
+  // };
+
+  const addRoomDiscount = async (formData) => {
     try {
       const result = await ApiAxios(
-        { url: ADD_DISCOUNT, method: "POST", data: { id, ...formData } },
+        {
+          url: "add_discount_room",
+          method: "POST",
+          data: { id, ...formData, room_id: params.room_id },
+        },
         appStateDispatch
       );
       enqueueSnackbar("Discount Added!", {
@@ -163,6 +186,7 @@ const BookingDetails = () => {
       fetchBooking();
       return result.data;
     } catch (error) {
+      console.log(error.data);
       enqueueSnackbar(error.data.message, {
         variant: "error",
       });
@@ -222,7 +246,9 @@ const BookingDetails = () => {
           })
         }
         onAddAmenity={() => openModal("onAddAmenity")}
-        onAddDiscount={() => openModal("onAddDiscount")}
+        onAddDiscount={(roomId) =>
+          openModal("onAddDiscount", { room_id: roomId })
+        }
         onBack={() => navigate("/admin/bookings")}
       />
       <ConfirmBookingDialog
@@ -265,7 +291,7 @@ const BookingDetails = () => {
         open={params.action === "onAddDiscount"}
         onClose={closeModal}
         fetchDiscounts={fetchDiscounts}
-        addDiscount={addDiscount}
+        addDiscount={addRoomDiscount}
       />
     </>
   );

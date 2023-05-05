@@ -9,7 +9,9 @@ import {
   TableCell,
   TableRow,
   Skeleton,
+  IconButton,
 } from "@mui/material";
+import { Discount } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 import { currencyFormat, renderCollection } from "../../../../misc";
 
@@ -37,8 +39,8 @@ const useStyles = makeStyles(
 
 const BookingRoomDetails = (props) => {
   const classes = useStyles(props);
-  const { rooms } = props;
-
+  const { rooms, onAddDiscount, booking } = props;
+  console.log(rooms);
   return (
     <Card>
       <CardHeader className={classes.cardHeader} title="Room Details" />
@@ -47,6 +49,7 @@ const BookingRoomDetails = (props) => {
           <TableRow>
             <TableCell className={classes.tableHeader}>Room</TableCell>
             <TableCell className={classes.tableHeader}>Room Rate</TableCell>
+            <TableCell className={classes.tableHeader}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,11 +58,41 @@ const BookingRoomDetails = (props) => {
             (room) => (
               <TableRow>
                 <TableCell>{room?.room_num}</TableCell>
-                <TableCell>{currencyFormat(room?.room_amount)}</TableCell>
+                <TableCell>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <s>{currencyFormat(room?.room_amount)}</s>
+                    {room?.discounted_amount ? (
+                      <span>{currencyFormat(room?.discounted_amount)}</span>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </TableCell>
+
+                <TableCell>
+                  <IconButton
+                    aria-label="delete"
+                    size="large"
+                    onClick={() => onAddDiscount(room.room_id)}
+                    disabled={
+                      room.discounted_amount || booking.status !== "RESERVED"
+                    }
+                  >
+                    <Discount fontSize="inherit" />
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ),
             () => (
               <TableRow>
+                <TableCell className={classes.tableHeader}>
+                  <Skeleton />
+                </TableCell>
                 <TableCell className={classes.tableHeader}>
                   <Skeleton />
                 </TableCell>
