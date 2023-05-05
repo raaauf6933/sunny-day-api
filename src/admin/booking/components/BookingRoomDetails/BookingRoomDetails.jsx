@@ -65,14 +65,14 @@ const BookingRoomDetails = (props) => {
                       flexDirection: "column",
                     }}
                   >
-                    <span>{currencyFormat(room?.room_amount)}</span>
+                 
                     {room?.discounted_amount ? (
                       <>
                         <s>{currencyFormat(room?.room_amount)}</s>
                         <span>{currencyFormat(room?.discounted_amount)}</span>
                       </>
                     ) : (
-                      ""
+                      <span>{currencyFormat(room?.room_amount)}</span>
                     )}
                   </div>
                 </TableCell>
