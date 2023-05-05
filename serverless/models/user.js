@@ -38,6 +38,10 @@ const UserSchema = new mongoose.Schema(
       minlength: 6,
       maxlength: 1024,
     },
+    user_type: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
       required: true,

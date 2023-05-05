@@ -1364,7 +1364,7 @@ module.exports = (body) => {
         <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px;font-family:'Open Sans',sans-serif;" align="left">
           
     <div class="v-text-align v-line-height" style="color: #5c5757; line-height: 140%; text-align: left; word-wrap: break-word;">
-      <p style="font-size: 14px; line-height: 140%;">&nbsp;- Cancellation of booking is not allowed if the booking is confirmed</p>
+      <p style="font-size: 14px; line-height: 140%;">&nbsp;- Cancellation of booking is not allowed if the booking is reserved</p>
     </div>
   
         </td>
@@ -1378,7 +1378,7 @@ module.exports = (body) => {
         <td style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px;font-family:'Open Sans',sans-serif;" align="left">
           
     <div class="v-text-align v-line-height" style="color: #5c5757; line-height: 140%; text-align: left; word-wrap: break-word;">
-      <p style="font-size: 14px; line-height: 140%;">&nbsp;- Rebooking/Modifying of booking is not allowed if the booking is confirmed</p>
+      <p style="font-size: 14px; line-height: 140%;">&nbsp;- Rebooking/Modifying of booking is not allowed if the booking is reserved</p>
     </div>
   
         </td>

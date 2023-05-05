@@ -43,7 +43,7 @@ const Admin = () => {
 const Routes = () => {
   const { appStateDispatch } = React.useContext(AppStateContext);
   const location = useLocation();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   React.useEffect(() => {
     appStateDispatch({ type: "SET_ERROR", payload: false });
@@ -55,19 +55,34 @@ const Routes = () => {
       {isAuthenticated ? (
         <AppLayout>
           <Switch>
-            <Route exact path="/" element={<Dashboard />} />
-            <Route exact path="/bookings/*" element={<Booking />} />
-            <Route path="/amenities/*" element={<Amenities />} />
-            <Route
-              exact
-              path="/room-management/*"
-              element={<RoomMangement />}
-            />
-            <Route path="/users/*" element={<Users />} />
-            <Route path="/configurations/*" element={<Configuration />} />
-            <Route path="/discounts/*" element={<Discounts />} />
-            <Route path="/reports/*" element={<Reports />} />
-            <Route path="/content-settings/*" element={<ContentSettings />} />
+            {user.user_type === "FRONT_DESK" ? (
+              <>
+                {" "}
+                <Route exact path="/" element={<Dashboard />} />
+                <Route exact path="/bookings/*" element={<Booking />} />
+              </>
+            ) : (
+              <>
+                {" "}
+                <Route exact path="/" element={<Dashboard />} />
+                <Route exact path="/bookings/*" element={<Booking />} />
+                <Route path="/amenities/*" element={<Amenities />} />
+                <Route
+                  exact
+                  path="/room-management/*"
+                  element={<RoomMangement />}
+                />
+                <Route path="/users/*" element={<Users />} />
+                <Route path="/configurations/*" element={<Configuration />} />
+                <Route path="/discounts/*" element={<Discounts />} />
+                <Route path="/reports/*" element={<Reports />} />
+                <Route
+                  path="/content-settings/*"
+                  element={<ContentSettings />}
+                />
+              </>
+            )}
+
             <Route exact path="*" element={<Navigate from="*" to="/admin" />} />
           </Switch>
         </AppLayout>

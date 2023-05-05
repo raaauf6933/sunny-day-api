@@ -35,16 +35,18 @@ const BookingPayment = (props) => {
   const classes = useStyles(props);
   const { billing, booking, onAddDiscount } = props;
 
+  const roomsWithDiscounts = booking.rooms?.filter((e) => e.discounted_amount);
+
   return (
     <Card>
       <CardHeader
         className={classes.cardHeader}
         title="Payment Details"
-        action={createAddDiscountBtn(
-          booking?.status,
-          billing?.discount?.amount,
-          onAddDiscount
-        )}
+        // action={createAddDiscountBtn(
+        //   booking?.status,
+        //   billing?.discount?.amount,
+        //   onAddDiscount
+        // )}
       />
       <CardContent>
         <div className={classes.flexGrid}>
@@ -72,14 +74,31 @@ const BookingPayment = (props) => {
               </span>
             ) : null}
           </span>
-          <span>
-            ({" "}
-            {billing?.discount
-              ? currencyFormat(billing.discount.amount)
-              : currencyFormat(0)}{" "}
-            )
-          </span>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {roomsWithDiscounts?.length > 0
+              ? roomsWithDiscounts?.map((e) => (
+                  <>
+                    <span>
+                      ( {e.discounted_amount ? e.discount_name : ""}{" "}
+                      {e?.discounted_amount
+                        ? currencyFormat(
+                            e?.discount_amount *
+                              getNoNights(booking.check_in, booking.check_out)
+                          )
+                        : currencyFormat(0)}{" "}
+                      )
+                    </span>
+                  </>
+                ))
+              : currencyFormat(0)}
+          </div>
         </div>
+
         <div className={classes.flexGrid}>
           <span>
             <b>Total Amount</b>

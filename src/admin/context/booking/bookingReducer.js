@@ -40,6 +40,10 @@ const bookingReducer = (state, action) => {
       newState.isBookingSuccess = true;
       newState.bookingReference = payload;
       break;
+    case "RESET_GUEST_PERSON":
+      newState = { ...newState, guest: { ...newState.guest, no_guest: 1 } };
+
+      break;
     case "RESET_ROOMS":
       newState.room_details = [];
       break;

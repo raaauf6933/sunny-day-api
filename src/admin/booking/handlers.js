@@ -2,8 +2,8 @@ export const getBookingStatusFormat = (status) => {
   switch (status) {
     case "PENDING":
       return "PENDING";
-    case "CONFIRMED":
-      return "CONFIRMED";
+    case "RESERVED":
+      return "RESERVED";
     case "CHECK_IN":
       return "CHECK-IN";
     case "CHECK_OUT":

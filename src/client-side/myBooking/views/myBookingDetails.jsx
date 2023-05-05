@@ -301,11 +301,11 @@ const MyBookingDetails = (props) => {
                 <ul>
                   <li>
                     Cancellation of booking is not allowed if the booking is
-                    confirmed
+                    reserved
                   </li>
                   <li>
                     Rebooking/Modifying of booking is not allowed if the booking
-                    is confirmed
+                    is reserved
                   </li>
                   <li>No Refund</li>
                 </ul>

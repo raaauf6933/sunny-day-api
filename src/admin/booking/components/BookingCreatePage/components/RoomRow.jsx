@@ -48,6 +48,7 @@ const RoomRow = ({ room_type, rooms, dispatch, room_details }) => {
           room_amount: room_type.room_rate,
           roomtype_name: room_type.name,
           room_num: rooms[qty].room_number,
+          no_person: room_type.details.no_person,
         },
       });
     }

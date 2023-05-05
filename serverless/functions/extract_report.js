@@ -41,9 +41,9 @@ exports.handler = async (event, context, callback) => {
           },
         };
         break;
-      case "CONFIRMED":
+      case "RESERVED":
         return {
-          status: "CONFIRMED",
+          status: "RESERVED",
           createdAt: {
             $gte: startFrom,
             $lt: startTo,

@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Typography, Grid, CardMedia, Skeleton } from "@mui/material";
+import { Typography, Grid, CardMedia, Skeleton, Tooltip } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { currencyFormat } from "../../utils/formatter";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
@@ -22,7 +22,6 @@ const useStyles = makeStyles(
         display: "flex",
         overflowWrap: "break-word",
         wordBreak: "break-word",
-        marginBottom: "2em",
       },
       roomAmenities: {
         whiteSpace: "nowrap",
@@ -181,7 +180,15 @@ const RoomItems = (props) => {
 
   return (
     <>
-      <Grid item xs={12} sm={6}>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        style={{
+          alignItems: "center",
+          display: "grid",
+        }}
+      >
         <Carousel indicators={false} autoPlay={false} animation="slide">
           {images?.map((e) => {
             return (
@@ -250,6 +257,39 @@ const RoomItems = (props) => {
               ) : null}
             </Typography>
           </div>
+          {details.description ? (
+            <div
+              style={{
+                maxHeight: "25px",
+                maxWidth: "250px",
+                overflow: "hidden",
+              }}
+            >
+              <Tooltip
+                title={
+                  <div>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: details.description,
+                      }}
+                    ></div>
+                  </div>
+                }
+                placement="bottom"
+              >
+                <div>
+                  <span
+                    style={{
+                      color: "#0014ffab",
+                    }}
+                  >
+                    See more details...
+                  </span>
+                </div>
+              </Tooltip>
+            </div>
+          ) : null}
+
           <div className={classes.roomFooter}>
             <Typography variant="h6">
               <span className={classes.roomAmount}>

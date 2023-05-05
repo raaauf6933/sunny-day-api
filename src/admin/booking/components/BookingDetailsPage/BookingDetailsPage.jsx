@@ -14,6 +14,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 
 import { getInvoice } from "./../../invoiceTemplate";
+import BookingCharges from "../BookingCharges/BookingCharges";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const useStyles = makeStyles(
@@ -55,14 +56,15 @@ const BookingDetailsPage = (props) => {
     onAddAmenity,
     onAddDiscount,
     onBack,
+    onAddCharges,
   } = props;
   const classes = useStyles(props);
 
   const saveButtonLabel = () => {
     switch (booking?.status) {
       case "PENDING":
-        return "CONFIRMED";
-      case "CONFIRMED":
+        return "RESERVED";
+      case "RESERVED":
         return "CHECK-IN";
       case "CHECK_IN":
         return "CHECK-OUT";
@@ -76,7 +78,7 @@ const BookingDetailsPage = (props) => {
       case "PENDING":
         onConfirmBooking();
         break;
-      case "CONFIRMED":
+      case "RESERVED":
         onConfirmBooking();
         break;
       case "CHECK_IN":
@@ -130,7 +132,11 @@ const BookingDetailsPage = (props) => {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={8} md={8}>
             <div className={classes.section}>
-              <BookingRoomDetails rooms={booking?.rooms} />
+              <BookingRoomDetails
+                rooms={booking?.rooms}
+                onAddDiscount={onAddDiscount}
+                booking={booking}
+              />
             </div>
             <div className={classes.section}>
               <BookingPayment
@@ -158,6 +164,9 @@ const BookingDetailsPage = (props) => {
                 booking={booking}
                 onAddAmenity={onAddAmenity}
               />
+            </div>
+            <div className={classes.section}>
+              <BookingCharges booking={booking} onAddCharges={onAddCharges} />
             </div>
           </Grid>
         </Grid>

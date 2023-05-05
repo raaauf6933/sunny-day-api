@@ -52,10 +52,12 @@ const CreateBooking = async (event, context, callback) => {
       sub_total: createNewBilling(),
       total_amount: body.totalAmount,
       additional_total: 0,
+      charges_total: 0,
     },
     events: [createEvent(eventType.BOOKING_CREATED)],
     payment: [],
     additionals: [],
+    charges: [],
     createdAt: date_time_today.format(),
     updatedAt: date_time_today.format(),
   });

@@ -35,7 +35,7 @@ export default function ColorsTimeline(props) {
       case "GUEST_IMAGE_UPLOAD":
         return "You Upload an Image";
       case "UPDATE_STATUS":
-        return "Booking Confirmed";
+        return "Booking Reserved";
       case "PAYMENT_CAPTURED":
         return "Your Payment has been Acknowledged";
       case "GUEST_MODIFY_BOOKING":

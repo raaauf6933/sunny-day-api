@@ -21,6 +21,7 @@ import BookingDiscountDialog from "../../components/BookingDiscountDialog";
 import { useSnackbar } from "notistack";
 import { GET_AMENITIES } from "./../../../amenities/api";
 import { GET_DISCOUNTS } from "./../../../discounts/api";
+import BookingChargesDialog from "../../components/BookingChargesDialog/BookingChargesDialog";
 
 const BookingDetails = () => {
   const { id } = useParams();
@@ -61,7 +62,13 @@ const BookingDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const UpdateStatus = async ({ id, status, paymentAmount }) => {
+  const UpdateStatus = async ({
+    id,
+    status,
+    paymentAmount,
+    check_in,
+    check_out,
+  }) => {
     try {
       await ApiAxios(
         {
@@ -75,6 +82,8 @@ const BookingDetails = () => {
               paymentAmount !== null || paymentAmount !== undefined
                 ? paymentAmount
                 : null,
+            check_in,
+            check_out,
           },
           url: UPDATE_BOOKING_STATUS,
           method: "POST",
@@ -130,6 +139,25 @@ const BookingDetails = () => {
     }
   };
 
+  const addCharges = async (formData) => {
+    try {
+      const result = await ApiAxios(
+        { url: "add_charges", method: "POST", data: { id, ...formData } },
+        appStateDispatch
+      );
+      enqueueSnackbar("Saved Changes!", {
+        variant: "success",
+      });
+
+      fetchBooking();
+      return result.data;
+    } catch (error) {
+      enqueueSnackbar("Something Went Wrong", {
+        variant: "error",
+      });
+    }
+  };
+
   const fetchDiscounts = async () => {
     try {
       const result = await ApiAxios(
@@ -142,10 +170,33 @@ const BookingDetails = () => {
     }
   };
 
-  const addDiscount = async (formData) => {
+  // const addDiscount = async (formData) => {
+  //   try {
+  //     const result = await ApiAxios(
+  //       { url: ADD_DISCOUNT, method: "POST", data: { id, ...formData } },
+  //       appStateDispatch
+  //     );
+  //     enqueueSnackbar("Discount Added!", {
+  //       variant: "success",
+  //     });
+
+  //     fetchBooking();
+  //     return result.data;
+  //   } catch (error) {
+  //     enqueueSnackbar(error.data.message, {
+  //       variant: "error",
+  //     });
+  //   }
+  // };
+
+  const addRoomDiscount = async (formData) => {
     try {
       const result = await ApiAxios(
-        { url: ADD_DISCOUNT, method: "POST", data: { id, ...formData } },
+        {
+          url: "add_discount_room",
+          method: "POST",
+          data: { id, ...formData, room_id: params.room_id },
+        },
         appStateDispatch
       );
       enqueueSnackbar("Discount Added!", {
@@ -155,6 +206,7 @@ const BookingDetails = () => {
       fetchBooking();
       return result.data;
     } catch (error) {
+      console.log(error.data);
       enqueueSnackbar(error.data.message, {
         variant: "error",
       });
@@ -180,10 +232,10 @@ const BookingDetails = () => {
         case "PENDING":
           return (
             <span>
-              Are you sure you want to mark this booking as <b>CONFIRMED</b>?
+              Are you sure you want to mark this booking as <b>RESERVED</b>?
             </span>
           );
-        case "CONFIRMED":
+        case "RESERVED":
           return (
             <span>
               Are you sure you want to mark this booking as <b>CHECK-IN</b>?
@@ -214,10 +266,14 @@ const BookingDetails = () => {
           })
         }
         onAddAmenity={() => openModal("onAddAmenity")}
-        onAddDiscount={() => openModal("onAddDiscount")}
+        onAddCharges={() => openModal("onAddCharges")}
+        onAddDiscount={(roomId) =>
+          openModal("onAddDiscount", { room_id: roomId })
+        }
         onBack={() => navigate("/admin/bookings")}
       />
       <ConfirmBookingDialog
+        booking={booking}
         open={params.action === "onConfirmBooking"}
         onClose={closeModal}
         status={booking?.status}
@@ -226,6 +282,8 @@ const BookingDetails = () => {
             id: booking?._id,
             status: booking?.status,
             paymentAmount,
+            check_in: booking.check_in,
+            check_out: booking.check_out,
           })
         }
         fetchBooking={fetchBooking}
@@ -250,11 +308,18 @@ const BookingDetails = () => {
         addAmenity={addAmenity}
         maxBed={maxBed}
       />
+      <BookingChargesDialog
+        open={params.action === "onAddCharges"}
+        onClose={closeModal}
+        fetchAmenities={fetchAmenities}
+        addCharges={addCharges}
+        maxBed={maxBed}
+      />
       <BookingDiscountDialog
         open={params.action === "onAddDiscount"}
         onClose={closeModal}
         fetchDiscounts={fetchDiscounts}
-        addDiscount={addDiscount}
+        addDiscount={addRoomDiscount}
       />
     </>
   );

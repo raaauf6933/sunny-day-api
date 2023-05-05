@@ -54,6 +54,25 @@ const BookingsSchema = new mongoose.Schema(
         },
       }),
     ],
+    charges: [
+      new mongoose.Schema({
+        id: {
+          type: String,
+        },
+        name: {
+          type: String,
+        },
+        amount: {
+          type: Number,
+        },
+        qty: {
+          type: Number,
+        },
+        created: {
+          type: Date,
+        },
+      }),
+    ],
     billing: {
       type: billing(),
       required: true,

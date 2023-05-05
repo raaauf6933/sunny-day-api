@@ -87,7 +87,7 @@ const BookingStatus = (props) => {
       <div
         className={classNames(null, {
           [classes.pendingStatus]: status === "PENDING",
-          [classes.defaultStatus1]: ["CONFIRMED", "CHECK_IN"].includes(status),
+          [classes.defaultStatus1]: ["RESERVED", "CHECK_IN"].includes(status),
           [classes.successStatus]: status === "CHECK_OUT",
         })}
       >

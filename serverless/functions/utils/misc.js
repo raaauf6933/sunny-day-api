@@ -31,8 +31,8 @@ exports.currencyFormat = (number) => {
 exports.getNewStatus = (status) => {
   switch (status) {
     case bookingStatus.PENDING:
-      return bookingStatus.CONFIRMED;
-    case bookingStatus.CONFIRMED:
+      return bookingStatus.RESERVED;
+    case bookingStatus.RESERVED:
       return bookingStatus.CHECK_IN;
     case bookingStatus.CHECK_IN:
       return bookingStatus.CHECK_OUT;

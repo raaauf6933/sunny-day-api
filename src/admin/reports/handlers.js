@@ -1,5 +1,6 @@
 import moment from "moment";
 import { currencyFormat } from "./../../misc";
+import { image } from "./base64logo";
 
 export const createBookingTypeChoices = () => {
   return [
@@ -12,8 +13,8 @@ export const createBookingTypeChoices = () => {
       value: "PENDING",
     },
     {
-      label: "Confirmed",
-      value: "CONFIRMED",
+      label: "Reserved",
+      value: "RESERVED",
     },
     {
       label: "Check-In",
@@ -101,6 +102,18 @@ const createDataRows = (data) => {
         style: "tableBody",
       },
       {
+        text: `${booking.guest.first_name} ${booking.guest.last_name}`,
+        style: "tableBody",
+      },
+      {
+        text: `${currencyFormat(booking.billing.additional_total)}`,
+        style: "tableBody",
+      },
+      {
+        text: `${currencyFormat(booking.billing.charges_total)}`,
+        style: "tableBody",
+      },
+      {
         text: `${currencyFormat(payment_amount)}`,
         style: "tableBody",
       },
@@ -121,11 +134,27 @@ const createDataRows = (data) => {
 // playground requires you to assign document definition to a variable called dd
 export const dd = (data, formData, user) => {
   const { bookings, billing } = data;
+
+  
   return {
     content: [
       {
-        alignment: "justify",
+        alignment: "",
         columns: [
+          {
+            stack: [
+              {
+                columns: [
+                  {
+                    image: image,
+                    width: 50,
+                  },
+                ],
+              },
+            ],
+            // text: 'Sunny Day Residences',
+            style: "header",
+          },
           {
             text: "Sunny Day Residences",
             style: "header",
@@ -152,7 +181,8 @@ export const dd = (data, formData, user) => {
       },
       {
         style: "tableExample",
-        margin: [0, 10, 10, 10],
+        width: ["*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"],
+        margin: [0, 10, 0, 10],
         table: {
           //   widths: [100,100,100],
 
@@ -187,7 +217,19 @@ export const dd = (data, formData, user) => {
                 style: "tableheader",
               },
               {
-                text: "Payed Amount",
+                text: "Reserved By",
+                style: "tableheader",
+              },
+              {
+                text: "Total Additionals",
+                style: "tableheader",
+              },
+              {
+                text: "Total Charges",
+                style: "tableheader",
+              },
+              {
+                text: "Paid Amount",
                 style: "tableheader",
               },
               {
@@ -274,11 +316,13 @@ export const dd = (data, formData, user) => {
       },
       tableheader: {
         bold: true,
-        fontWeight: 600,
+        fontWeight: 700,
         margin: [5, 5, 5, 5],
+        fontSize: 8,
       },
       tableBody: {
         margin: [5, 5, 5, 5],
+        fontSize: 8,
       },
       date: {
         fontSize: 16,
