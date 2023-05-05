@@ -14,6 +14,7 @@ export const getInvoice = (booking) => {
     // status,
     // events,
     additionals,
+    charges,
   } = booking;
 
   const getNoQuantity = (roomtype_id) => {
@@ -30,11 +31,13 @@ export const getInvoice = (booking) => {
   const getTotalDiscounts = () => {
     let total_discounts = 0;
 
-    for (let r of rooms) {
-      total_discounts = total_discounts + r.discount_amount;
+    if (rooms.length > 0) {
+      for (let r of rooms) {
+        total_discounts = total_discounts + r.discount_amount;
+      }
     }
 
-    return total_discounts;
+    return total_discounts ? total_discounts : 0;
   };
 
   const handleGetRooms = () => {
@@ -104,7 +107,48 @@ export const getInvoice = (booking) => {
           style: "tableBody",
         },
         {
+          text: "--",
+          style: "tableBody",
+        },
+        {
+          text: "--",
+          style: "tableBody",
+        },
+        {
           text: currencyFormat(handleGetAdditionalAmount(e.rate, e.qty)),
+          style: "tableBody",
+        },
+      ];
+    });
+
+    return additionalsBody;
+  };
+
+  const handleGetCharges = () => {
+    const additionalsBody = charges.map((e) => {
+      return [
+        {
+          text: e.name,
+          style: "tableBody",
+        },
+        {
+          text: currencyFormat(e.amount),
+          style: "tableBody",
+        },
+        {
+          text: e.qty,
+          style: "tableBody",
+        },
+        {
+          text: "--",
+          style: "tableBody",
+        },
+        {
+          text: "--",
+          style: "tableBody",
+        },
+        {
+          text: currencyFormat(handleGetAdditionalAmount(e.amount, e.qty)),
           style: "tableBody",
         },
       ];
@@ -265,6 +309,7 @@ export const getInvoice = (booking) => {
             ],
             ...handleGetRooms(),
             ...handleGetAdditionals(),
+            ...handleGetCharges(),
           ],
         },
       },
@@ -317,6 +362,33 @@ export const getInvoice = (booking) => {
                   {
                     alignment: "right",
                     text: `${currencyFormat(billing.additional_total)}`,
+                    style: "total_currency",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        margin: [0, 10, 0, 0],
+        alignment: "",
+        columns: [
+          {
+            text: "",
+            style: "total_currency",
+          },
+          {
+            stack: [
+              {
+                columns: [
+                  {
+                    text: "Charges:",
+                    style: "total_currency",
+                  },
+                  {
+                    alignment: "right",
+                    text: `${currencyFormat(billing.charges_total)}`,
                     style: "total_currency",
                   },
                 ],

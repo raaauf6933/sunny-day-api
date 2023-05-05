@@ -6,6 +6,10 @@ import SaveButtonBar from "../../../components/SaveButtonBar/SaveButtonBar";
 
 import Form from "../../../components/Form/Form.jsx";
 import { makeStyles } from "@mui/styles";
+import { Card } from "@mui/material";
+
+import HomePromoContentCard from "../../../content-settings/components/HomePromoContentCard";
+import FormComponent from "../../../components/Form/Form.jsx";
 
 // import { maybe } from "../../../../misc";
 
@@ -34,6 +38,7 @@ const RoomTypeUpdateDetailsPage = (props) => {
     isAircon: true,
     isKitchen: true,
     status: "ACT",
+    description: "<p>Type the room additional descriptions here</p>",
   };
 
   return (

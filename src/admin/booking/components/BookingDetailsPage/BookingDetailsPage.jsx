@@ -14,6 +14,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 
 import { getInvoice } from "./../../invoiceTemplate";
+import BookingCharges from "../BookingCharges/BookingCharges";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const useStyles = makeStyles(
@@ -55,6 +56,7 @@ const BookingDetailsPage = (props) => {
     onAddAmenity,
     onAddDiscount,
     onBack,
+    onAddCharges,
   } = props;
   const classes = useStyles(props);
 
@@ -162,6 +164,9 @@ const BookingDetailsPage = (props) => {
                 booking={booking}
                 onAddAmenity={onAddAmenity}
               />
+            </div>
+            <div className={classes.section}>
+              <BookingCharges booking={booking} onAddCharges={onAddCharges} />
             </div>
           </Grid>
         </Grid>

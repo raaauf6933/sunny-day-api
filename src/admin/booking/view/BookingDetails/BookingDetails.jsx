@@ -21,6 +21,7 @@ import BookingDiscountDialog from "../../components/BookingDiscountDialog";
 import { useSnackbar } from "notistack";
 import { GET_AMENITIES } from "./../../../amenities/api";
 import { GET_DISCOUNTS } from "./../../../discounts/api";
+import BookingChargesDialog from "../../components/BookingChargesDialog/BookingChargesDialog";
 
 const BookingDetails = () => {
   const { id } = useParams();
@@ -123,6 +124,25 @@ const BookingDetails = () => {
     try {
       const result = await ApiAxios(
         { url: ADD_AMENITY, method: "POST", data: { id, ...formData } },
+        appStateDispatch
+      );
+      enqueueSnackbar("Saved Changes!", {
+        variant: "success",
+      });
+
+      fetchBooking();
+      return result.data;
+    } catch (error) {
+      enqueueSnackbar("Something Went Wrong", {
+        variant: "error",
+      });
+    }
+  };
+
+  const addCharges = async (formData) => {
+    try {
+      const result = await ApiAxios(
+        { url: "add_charges", method: "POST", data: { id, ...formData } },
         appStateDispatch
       );
       enqueueSnackbar("Saved Changes!", {
@@ -246,6 +266,7 @@ const BookingDetails = () => {
           })
         }
         onAddAmenity={() => openModal("onAddAmenity")}
+        onAddCharges={() => openModal("onAddCharges")}
         onAddDiscount={(roomId) =>
           openModal("onAddDiscount", { room_id: roomId })
         }
@@ -285,6 +306,13 @@ const BookingDetails = () => {
         onClose={closeModal}
         fetchAmenities={fetchAmenities}
         addAmenity={addAmenity}
+        maxBed={maxBed}
+      />
+      <BookingChargesDialog
+        open={params.action === "onAddCharges"}
+        onClose={closeModal}
+        fetchAmenities={fetchAmenities}
+        addCharges={addCharges}
         maxBed={maxBed}
       />
       <BookingDiscountDialog

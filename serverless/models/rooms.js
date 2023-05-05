@@ -38,6 +38,10 @@ const roomTypesSchema = new mongoose.Schema(
         type: Boolean,
         required: true,
       },
+      description: {
+        type: String,
+        required: true,
+      },
     }),
     images: [
       new mongoose.Schema({

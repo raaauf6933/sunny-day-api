@@ -12,6 +12,7 @@ exports.handler = async (event, ct, callback) => {
         no_bath: data.no_bath,
         isAircon: data.isAircon,
         isKitchen: data.isKitchen,
+        description: data.description,
       },
       room_rate: data.room_rate,
       status: data.status,

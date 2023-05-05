@@ -42,6 +42,7 @@ exports.handler = async (event, ct, callback) => {
         no_person: data.no_person,
         isAircon: data.isAircon,
         isKitchen: data.isKitchen,
+        description: data.description,
       },
       room_rate: data.room_rate,
       images: [],
@@ -57,12 +58,12 @@ exports.handler = async (event, ct, callback) => {
       body: JSON.stringify(create_result),
     };
   } catch (error) {
-    return callback(null, {
+    return {
       statusCode: 400,
       body: JSON.stringify({
         success: "false",
         message: error.message,
       }),
-    });
+    };
   }
 };

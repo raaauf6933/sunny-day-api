@@ -43,48 +43,51 @@ const RoomTypeUpdateDetailsPage = (props) => {
     isAircon: maybe(() => roomType?.details?.isAircon, false),
     isKitchen: maybe(() => roomType?.details?.isKitchen, false),
     status: maybe(() => roomType?.status, "ACT"),
+    description: maybe(() => roomType?.details.description, ""),
   };
 
   return (
     <>
       {/* <h1>sdfs</h1> */}
-      <Form initial={data} onSubmit={(e) => updateRoomType(e)}>
-        {({ change, data, hasChanged, submit }) => (
-          <>
-            <div className={classes.root}>
-              <Grid container spacing={2}>
-                <Grid xs={12} sm={8} md={8} item spacing={2} rowSpacing={2}>
-                  <Grid xs={12} sm={12} md={12} item>
-                    <RoomTypeGenInfo
-                      roomType={roomType}
-                      data={data}
-                      change={change}
-                      onDeleteRoomType={onDeleteRoomType}
-                    />
+      {roomType ? (
+        <Form initial={data} onSubmit={(e) => updateRoomType(e)}>
+          {({ change, data, hasChanged, submit }) => (
+            <>
+              <div className={classes.root}>
+                <Grid container spacing={2}>
+                  <Grid xs={12} sm={8} md={8} item spacing={2} rowSpacing={2}>
+                    <Grid xs={12} sm={12} md={12} item>
+                      <RoomTypeGenInfo
+                        roomType={roomType}
+                        data={data}
+                        change={change}
+                        onDeleteRoomType={onDeleteRoomType}
+                      />
+                    </Grid>
+                    <Grid xs={12} sm={12} md={12} item>
+                      <RoomTypeImages
+                        images={roomType?.images}
+                        uploadRoomImage={uploadRoomImage}
+                        onDeleRoomImage={onDeleRoomImage}
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid xs={12} sm={12} md={12} item>
-                    <RoomTypeImages
-                      images={roomType?.images}
-                      uploadRoomImage={uploadRoomImage}
-                      onDeleRoomImage={onDeleRoomImage}
+                  <Grid xs={12} sm={4} md={4} item>
+                    <RoomTypeDetailsList
+                      rooms={roomType?.rooms}
+                      onCreateRoom={onCreateRoom}
+                      onDeleteRoom={onDeleteRoom}
                     />
                   </Grid>
                 </Grid>
-                <Grid xs={12} sm={4} md={4} item>
-                  <RoomTypeDetailsList
-                    rooms={roomType?.rooms}
-                    onCreateRoom={onCreateRoom}
-                    onDeleteRoom={onDeleteRoom}
-                  />
-                </Grid>
-              </Grid>
-            </div>
-            <div style={{ marginTop: "5em" }}>
-              <SaveButtonBar onClickSave={submit} disabled={!hasChanged} />
-            </div>
-          </>
-        )}
-      </Form>
+              </div>
+              <div style={{ marginTop: "5em" }}>
+                <SaveButtonBar onClickSave={submit} disabled={!hasChanged} />
+              </div>
+            </>
+          )}
+        </Form>
+      ) : null}
     </>
   );
 };

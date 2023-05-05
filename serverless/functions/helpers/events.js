@@ -9,6 +9,7 @@ const ADD_AMENITY = "ADD_AMENITY";
 const ADD_DISCOUNT = "ADD_DISCOUNT";
 const CANCELLED = "CANCELLED";
 const GUEST_MODIFY_BOOKING = "GUEST_MODIFY_BOOKING";
+const ADD_CHARGES = "ADD_CHARGES";
 
 exports.createEvent = (type, params) => {
   switch (type) {
@@ -84,6 +85,18 @@ exports.createEvent = (type, params) => {
         additional_type: params.type,
         created: moment.tz("Asia/Manila").format(),
       };
+    case ADD_CHARGES:
+      return {
+        type: "ADD_CHARGES",
+        message: "",
+        images: [],
+        user: params.user,
+        amount: 0,
+        quantity: params.qty,
+        discount_type: "",
+        additional_type: params.type,
+        created: moment.tz("Asia/Manila").format(),
+      };
     case ADD_DISCOUNT:
       return {
         type: "ADD_DISCOUNT",
@@ -135,4 +148,5 @@ exports.eventType = {
   ADD_DISCOUNT,
   CANCELLED,
   GUEST_MODIFY_BOOKING,
+  ADD_CHARGES,
 };

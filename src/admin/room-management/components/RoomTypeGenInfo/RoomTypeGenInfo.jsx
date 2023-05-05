@@ -17,7 +17,9 @@ import {
   OutlinedInput,
   InputLabel,
   InputAdornment,
+  Typography,
 } from "@mui/material";
+import RichTextEditor from "../../../components/RichTextEditor";
 
 const RoomTypeGenInfo = (props) => {
   const { data, change, onDeleteRoomType } = props;
@@ -206,6 +208,20 @@ const RoomTypeGenInfo = (props) => {
 
               {/* </Box> */}
             </Grid>
+            <Grid xs={12} sm={12} md={12} item>
+              <Typography variant="h6">Description</Typography>
+              <RichTextEditor
+                initialValue={data.description}
+                onEditorChange={(value) =>
+                  change({
+                    target: {
+                      name: "description",
+                      value,
+                    },
+                  })
+                }
+              />
+            </Grid>{" "}
             <Grid xs={12} sm={6} md={6} item></Grid>
           </Grid>
         </CardContent>

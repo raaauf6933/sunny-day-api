@@ -69,6 +69,8 @@ const BookingHistory = (props) => {
         return <TimelinePayment event={event} date={event.created} />;
       case "ADD_AMENITY":
         return <TimelineAdditionals event={event} date={event.created} />;
+      case "ADD_CHARGES":
+        return <TimelineAdditionals event={event} date={event.created} />;
       case "ADD_DISCOUNT":
         return <TimelineDiscount event={event} date={event.created} />;
       case "GUEST_MODIFY_BOOKING":

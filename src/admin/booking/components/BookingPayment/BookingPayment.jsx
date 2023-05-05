@@ -34,7 +34,9 @@ const useStyles = makeStyles(
 const BookingPayment = (props) => {
   const classes = useStyles(props);
   const { billing, booking, onAddDiscount } = props;
-  console.log(booking.rooms);
+
+  const roomsWithDiscounts = booking.rooms?.filter((e) => e.discounted_amount);
+
   return (
     <Card>
       <CardHeader
@@ -78,20 +80,22 @@ const BookingPayment = (props) => {
               flexDirection: "column",
             }}
           >
-            {booking.rooms?.map((e) => (
-              <>
-                <span>
-                  ( {e.discounted_amount ? e.discount_name : ""}{" "}
-                  {e?.discounted_amount
-                    ? currencyFormat(
-                        e?.discount_amount *
-                          getNoNights(booking.check_in, booking.check_out)
+            {roomsWithDiscounts?.length > 0
+              ? roomsWithDiscounts?.map((e) => (
+                  <>
+                    <span>
+                      ( {e.discounted_amount ? e.discount_name : ""}{" "}
+                      {e?.discounted_amount
+                        ? currencyFormat(
+                            e?.discount_amount *
+                              getNoNights(booking.check_in, booking.check_out)
+                          )
+                        : currencyFormat(0)}{" "}
                       )
-                    : currencyFormat(0)}{" "}
-                  )
-                </span>
-              </>
-            ))}
+                    </span>
+                  </>
+                ))
+              : currencyFormat(0)}
           </div>
         </div>
 

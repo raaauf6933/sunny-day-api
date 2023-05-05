@@ -171,7 +171,7 @@ export const dd = (data, formData, user) => {
       },
       {
         style: "tableExample",
-        width: "*",
+        width: ["*", "*", "*", "*", "*", "*", "*", "*", "*", "*"],
         margin: [0, 10, 10, 10],
         table: {
           //   widths: [100,100,100],

@@ -102,6 +102,10 @@ exports.billing = () => {
       type: Number,
       required: true,
     },
+    charges_total: {
+      type: Number,
+      required: true,
+    },
   });
 };
 
