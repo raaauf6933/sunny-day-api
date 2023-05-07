@@ -16,6 +16,7 @@ const updateBilling = async () => {
   const result = await Bookings.find({ status: "CHECK_IN" });
 
   if (current_time.isAfter(moment(checkout_time).tz("Asia/Manila"))) {
+    console.log("truee")
     for (const e of result) {
       const computedNewItem = 150;
       const newTotalAmount = e.billing.total_amount + computedNewItem;
