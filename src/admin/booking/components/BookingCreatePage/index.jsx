@@ -62,10 +62,13 @@ const BookingCreatePage = (props) => {
 
   React.useEffect(() => {
     return () => {
+      console.log("reset")
       bookingDispatch({ type: "RESET" });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  console.log(bookingState.dates)
 
   return (
     <>

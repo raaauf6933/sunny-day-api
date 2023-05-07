@@ -109,12 +109,13 @@ const SummarySideBar = (props) => {
       vat,
     };
   };
+  
 
   const handleSubmit = () => {
     const data = {
       ...bookingState,
-      check_in: moment(bookingState.check_in).format("YYYY-MM-DD"),
-      check_out: moment(bookingState.check_out).format("YYYY-MM-DD"),
+      check_in: moment(bookingState.dates[0]).format("YYYY-MM-DD"),
+      check_out: moment(bookingState.dates[1]).format("YYYY-MM-DD"),
       rooms: bookingState.room_details,
       totalAmount: getTotalAmount(),
     };

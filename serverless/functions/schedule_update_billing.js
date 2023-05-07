@@ -23,13 +23,6 @@ const updateBilling = async () => {
 
       const newCharges = computedNewItem + e.billing.charges_total;
 
-      console.log(
-        createEvent(eventType.ADD_CHARGES, {
-          qty: 1,
-          type: "1 hour past - PHP150.00",
-          user: "AUTO_BACKGROUND",
-        })
-      );
       await Bookings.findByIdAndUpdate(e.id, {
         $set: {
           "billing.charges_total": parseFloat(newCharges),
